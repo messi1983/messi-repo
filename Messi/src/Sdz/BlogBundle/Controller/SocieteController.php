@@ -12,7 +12,13 @@ use Sdz\BlogBundle\Constants\Constants;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
- 
+
+/**
+ * Societe Controller.
+ * 
+ * @author Messi
+ *
+ */
 class SocieteController extends AbsSiteController
 { 
 	/**
