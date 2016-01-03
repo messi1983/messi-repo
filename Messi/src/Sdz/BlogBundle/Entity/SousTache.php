@@ -121,7 +121,7 @@ class SousTache
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
         $this->description = $description;
-        if($this->description != null) {
+        if($this->description !== null) {
         	$this->description->setLocale($this->locale);
         }
     
@@ -145,7 +145,7 @@ class SousTache
      */
     public function getDescriptionTexte()
     {
-    	if($this->description != null) {
+    	if($this->description !== null) {
     		return $this->description->getTexte();
     	}
     	return Constants::EMPTY_STRING;

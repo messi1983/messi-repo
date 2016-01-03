@@ -11,17 +11,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\TacheRepository")
  */
-class Tache
+class Tache extends AbsRefPageEntity
 {
-	/**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-	
 	/**
      * @var integer
      *
@@ -45,29 +36,15 @@ class Tache
      */
     private $soustaches;
     
-    /**
-     * @var string
-     */
-    private $locale;
-
 	/**
      * Constructor
      */
     public function __construct()
     {
-		$this->publication = false;
+		parent::__construct();
+		
 		$this->ordre = 0;
 		$this->soustaches = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-	
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 	
     /**
@@ -79,9 +56,7 @@ class Tache
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
     	$this->description = $description;
-    	if($this->description != null) {
-    		$this->description->setLocale($this->locale);
-    	}
+
     	return $this;
     }
     
@@ -102,10 +77,7 @@ class Tache
      */
     public function getDescriptionTexte()
     {
-    	if($this->description != null) {
-    		return $this->description->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return  $this->getTexteString($this->description);
     }
 
     /**
@@ -195,7 +167,7 @@ class Tache
      */
     public function getReferencePageName()
     {
-    	return $this->getDescription();
+    	return $this->getDescriptionTexte();
     }
 
     /**
@@ -204,14 +176,11 @@ class Tache
      * @return \Sdz\BlogBundle\Entity\Ecole
      */
     public function setLocale($locale) {
-    	$this->locale = $locale;
-    	
     	// Set locale
     	foreach($this->getSousTaches() as $sousTache) {
     		$sousTache->setLocale($locale);
     	}
-    
-    	return $this;
+    	return parent::setLocale($locale);
     }
     
     /**
@@ -220,7 +189,7 @@ class Tache
     public function updateSousTaches() {
     	foreach($this->soustaches as $soustache)
     	{
-    		if($soustache->getTache() == null) {
+    		if($soustache->getTache() === null) {
     			$soustache->setTache($this);
     		}
     	}

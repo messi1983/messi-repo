@@ -8,12 +8,17 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Image Type Extension
+ * @author Messi
+ *
+ */
 class ImageTypeExtension extends AbstractTypeExtension
 {
     /**
-     * Retourne le nom du type de champ qui est étendu
+     * Retourne le nom du type de champ qui est ï¿½tendu
      *
-     * @return string Le nom du type qui est étendu
+     * @return string Le nom du type qui est ï¿½tendu
      */
     public function getExtendedType()
     {
@@ -31,7 +36,7 @@ class ImageTypeExtension extends AbstractTypeExtension
     }
 	
 	/**
-     * Passe l'url de l'image à la vue
+     * Passe l'url de l'image ï¿½ la vue
      *
      * @param \Symfony\Component\Form\FormView $view
      * @param \Symfony\Component\Form\FormInterface $form
@@ -49,7 +54,7 @@ class ImageTypeExtension extends AbstractTypeExtension
                 $imageUrl = null;
             }
 
-            // définit une variable "image_url" qui sera disponible à l'affichage du champ
+            // dï¿½finit une variable "image_url" qui sera disponible ï¿½ l'affichage du champ
             $view->vars['image_url'] = $imageUrl;
         }
     }

@@ -12,24 +12,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\TheatreRepository")
  */
-class Theatre
+class Theatre extends AbsRefPageEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
-
     /**
      * @var string
      *
@@ -96,52 +80,15 @@ class Theatre
     private $link;
     
     /**
-     * @var string
-     */
-    private $locale;
-    
-    
-    /**
      * Constructor
      */
     public function __construct()
     {
+    	parent::__construct();
+    	
     	$this->membres = new \Doctrine\Common\Collections\ArrayCollection();
     }
 	
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Theatre
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
-
     /**
      * Set piece
      *
@@ -188,16 +135,6 @@ class Theatre
         return $this->organisme;
     }
 	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-
     /**
      * Set auteur
      *
@@ -359,16 +296,6 @@ class Theatre
     }
     
     /**
-     * Get refence page name.
-     *
-     * @return string
-     */
-    public function getReferencePageName()
-    {
-    	return $this->getPiece();
-    }
-
-    /**
      * Set resume
      *
      * @param \Sdz\BlogBundle\Entity\Texte $resume
@@ -377,9 +304,7 @@ class Theatre
     public function setResume(\Sdz\BlogBundle\Entity\Texte $resume = null)
     {
     	$this->resume = $resume;
-    	if($this->resume != null) {
-    		$this->resume->setLocale($this->locale);
-    	}
+    	
         return $this;
     }
 
@@ -400,10 +325,7 @@ class Theatre
      */
     public function getResumeTexte()
     {
-    	if($this->resume != null) {
-    		return $this->resume->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->resume);
     }
     
     /**
@@ -430,13 +352,13 @@ class Theatre
     }
     
     /**
+     * Get refence page name.
      *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
+     * @return string
      */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    	 
-    	return $this;
+    public function getReferencePageName()
+    {
+    	return $this->getPiece();
     }
+    
 }

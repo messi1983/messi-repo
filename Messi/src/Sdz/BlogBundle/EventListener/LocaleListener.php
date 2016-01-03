@@ -8,7 +8,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Sdz\BlogBundle\Constants\Constants;
- 
+
+/**
+ * Locale listener.
+ * @author Messi
+ *
+ */
 class LocaleListener implements EventSubscriberInterface
 {
 	private $defaultLocale;
@@ -25,11 +30,11 @@ class LocaleListener implements EventSubscriberInterface
 			return;
 		}
 	
-		// on essaie de voir si la locale a été fixée dans le paramètre de routing _locale
+		// on essaie de voir si la locale a ï¿½tï¿½ fixï¿½e dans le paramï¿½tre de routing _locale
 		if ($locale = $request->attributes->get(Constants::ATTRIBUTE_LOCALE)) {
 			$request->getSession()->set(Constants::ATTRIBUTE_LOCALE, $locale);
 		} else {
-			// si aucune locale n'a été fixée explicitement dans la requête, on utilise celle de la session
+			// si aucune locale n'a ï¿½tï¿½ fixï¿½e explicitement dans la requï¿½te, on utilise celle de la session
 			$request->setLocale($request->getSession()->get(Constants::ATTRIBUTE_LOCALE, $this->defaultLocale));
 		}
 	}
@@ -37,7 +42,7 @@ class LocaleListener implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return array(
-				// doit être enregistré avant le Locale listener par défaut
+				// doit ï¿½tre enregistrï¿½ avant le Locale listener par dï¿½faut
 				KernelEvents::REQUEST => array(array('onKernelRequest', 17)),
 		);
 	}

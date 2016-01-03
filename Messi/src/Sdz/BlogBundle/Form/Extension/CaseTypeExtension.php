@@ -8,12 +8,17 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Case Type Extension 
+ * @author Messi
+ *
+ */
 class CaseTypeExtension extends AbstractTypeExtension
 {
     /**
-     * Retourne le nom du type de champ qui est étendu
+     * Retourne le nom du type de champ qui est ï¿½tendu
      *
-     * @return string Le nom du type qui est étendu
+     * @return string Le nom du type qui est ï¿½tendu
      */
     public function getExtendedType()
     {
@@ -31,7 +36,7 @@ class CaseTypeExtension extends AbstractTypeExtension
     }
 	
 	/**
-     * Passe l'url de l'image à la vue
+     * Passe l'url de l'image ï¿½ la vue
      *
      * @param \Symfony\Component\Form\FormView $view
      * @param \Symfony\Component\Form\FormInterface $form
@@ -48,7 +53,7 @@ class CaseTypeExtension extends AbstractTypeExtension
                $publish = $accessor->getValue($parentData, $options['isPublishOption']);
             } 
         }
-		// définit une variable "isPublishOption" qui sera disponible à l'affichage du champ
+		// dï¿½finit une variable "isPublishOption" qui sera disponible ï¿½ l'affichage du champ
 		$view->vars['isPublishOption'] = $publish;
     }
 }

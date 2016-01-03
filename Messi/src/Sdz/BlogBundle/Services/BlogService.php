@@ -111,7 +111,7 @@ class BlogService //extends \Twig_Extension
 			foreach($bean->getImages() as $image)
 			{
 				if($image->getState() == 'NOTUSED') {
-					if($image->getId() != null) {
+					if($image->getId() !== null) {
 						$this->em->remove($image);
 					} else {
 						$bean->removeImage($image);
@@ -140,7 +140,7 @@ class BlogService //extends \Twig_Extension
 		}
 		
 		// Save or update
-		if($bean->getId() == null) {
+		if($bean->getId() === null) {
 			$this->em->persist($bean);
 		}
 		$this->em->flush();

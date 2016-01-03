@@ -309,7 +309,7 @@ class Visitor
      * @param \Sdz\BlogBundle\Entity\Page $page
      */
     public function hasAlreadyVisitedPage(\Sdz\BlogBundle\Entity\Page $page) {
-    	if($this->pages != null) {
+    	if($this->pages !== null) {
     		foreach($this->pages as $currentPage) {
     			if($currentPage->getNom() == $page->getNom()) {
     				return true;

@@ -5,19 +5,24 @@ namespace Sdz\BlogBundle\Form;
  
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
- 
-class ArticleEditType extends ArticleType // Ici, on hérite de ArticleType
+
+/**
+ * 
+ * @author Messi
+ *
+ */
+class ArticleEditType extends ArticleType // Ici, on hï¿½rite de ArticleType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    // On fait appel à la méthode buildForm du parent, qui va ajouter tous les champs à $builder
+    // On fait appel ï¿½ la mï¿½thode buildForm du parent, qui va ajouter tous les champs ï¿½ $builder
     parent::buildForm($builder, $options);
  
     // On supprime celui qu'on ne veut pas dans le formulaire de modification
     $builder->remove('date');
   }
  
-  // On modifie cette méthode car les deux formulaires doivent avoir un nom différent
+  // On modifie cette mï¿½thode car les deux formulaires doivent avoir un nom diffï¿½rent
   public function getName()
   {
     return 'sdz_blogbundle_articleedittype';

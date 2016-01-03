@@ -7,11 +7,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Sdz\BlogBundle\Constants\Constants;
 
+/**
+ * 
+ * @author Messi
+ *
+ */
 class SiteCommentAdminType extends SiteCommentType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // On fait appel à la méthode buildForm du parent, qui va ajouter tous les champs à $builder
+        // On fait appel ï¿½ la mï¿½thode buildForm du parent, qui va ajouter tous les champs ï¿½ $builder
 		parent::buildForm($builder, $options);
 		
 		 $builder->add(Constants::FORM_INPUT_PUBLICATION, 'checkbox', array('required' => false, 'label' => 'form.field.publication', 'isPublishOption' => 'yes'));

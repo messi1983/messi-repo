@@ -5,14 +5,19 @@ namespace Sdz\BlogBundle\Validator;
  
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
- 
+
+/**
+ * AntiFlood Validator
+ * @author Messi
+ *
+ */
 class AntiFloodValidator extends ConstraintValidator
 {
   private $request;
   private $em;
  
-  // Les arguments déclarés dans la définition du service arrivent au constructeur
-  // On doit les enregistrer dans l'objet pour pouvoir s'en resservir dans la méthode validate()
+  // Les arguments dï¿½clarï¿½s dans la dï¿½finition du service arrivent au constructeur
+  // On doit les enregistrer dans l'objet pour pouvoir s'en resservir dans la mï¿½thode validate()
   public function __construct(Request $request, EntityManager $em)
   {
     $this->request = $request;
@@ -21,18 +26,18 @@ class AntiFloodValidator extends ConstraintValidator
 
   public function validate($value, Constraint $constraint)
   {
-    // On récupère l'IP de celui qui poste
+    // On rï¿½cupï¿½re l'IP de celui qui poste
     $ip = $this->request->server->get('REMOTE_ADDR');
 	
-	// On vérifie si cette IP a déjà posté un message il y a moins de 15 secondes
+	// On vï¿½rifie si cette IP a dï¿½jï¿½ postï¿½ un message il y a moins de 15 secondes
 	$isFlood = false;
     /*$isFlood = $this->em->getRepository('SdzBlogBundle:SiteCommentaire')
                         ->isFlood($ip, 15);*/
  
 	
-    // Pour l'instant, on considère comme flood tout message de moins de 3 caractères
+    // Pour l'instant, on considï¿½re comme flood tout message de moins de 3 caractï¿½res
     if (strlen($value) < 3  && $isFlood) {
-      // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message
+      // C'est cette ligne qui dï¿½clenche l'erreur pour le formulaire, avec en argument le message
       $this->context->addViolation($constraint->message, array('%string%' => $value));
     }
   }

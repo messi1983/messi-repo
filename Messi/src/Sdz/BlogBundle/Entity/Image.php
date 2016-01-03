@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Image
+ * Image model
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\ImageRepository")
@@ -61,17 +61,17 @@ class Image
 	// On ajoute cet attribut pour y stocker le nom du fichier temporairement
 	private $tempFilename;
  
-    // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
+    // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe dï¿½jï¿½ un autre
     public function setFile(UploadedFile $file)
     {
       $this->file = $file;
  
-      // On vérifie si on avait déjà un fichier pour cette entité
+      // On vï¿½rifie si on avait dï¿½jï¿½ un fichier pour cette entitï¿½
       if (null !== $this->extension) {
         // On sauvegarde l'extension du fichier pour le supprimer plus tard
         $this->tempFilename = $this->extension;
  
-        // On réinitialise les valeurs des attributs extension et alt
+        // On rï¿½initialise les valeurs des attributs extension et alt
         $this->extension = null;
         $this->alt = null;
       }
@@ -88,11 +88,11 @@ class Image
         return;
       }
       
-      // Le nom du fichier est son id, on doit juste stocker également son extension
-      // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « extension »
+      // Le nom du fichier est son id, on doit juste stocker ï¿½galement son extension
+      // Pour faire propre, on devrait renommer cet attribut en ï¿½ extension ï¿½, plutï¿½t que ï¿½ extension ï¿½
       $this->extension = $this->file->guessExtension();
  
-      // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+      // Et on gï¿½nï¿½re l'attribut alt de la balise <img>, ï¿½ la valeur du nom du fichier sur le PC de l'internaute
       $this->alt = $this->file->getClientOriginalName();
     }
 	
@@ -121,10 +121,10 @@ class Image
         $this->cleanThumbDirs();
       }
       
-      // On déplace le fichier envoyé dans le répertoire de notre choix
+      // On dï¿½place le fichier envoyï¿½ dans le rï¿½pertoire de notre choix
       $this->file->move(
-        $this->getUploadRootDir(), // Le répertoire de destination
-        $this->id.'.'.$this->extension   // Le nom du fichier à créer, ici « id.extension »
+        $this->getUploadRootDir(), // Le rï¿½pertoire de destination
+        $this->id.'.'.$this->extension   // Le nom du fichier ï¿½ crï¿½er, ici ï¿½ id.extension ï¿½
       );
     }
 	
@@ -133,7 +133,7 @@ class Image
      */
     public function preRemoveUpload()
     {
-      // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
+      // On sauvegarde temporairement le nom du fichier, car il dï¿½pend de l'id
       $this->tempFilename = $this->id.'.'.$this->extension;
     }
     
@@ -145,7 +145,7 @@ class Image
     {
     	$file = $this->getUploadRootDir().'/'.$this->tempFilename;
     	
-       // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
+       // En PostRemove, on n'a pas accï¿½s ï¿½ l'id, on utilise notre nom sauvegardï¿½
        if (file_exists($file)) {
          // On supprime le fichier
          unlink($file);
