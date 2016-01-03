@@ -3,10 +3,16 @@
  
 namespace Sdz\BlogBundle\Bigbrother;
 use Symfony\Component\Security\Core\User\UserInterface;
- 
+
+/**
+ * Censure listener.
+ * 
+ * @author Messi
+ *
+ */
 class CensureListener
 {
-  // Liste des id des utilisateurs à surveiller
+  // Liste des id des utilisateurs ï¿½ surveiller
   protected $liste;
   protected $mailer;
  
@@ -16,11 +22,11 @@ class CensureListener
     $this->mailer = $mailer;
   }
  
-  // Méthode « reine » 1
+  // Mï¿½thode ï¿½ reine ï¿½ 1
   protected function sendEmail($message, UserInterface $user)
   {
     $message = \Swift_Message::newInstance()
-        ->setSubject("Nouveau message d'un utilisateur surveillé")
+        ->setSubject("Nouveau message d'un utilisateur surveillï¿½")
         ->setFrom('admin@votresite.com<script type="text/javascript">
 			/* <![CDATA[ */
 			(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute(\'data-cfemail\');if(a){s=\'\';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
@@ -31,12 +37,12 @@ class CensureListener
 			(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute(\'data-cfemail\');if(a){s=\'\';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
 			/* ]]> */
 		</script>')
-        ->setBody("L'utilisateur surveillé '".$user->getUsername()."' a posté le message suivant : '".$message."'");
+        ->setBody("L'utilisateur surveillï¿½ '".$user->getUsername()."' a postï¿½ le message suivant : '".$message."'");
  
     $this->mailer->send($message);
   }
  
-  // Méthode « reine » 2
+  // Mï¿½thode ï¿½ reine ï¿½ 2
   protected function censureMessage($message)
   {
     // Ici, totalement arbitraire :
@@ -45,17 +51,17 @@ class CensureListener
     return $message;
   }
  
-  // Méthode « technique » de liaison entre l'évènement et la fonctionnalité reine
+  // Mï¿½thode ï¿½ technique ï¿½ de liaison entre l'ï¿½vï¿½nement et la fonctionnalitï¿½ reine
   public function onMessagePost(MessagePostEvent $event)
   {
     // On active la surveillance si l'auteur du message est dans la liste
     if (in_array($event->getUser()->getId(), $this->liste)) {
-      // On envoie un e-mail à l'administrateur
+      // On envoie un e-mail ï¿½ l'administrateur
       $this->sendEmail($event->getMessage(), $event->getUser());
  
       // On censure le message
       $message = $this->censureMessage($event->getMessage());
-      // On enregistre le message censuré dans l'event
+      // On enregistre le message censurï¿½ dans l'event
       $event->setMessage($message);
     }
   }

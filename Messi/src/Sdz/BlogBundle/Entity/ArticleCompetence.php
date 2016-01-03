@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ArticleCompetence
+ * Link between Article and Competence classes.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\ArticleCompetenceRepository")
@@ -27,7 +28,7 @@ class ArticleCompetence
     /**
      * @ORM\Column()
      */
-    private $niveau; // Ici j'ai un attribut de relation « niveau »
+    private $niveau; // Ici j'ai un attribut de relation ï¿½ niveau ï¿½
 
     /**
      * Set niveau

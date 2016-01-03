@@ -3,7 +3,7 @@ namespace Sdz\BlogBundle\Constants;
  
 
 /** 
- * Contient les constantes de l'applications.
+ * Contient les constantes de l'applications
  * @author Messi
  */
 interface Constants
@@ -14,19 +14,19 @@ interface Constants
 	/** Index action "voir detail". */
   	const ACTION_DETAIL = 0;
   
-  	/** Index action "ajout nouvelle entité". */
+  	/** Index action "ajout nouvelle entitï¿½". */
 	const ACTION_ADD = 1;
 	
-	/** Index action "voir liste d'entités". */
+	/** Index action "voir liste d'entitï¿½s". */
 	const ACTION_LISTING = 2;
 	
-	/** Index action "suppression d'une entité". */
+	/** Index action "suppression d'une entitï¿½". */
 	const ACTION_DELETE = 3;
 	
-	/** Index action "mise à jour d'une entité". */
+	/** Index action "mise ï¿½ jour d'une entitï¿½". */
 	const ACTION_UPDATE = 4;
   
-	/** Index lien "présentation". */
+	/** Index lien "prï¿½sentation". */
 	const ACCUEIL_PRESENTATION = 0;
 	
 	/** Index lien "ecoles". */
@@ -410,16 +410,16 @@ interface Constants
 	/** route pour voir le detail sur une techno. */
 	const ROUTE_VOIR_TECHNO = 'sdzblog_voir_techno';
 	
-	/** route pour voir les pièces de theatres. */
+	/** route pour voir les piï¿½ces de theatres. */
 	const ROUTE_VOIR_THEATRES = 'sdzblog_voir_theatres';
 	
-	/** route pour supprimer une pièce de theatre. */
+	/** route pour supprimer une piï¿½ce de theatre. */
 	const ROUTE_SUPPRIMER_THEATRE = 'sdzblog_supprimer_theatre';
 	
-	/** route pour modifier les informations sur une pièce de theatre. */
+	/** route pour modifier les informations sur une piï¿½ce de theatre. */
 	const ROUTE_MODIFIER_THEATRE  = 'sdzblog_modifier_theatre';
 	
-	/** route pour voir le detail sur une pièce de theatre. */
+	/** route pour voir le detail sur une piï¿½ce de theatre. */
 	const ROUTE_VOIR_THEATRE = 'sdzblog_voir_theatre';
 	
 	/** service gestion des droits. */

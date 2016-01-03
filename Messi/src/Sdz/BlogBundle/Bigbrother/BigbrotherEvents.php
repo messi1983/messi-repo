@@ -2,9 +2,14 @@
 // src/Sdz/BlogBundle/Bigbrother/BigbrotherEvents.php
  
 namespace Sdz\BlogBundle\Bigbrother;
- 
+
+/**
+ * DÃ©finition des Ã©vÃ¨nements.
+ * @author Messi
+ *
+ */
 final class BigbrotherEvents
 {
   const onMessagePost = 'sdzblog.bigbrother.post_message';
-  // Vos autres évènements…
+  // Vos autres ï¿½vï¿½nementsï¿½
 }

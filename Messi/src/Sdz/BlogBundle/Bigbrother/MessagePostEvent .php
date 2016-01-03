@@ -4,7 +4,12 @@
 namespace Sdz\BlogBundle\Bigbrother;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Core\User\UserInterface;
- 
+
+/**
+ * Message posted event.
+ * @author Messi
+ *
+ */
 class MessagePostEvent extends Event
 {
   protected $message;
@@ -17,7 +22,7 @@ class MessagePostEvent extends Event
     $this->user     = $user;
   }
    
-  // Le listener doit avoir accès au message
+  // Le listener doit avoir accï¿½s au message
   public function getMessage()
   {
     return $this->message;
@@ -29,7 +34,7 @@ class MessagePostEvent extends Event
     return $this->message = $message;
   }
    
-  // Le listener doit avoir accès à l'utilisateur
+  // Le listener doit avoir accï¿½s ï¿½ l'utilisateur
   public function getUser()
   {
     return $this->user;

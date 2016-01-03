@@ -2,7 +2,12 @@
 // src/Sdz/BlogBundle/Antispam/SdzAntispam.php
  
 namespace Sdz\BlogBundle\Antispam;
- 
+
+/**
+ * Listener pour lutter les spams.
+ * @author Messi
+ *
+ */
 class SdzAntispam extends \Twig_Extension
 {
   protected $mailer;
@@ -22,7 +27,7 @@ class SdzAntispam extends \Twig_Extension
   }
   
   /*
-   * Twig va exécuter cette méthode pour savoir quelle(s) fonction(s) ajoute notre service
+   * Twig va exï¿½cuter cette mï¿½thode pour savoir quelle(s) fonction(s) ajoute notre service
    */
   public function getFunctions()
   {
@@ -32,7 +37,7 @@ class SdzAntispam extends \Twig_Extension
   }
  
   /*
-   * La méthode getName() identifie votre extension Twig, elle est obligatoire
+   * La mï¿½thode getName() identifie votre extension Twig, elle est obligatoire
    */
   public function getName()
   {
@@ -40,8 +45,8 @@ class SdzAntispam extends \Twig_Extension
   }
   
   /**
-   * Vérifie si le texte est un spam ou non
-   * Un texte est considéré comme spam à partir de 3 liens
+   * Vï¿½rifie si le texte est un spam ou non
+   * Un texte est considï¿½rï¿½ comme spam ï¿½ partir de 3 liens
    * ou adresses e-mail dans son contenu
    *
    * @param string $text
