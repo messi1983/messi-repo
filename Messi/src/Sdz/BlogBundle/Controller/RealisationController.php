@@ -1,8 +1,6 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Httpfoundation\Response;
 use Sdz\BlogBundle\Entity\Realisation;
 use Sdz\BlogBundle\Form\RealisationType;
 use JMS\SecurityExtraBundle\Annotation\Secure;

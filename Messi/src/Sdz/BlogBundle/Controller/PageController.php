@@ -2,12 +2,7 @@
 namespace Sdz\BlogBundle\Controller;
  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Httpfoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Sdz\BlogBundle\Entity\Article;
-use Sdz\BlogBundle\Entity\Categorie;
 use JMS\SecurityExtraBundle\Annotation\Secure;
-use Sdz\BlogBundle\Entity\Site;
 use Sdz\BlogBundle\Constants\Constants;
  
 class PageController extends Controller
@@ -21,6 +16,7 @@ class PageController extends Controller
 	
 	/**
 	 * Index
+	 * @Secure(roles="ROLE_ADMIN")
 	 */
 	public function voirStatsAction()
 	{

@@ -1,11 +1,8 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sdz\BlogBundle\Entity\Article;
-use Sdz\BlogBundle\Entity\ArticleCompetence;
 use Sdz\BlogBundle\Form\ArticleType;
-use Sdz\BlogBundle\Form\ArticleEditType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Sdz\BlogBundle\Bigbrother\BigbrotherEvents;

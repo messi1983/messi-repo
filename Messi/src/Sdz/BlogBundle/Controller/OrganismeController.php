@@ -1,8 +1,6 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Httpfoundation\Response;
 use Sdz\BlogBundle\Entity\Organisme;
 use Sdz\BlogBundle\Form\OrganismeType;
 use JMS\SecurityExtraBundle\Annotation\Secure;

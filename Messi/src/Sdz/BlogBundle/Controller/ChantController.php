@@ -1,7 +1,6 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sdz\BlogBundle\Entity\Chant;
 use Sdz\BlogBundle\Form\ChantType;
 use JMS\SecurityExtraBundle\Annotation\Secure;

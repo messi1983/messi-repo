@@ -11,7 +11,7 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\ChantRepository")
  */
-class Chant extends BasicRefPageEntity
+class Chant extends AbsRefPageEntity
 {
 
     /**

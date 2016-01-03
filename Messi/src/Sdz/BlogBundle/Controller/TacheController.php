@@ -11,6 +11,7 @@ class TacheController extends AbsSiteController
 { 
 	/**
 	 * Allow to list all entities on a page.
+	 * @Secure(roles="ROLE_ADMIN")
 	 */
 	public function voirListeAction($page)
 	{

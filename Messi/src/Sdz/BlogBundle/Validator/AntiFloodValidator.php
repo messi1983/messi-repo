@@ -14,21 +14,16 @@ use Symfony\Component\Validator\ConstraintValidator;
 class AntiFloodValidator extends ConstraintValidator
 {
   private $request;
-  private $em;
  
   // Les arguments d�clar�s dans la d�finition du service arrivent au constructeur
   // On doit les enregistrer dans l'objet pour pouvoir s'en resservir dans la m�thode validate()
   public function __construct(Request $request, EntityManager $em)
   {
     $this->request = $request;
-    $this->em      = $em;
   }
 
   public function validate($value, Constraint $constraint)
   {
-    // On r�cup�re l'IP de celui qui poste
-    $ip = $this->request->server->get('REMOTE_ADDR');
-	
 	// On v�rifie si cette IP a d�j� post� un message il y a moins de 15 secondes
 	$isFlood = false;
 	

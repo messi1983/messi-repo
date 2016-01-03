@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\RealisationRepository")
  */
-class Realisation extends BasicRefPageEntity
+class Realisation extends AbsRefPageWithLogo
 {
 	/**
      * @var string
@@ -39,7 +39,8 @@ class Realisation extends BasicRefPageEntity
      */
     public function __construct()
     {
-		$this->publication = true;
+		parent::__construct();
+		
 		$this->date = new \Datetime();
     }
 	
@@ -134,15 +135,4 @@ class Realisation extends BasicRefPageEntity
     {
         return $this->auteur;
     }
-    
-    /**
-     * Get refence page name.
-     *
-     * @return string
-     */
-    public function getReferencePageName()
-    {
-    	return $this->application;
-    }
-    
 }
