@@ -47,15 +47,15 @@ class VisitorManager //extends \Twig_Extension
 			// On cherche le visiteur dans la BDD via son adresse
 			$visitor = $this->findVisitorByIpAddress($ipAdress);
 			
-			if($visitor != null) { // Si le visiteur est déjà connu et sa dernière connection date de plus 
-								   // de 5 minutes on considère que c'est une nouvelle visite
+			if($visitor !== null) { // Si le visiteur est dï¿½jï¿½ connu et sa derniï¿½re connection date de plus 
+								   // de 5 minutes on considï¿½re que c'est une nouvelle visite
 				$seconds = $dateNow->getTimestamp() - $visitor->getLastConnection()->getTimestamp();
 				
 				if($seconds > 5 * 60) { // new visit
 					$totalVisitsPage->incrementVisits();
 					$currentPage->incrementVisits();
 				}
-				// On met simplement à jour sa date de dernière connection
+				// On met simplement ï¿½ jour sa date de derniï¿½re connection
 				$visitor->setLastConnection($dateNow);
 			} else { // nouveau visiteur
 				$totalVisitsPage->incrementVisits();
@@ -90,7 +90,7 @@ class VisitorManager //extends \Twig_Extension
 	private function getPageByName($pageName) {
 		$page = $this->findPageByName($pageName);
 		
-		if($page == null) {
+		if($page === null) {
 			$page = $this->createPage($pageName);
 		}
 		return $page;

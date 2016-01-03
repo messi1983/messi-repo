@@ -444,7 +444,7 @@ class Experience
      */
     public function getDescriptionTexte()
     {
-    	if($this->description != null) {
+    	if($this->description !== null) {
     		return $this->description->getTexte();
     	}
     	return Constants::EMPTY_STRING;
@@ -459,7 +459,7 @@ class Experience
     public function setPoste(\Sdz\BlogBundle\Entity\Texte $poste = null)
     {
         $this->poste = $poste;
-        if($this->poste != null) {
+        if($this->poste !== null) {
         	$this->poste->setLocale($this->locale);
         }
     
@@ -483,7 +483,7 @@ class Experience
      */
     public function getPosteTexte()
     {
-    	if($this->poste != null) {
+    	if($this->poste !== null) {
     		return $this->poste->getTexte();
     	}
     	return Constants::EMPTY_STRING;

@@ -142,7 +142,7 @@ class Societe extends AbsRefPageWithLogo
     public function setCommentaire(\Sdz\BlogBundle\Entity\Texte $commentaire = null)
     {
     	$this->commentaire = $commentaire;
-    	if($this->commentaire != null) {
+    	if($this->commentaire !== null) {
     		$this->commentaire->setLocale($this->locale);
     	}
     	return $this;

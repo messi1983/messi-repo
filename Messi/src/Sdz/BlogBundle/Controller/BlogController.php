@@ -50,7 +50,7 @@ class BlogController extends Controller
 		$newLocale = $request->query->get(Constants::PARAMETER_LOCALE);
 		
 		// Default locale
-		if($newLocale == null) {
+		if($newLocale === null) {
 			$newLocale = Constants::LOCALE_FR;
 		}
 		$referer = str_replace($currentLocale, $newLocale, $this->getRequest()->headers->get($this::HEADER_REFERER));
