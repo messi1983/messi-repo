@@ -11,8 +11,15 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\SportRepository")
  */
-class Sport extends AbstractEntity
+class Sport extends AbsRefPageWithLogo
 {
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nom", type="string", length=255)
+	 */
+	private $nom;
+	
 	/**
 	 * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
 	 */
@@ -59,38 +66,69 @@ class Sport extends AbstractEntity
     }
     
     /**
-     * Add image
+     * Set shortDescription
      *
-     * @param \Sdz\BlogBundle\Entity\Image $image
+     * @param \Sdz\BlogBundle\Entity\Texte $shortDescription
      * @return Sport
      */
-    public function addImage(\Sdz\BlogBundle\Entity\Image $image)
+    public function setShortDescription(\Sdz\BlogBundle\Entity\Texte $shortDescription = null)
     {
-    	$this->images[] = $image;
-    
+    	$this->shortDescription = $shortDescription;
+    		
     	return $this;
     }
     
     /**
-     * Remove image
+     * Get shortDescription
      *
-     * @param \Sdz\BlogBundle\Entity\Image $image
+     * @return \Sdz\BlogBundle\Entity\Texte
      */
-    public function removeImage(\Sdz\BlogBundle\Entity\Image $image)
+    public function getShortDescription()
     {
-    	$this->images->removeElement($image);
+    	return $this->shortDescription;
+    }
     
+    /**
+     * Get shortDescription Texte
+     *
+     * @return \Sdz\BlogBundle\Entity\Texte
+     */
+    public function getShortDescriptionTexte()
+    {
+    	return $this->getTexteString($this->shortDescription);
+    }
+    
+    /**
+     * Set commentaire
+     *
+     * @param \Sdz\BlogBundle\Entity\Texte $commentaire
+     * @return Danse
+     */
+    public function setCommentaire(\Sdz\BlogBundle\Entity\Texte $commentaire = null)
+    {
+    	$this->commentaire = $commentaire;
+    		
     	return $this;
     }
     
     /**
-     * Get images
+     * Get commentaire
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Sdz\BlogBundle\Entity\Texte
      */
-    public function getImages()
+    public function getCommentaire()
     {
-    	return $this->images;
+    	return $this->commentaire;
+    }
+    
+    /**
+     * Get commentaireTexte
+     *
+     * @return \Sdz\BlogBundle\Entity\Texte
+     */
+    public function getCommentaireTexte()
+    {
+    	return  $this->getTexteString($this->commentaire);
     }
     
     /**
@@ -127,69 +165,61 @@ class Sport extends AbstractEntity
     }
     
     /**
-     * Set shortDescription
+     * Add image
      *
-     * @param \Sdz\BlogBundle\Entity\Texte $shortDescription
+     * @param \Sdz\BlogBundle\Entity\Image $image
      * @return Sport
      */
-    public function setShortDescription(\Sdz\BlogBundle\Entity\Texte $shortDescription = null)
+    public function addImage(\Sdz\BlogBundle\Entity\Image $image)
     {
-    	$this->shortDescription = $shortDescription;
-    	
+    	$this->images[] = $image;
+    
     	return $this;
     }
     
     /**
-     * Get shortDescription
+     * Remove image
      *
-     * @return \Sdz\BlogBundle\Entity\Texte
+     * @param \Sdz\BlogBundle\Entity\Image $image
      */
-    public function getShortDescription()
+    public function removeImage(\Sdz\BlogBundle\Entity\Image $image)
     {
-    	return $this->shortDescription;
+    	$this->images->removeElement($image);
+    
+    	return $this;
     }
     
     /**
-     * Get shortDescription Texte
+     * Get images
      *
-     * @return \Sdz\BlogBundle\Entity\Texte
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getShortDescriptionTexte()
+    public function getImages()
     {
-    	return $this->getTexteString($this->shortDescription);
+    	return $this->images;
     }
     
     /**
-     * Set commentaire
+     * Set nom
      *
-     * @param \Sdz\BlogBundle\Entity\Texte $commentaire
+     * @param string $nom
      * @return Danse
      */
-    public function setCommentaire(\Sdz\BlogBundle\Entity\Texte $commentaire = null)
+    public function setNom($nom)
     {
-    	$this->commentaire = $commentaire;
-    	
+    	$this->nom = $nom;
+    
     	return $this;
     }
     
     /**
-     * Get commentaire
+     * Get nom
      *
-     * @return \Sdz\BlogBundle\Entity\Texte
+     * @return string
      */
-    public function getCommentaire()
+    public function getNom()
     {
-    	return $this->commentaire;
-    }
-    
-    /**
-     * Get commentaireTexte
-     *
-     * @return \Sdz\BlogBundle\Entity\Texte
-     */
-    public function getCommentaireTexte()
-    {
-    	return  $this->getTexteString($this->commentaire);
+    	return $this->nom;
     }
     
     /**
@@ -213,6 +243,16 @@ class Sport extends AbstractEntity
     public function getDateDebut()
     {
     	return $this->dateDebut;
+    }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->getNom();
     }
 
 }

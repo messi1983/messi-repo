@@ -11,23 +11,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\ChantRepository")
  */
-class Chant
+class Chant extends BasicRefPageEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
 
     /**
      * @var string
@@ -62,42 +47,15 @@ class Chant
     private $parts;
     
     /**
-     * @var string
+     * Constructor
      */
-    private $locale;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
+    public function __construt()
     {
-        return $this->id;
+    	parent:: __construt();
+    	
+    	$this->parts = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Chant
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
     
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
 
     /**
      * Set titre
@@ -154,9 +112,7 @@ class Chant
     public function setResume(\Sdz\BlogBundle\Entity\Texte $resume = null)
     {
     	$this->resume = $resume;
-    	if($this->resume != null) {
-    		$this->resume->setLocale($this->locale);
-    	}
+    	
     	return $this;
     }
     
@@ -177,10 +133,7 @@ class Chant
      */
     public function getResumeTexte()
     {
-    	if($this->resume != null) {
-    		return $this->resume->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->resume);
     }
     
     /**
@@ -206,44 +159,6 @@ class Chant
         return $this->type;
     }
 	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-
-    /**
-     * Get refence page name.
-     *
-     * @return string
-     */
-    public function getReferencePageName()
-    {
-    	return $this->getTitre();
-    }
-    
-    /**
-     *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
-     */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    
-    	return $this;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * Add parts
      *
@@ -275,6 +190,16 @@ class Chant
     public function getParts()
     {
         return $this->parts;
+    }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->titre;
     }
 
 }

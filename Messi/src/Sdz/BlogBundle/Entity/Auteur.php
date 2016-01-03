@@ -285,7 +285,7 @@ class Auteur
     public function getBiographieTexte()
     {
     	$texte = '';
-    	if($this->biographie != null) {
+    	if($this->biographie !== null) {
     		if(Constants::LOCALE_FR == $this->locale) {
     			$texte = $this->biographie->getTexteFr();
     		} else {

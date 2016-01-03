@@ -11,7 +11,7 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\OrganismeRepository")
  */
-class Organisme extends AbstractEntity
+class Organisme extends AbsRefPageWithLogo
 {
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})

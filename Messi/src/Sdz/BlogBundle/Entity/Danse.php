@@ -11,8 +11,15 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\DanseRepository")
  */
-class Danse extends AbstractEntity
+class Danse extends AbsRefPageWithLogo
 {
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nom", type="string", length=255)
+	 */
+	private $nom;
+	
 	/**
 	 * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
 	 */
@@ -46,6 +53,29 @@ class Danse extends AbstractEntity
     public function __construct()
 	{
 		 parent::__construct();
+	}
+	
+	/**
+	 * Set nom
+	 *
+	 * @param string $nom
+	 * @return Danse
+	 */
+	public function setNom($nom)
+	{
+		$this->nom = $nom;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get nom
+	 *
+	 * @return string
+	 */
+	public function getNom()
+	{
+		return $this->nom;
 	}
 
 	/**
@@ -240,6 +270,16 @@ class Danse extends AbstractEntity
     public function getDateDebut()
     {
     	return $this->dateDebut;
+    }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->getNom();
     }
     
 }

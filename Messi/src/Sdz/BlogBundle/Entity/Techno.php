@@ -13,31 +13,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\TechnoRepository")
  */
-class Techno
+class Techno extends AbsRefPageWithLogo
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-	
-	/**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=30)
-     */
-    private $nom;
-	
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
      */
@@ -47,11 +24,6 @@ class Techno
 	 * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
 	 */
 	private $description;
-	
-	/**
-     * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Image", cascade={"persist", "remove"})
-     */
-    private $logo;
 	
 	/**
      * @ORM\ManyToMany(targetEntity="Sdz\BlogBundle\Entity\MotCle", cascade={"persist"})
@@ -82,66 +54,19 @@ class Techno
 	 private $level;
 	 
 	 /**
-	  * @var string
+	  * Constructor
 	  */
-	 private $locale;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-	
-	/**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Experience
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     * @return Techno
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string 
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-    
+	 public function __construct()
+	 {
+	 	parent::__construct();
+	 	
+	 	$this->motsCles = new \Doctrine\Common\Collections\ArrayCollection();
+	 	$this->formations = new \Doctrine\Common\Collections\ArrayCollection();
+	 	$this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
+	 
+	 	$this->level = 0;
+	 }
+	 
     /**
      * Set shortDescription
      *
@@ -150,10 +75,8 @@ class Techno
      */
     public function setShortDescription(\Sdz\BlogBundle\Entity\Texte $shortDescription = null)
     {
-    	$this->shortDescription = $shortDescription;
-    	if($this->shortDescription != null) {
-    		$this->shortDescription->setLocale($this->locale);
-    	}
+    	$this->shortDescription->setLocale($this->locale);
+    	
     	return $this;
     }
     
@@ -174,10 +97,7 @@ class Techno
      */
     public function getShortDescriptionTexte()
     {
-    	if($this->shortDescription != null) {
-    		return $this->shortDescription->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->shortDescription);
     }
 
     /**
@@ -189,9 +109,7 @@ class Techno
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
     	$this->description = $description;
-    	if($this->description != null) {
-    		$this->description->setLocale($this->locale);
-    	}
+    	
     	return $this;
     }
     
@@ -212,25 +130,9 @@ class Techno
      */
     public function getDescriptionTexte()
     {
-    	if($this->description != null) {
-    		return $this->description->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->description);
     }
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->motsCles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->formations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
-        
-		$this->publication = false;
-		$this->level = 0;
-    }
-    
     /**
      * Add motsCles
      *
@@ -311,16 +213,6 @@ class Techno
         return $this;
     }
 	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-
     /**
      * Set level
      *
@@ -342,29 +234,6 @@ class Techno
     public function getLevel()
     {
         return $this->level;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param \Sdz\BlogBundle\Entity\Image $logo
-     * @return Techno
-     */
-    public function setLogo(\Sdz\BlogBundle\Entity\Image $logo = null)
-    {
-        $this->logo = $logo;
-    
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return \Sdz\BlogBundle\Entity\Image 
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 
     /**
@@ -434,24 +303,4 @@ class Techno
     	return $this->formations;
     }
     
-    /**
-     * Get refence page name.
-     *
-     * @return string
-     */
-    public function getReferencePageName()
-    {
-    	return $this->getNom();
-    }
-    
-    /**
-     *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
-     */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    
-    	return $this;
-    }
 }

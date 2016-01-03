@@ -13,7 +13,7 @@ use Sdz\BlogBundle\Constants\Constants;
  * @MappedSuperclass
  *
  */
-class AbstractEntity
+abstract class AbsRefPageEntity
 {
 	/**
 	 * @var integer
@@ -23,18 +23,6 @@ class AbstractEntity
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
-	
-	/**
-	 * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Image", cascade={"persist", "remove"})
-	 */
-	private $logo;
-	
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="nom", type="string", length=255)
-	 */
-	private $nom;
 	
 	/**
 	 * @var boolean
@@ -67,29 +55,6 @@ class AbstractEntity
 	}
 	
 	/**
-	 * Set logo
-	 *
-	 * @param \Sdz\BlogBundle\Entity\Image $logo
-	 * @return Danse
-	 */
-	public function setLogo(\Sdz\BlogBundle\Entity\Image $logo = null)
-	{
-		$this->logo = $logo;
-	
-		return $this;
-	}
-	
-	/**
-	 * Get logo
-	 *
-	 * @return \Sdz\BlogBundle\Entity\Image
-	 */
-	public function getLogo()
-	{
-		return $this->logo;
-	}
-	
-	/**
 	 * Set publication
 	 *
 	 * @param boolean $publication
@@ -110,29 +75,6 @@ class AbstractEntity
 	public function getPublication()
 	{
 		return $this->publication;
-	}
-	
-	/**
-	 * Set nom
-	 *
-	 * @param string $nom
-	 * @return Danse
-	 */
-	public function setNom($nom)
-	{
-		$this->nom = $nom;
-	
-		return $this;
-	}
-	
-	/**
-	 * Get nom
-	 *
-	 * @return string
-	 */
-	public function getNom()
-	{
-		return $this->nom;
 	}
 	
 	/**
@@ -161,10 +103,7 @@ class AbstractEntity
 	 *
 	 * @return string
 	 */
-	public function getReferencePageName()
-	{
-		return $this->getNom();
-	}
+	abstract public function getReferencePageName();
 	
 	/**
 	 * Get publish option value.
@@ -181,7 +120,7 @@ class AbstractEntity
 	 * @param \Sdz\BlogBundle\Entity\Texte $texte
 	 */
 	private function setTexteLocale(\Sdz\BlogBundle\Entity\Texte $texte) {
-		if($texte != null) {
+		if($texte !== null) {
 			$texte->setLocale($this->getLocale());
 		}
 		return $this;
@@ -193,7 +132,7 @@ class AbstractEntity
 	protected function getTexteString(\Sdz\BlogBundle\Entity\Texte $texte) {
 		$this->setTexteLocale($texte);
 		
-		if($texte != null) {
+		if($texte !== null) {
 			return $texte->getTexte();
 		}
 		return Constants::EMPTY_STRING;

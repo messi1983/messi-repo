@@ -357,8 +357,8 @@ class Experience
      */
     public function getDuration()
     {
-    	if($this->periode != null) {
-			if ($this->periode->getDateFin() != null && $this->periode->getDateDebut() != null)
+    	if($this->periode !== null) {
+			if ($this->periode->getDateFin() !== null && $this->periode->getDateDebut() !== null)
 			{
 				$diff = $this->periode->getDateFin()->diff($this->periode->getDateDebut());
 				return $diff->format('%m mois');
@@ -396,11 +396,11 @@ class Experience
     public function setLocale($locale) {
     	$this->locale = $locale;
     	
-    	if($this->taches != null) {
+    	if($this->taches !== null) {
     		foreach($this->taches as $tache) {
     			$tache->setLocale($locale);
     			
-    			if($tache->getSoustaches() != null) {
+    			if($tache->getSoustaches() !== null) {
     				foreach($tache->getSoustaches() as $sousTache) {
     					$sousTache->setLocale($locale);
     				}
@@ -420,7 +420,7 @@ class Experience
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
         $this->description = $description;
-        if($this->description != null) {
+        if($this->description !== null) {
         	$this->description->setLocale($this->locale);
         }
     

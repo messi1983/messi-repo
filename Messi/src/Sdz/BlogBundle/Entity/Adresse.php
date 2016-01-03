@@ -188,9 +188,9 @@ class Adresse
      */
     public function getInStringFormat()
     {
-    	if($this->adresse != null) {
+    	if($this->adresse !== null) {
     		 
-    		if($this->bis != null) {
+    		if($this->bis !== null) {
     			return $this->numero.' bis '.$this->adresse.', '.$this->codePostal.' '.$this->ville;
     		} else {
     			return $this->numero.' '.$this->adresse.', '.$this->codePostal.' '.$this->ville;

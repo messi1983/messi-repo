@@ -197,7 +197,7 @@ abstract class AbsSiteController extends Controller
      * Allows to see a bean detail.
      */
 	protected function voir($bean) {
-		if($bean->getReferencePageName() != null) {
+		if($bean->getReferencePageName() !== null) {
 			// registerVisitor
 			$this->container->get(Constants::VISITOR_MANAGER)
 							->registerVisistor($this->get(Constants::REQUEST)->getClientIp(), $bean->getReferencePageName());
@@ -251,10 +251,10 @@ abstract class AbsSiteController extends Controller
 			$form->bind($request);
  
 			if ($form->isValid()) {
-				// sauvegarde de l'entité
+				// sauvegarde de l'entitï¿½
 				$this->container->get(Constants::BLOG_SERVICE)->saveOrUpdate($bean);
 		
-				// On définit un message flash
+				// On dï¿½finit un message flash
 				$this->get(Constants::SESSION)->getFlashBag()->add($this::FLASH_BAG_INFO, $this->getFlashBagMessage(Constants::ACTION_UPDATE));
  
 				return $this->redirect($this->generateUrl($this->getDetailUrl(), array($this::ATTRIBUTE_ID => $bean->getId())));
@@ -284,8 +284,8 @@ abstract class AbsSiteController extends Controller
 	protected function supprimer($bean) {
 		$this->isNewEntity = false;
 		
-		// On crée un formulaire vide, qui ne contiendra que le champ CSRF
-		// Cela permet de protéger la suppression d'article contre cette faille
+		// On crï¿½e un formulaire vide, qui ne contiendra que le champ CSRF
+		// Cela permet de protï¿½ger la suppression d'article contre cette faille
 		$form = $this->createFormBuilder()->getForm();
  
 		if ($this->get(Constants::REQUEST)->getMethod() ==  Constants::METHOD_POST) {
@@ -304,7 +304,7 @@ abstract class AbsSiteController extends Controller
 		// DateTime Last modification
 		$dateTimeLastModification = $this->container->get(Constants::ACTUALISATION_MANAGER)->getLastUpdateDateTime();
  
-		// Si la requête est en GET, on affiche une page de confirmation avant de supprimer
+		// Si la requï¿½te est en GET, on affiche une page de confirmation avant de supprimer
 		return $this->render(
 				Constants::DELETION_VIEW, 
 				array(

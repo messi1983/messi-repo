@@ -13,7 +13,7 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\EcoleRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Ecole extends AbstractEntity
+class Ecole extends AbsRefPageWithLogo
 {	
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
@@ -138,7 +138,7 @@ class Ecole extends AbstractEntity
      */
     public function getDateEntree()
     {
-    	if($this->periode != null) {
+    	if($this->periode !== null) {
         	return $this->periode->getDateDebut();	
     	}
     	return new \DateTime();
@@ -151,7 +151,7 @@ class Ecole extends AbstractEntity
      */
     public function getDateSortie()
     {
-        if($this->periode != null) {
+        if($this->periode !== null) {
         	return $this->periode->getDateFin();	
     	}
     	return new \DateTime();
@@ -210,7 +210,7 @@ class Ecole extends AbstractEntity
      */
     public function getShortDescriptionTexte()
     {
-    	if($this->shortDescription != null) {
+    	if($this->shortDescription !== null) {
     		return $this->shortDescription->getTexte();
     	}
     	return Constants::EMPTY_STRING;
@@ -225,7 +225,7 @@ class Ecole extends AbstractEntity
     public function setDetailedDescription(\Sdz\BlogBundle\Entity\Texte $detailedDescription = null)
     {
         $this->detailedDescription = $detailedDescription;
-        if($this->detailedDescription != null) {
+        if($this->detailedDescription !== null) {
         	$this->detailedDescription->setLocale($this->locale);
         }
         return $this;
@@ -248,7 +248,7 @@ class Ecole extends AbstractEntity
      */
     public function getDetailedDescriptionTexte()
     {
-    	if($this->detailedDescription != null) {
+    	if($this->detailedDescription !== null) {
     		return $this->detailedDescription->getTexte();
     	}
     	return Constants::EMPTY_STRING;

@@ -10,24 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\RealisationRepository")
  */
-class Realisation
+class Realisation extends BasicRefPageEntity
 {
-	/**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-	
-	/**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
-	
 	/**
      * @var string
      *
@@ -59,39 +43,6 @@ class Realisation
 		$this->date = new \Datetime();
     }
 	
-	/**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-	
-	/**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Experience
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
-
     /**
      * Set description
      *
@@ -183,4 +134,15 @@ class Realisation
     {
         return $this->auteur;
     }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->application;
+    }
+    
 }

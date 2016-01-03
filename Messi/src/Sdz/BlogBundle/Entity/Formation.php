@@ -11,24 +11,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\FormationRepository")
  */
-class Formation
+class Formation extends BasicRefPageEntity
 {
-	/**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-	
-	/**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
-    
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Periode", cascade={"persist", "remove"})
      */
@@ -58,50 +42,12 @@ class Formation
      */
     private $technos;
     
-    /**
-     * @var string
-     */
-    private $locale;
-	
 	/**
      * Constructor
      */
     public function __construct()
     {
-		$this->publication = false;
-    }
-	
-	/**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-	
-	/**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Formation
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
+		parent::__construct();
     }
 
     /**
@@ -136,9 +82,6 @@ class Formation
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
     	$this->description = $description;
-    	if($this->description != null) {
-    		$this->description->setLocale($this->locale);
-    	}
     
     	return $this;
     }
@@ -160,10 +103,7 @@ class Formation
      */
     public function getDescriptionTexte()
     {
-    	if($this->description != null) {
-    		return $this->description->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->description);
     }
 
     /**
@@ -232,16 +172,6 @@ class Formation
         return $this->technos;
     }
 	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-    
     /**
      * Get refence page name.
      *
@@ -275,14 +205,4 @@ class Formation
     	return $this->periode;
     }
     
-    /**
-     *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
-     */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    	 
-    	return $this;
-    }
 }

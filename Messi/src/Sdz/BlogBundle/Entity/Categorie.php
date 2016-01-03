@@ -158,7 +158,7 @@ class Categorie
     public function getDescriptionTexte()
     {
     	$texte = '';
-    	if($this->description != null) {
+    	if($this->description !== null) {
     		if(Constants::LOCALE_FR == $this->locale) {
     			$texte = $this->description->getTexteFr();
     		} else {
