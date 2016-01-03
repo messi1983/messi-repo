@@ -245,5 +245,4 @@ class Organisme extends AbsRefPageWithLogo
     {
     	return $this->getNom();
     }
-    
 }

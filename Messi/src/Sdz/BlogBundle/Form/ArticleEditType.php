@@ -2,7 +2,6 @@
 namespace Sdz\BlogBundle\Form;
  
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * 

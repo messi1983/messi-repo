@@ -135,4 +135,14 @@ class Realisation extends AbsRefPageWithLogo
     {
         return $this->auteur;
     }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->application;
+    }
 }

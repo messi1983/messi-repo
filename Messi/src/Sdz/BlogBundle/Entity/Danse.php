@@ -280,5 +280,4 @@ class Danse extends AbsRefPageWithLogo
     {
     	return $this->getNom();
     }
-    
 }
