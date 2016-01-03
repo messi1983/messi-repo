@@ -71,13 +71,6 @@ services:
         calls:
             - [ setLocale, [ %locale% ] ]
 
-    sdzblog.validator.antiflood:                      
-        class: Sdz\BlogBundle\Validator\AntiFloodValidator
-        arguments: [@request, @doctrine.orm.entity_manager]
-        scope: request
-        tags:
-            - { name: validator.constraint_validator, alias: sdzblog_antiflood }
-
     sdzblog.validator.societe:                      
         class: Sdz\BlogBundle\Validator\SocieteValidator
         arguments: [@request, @doctrine.orm.entity_manager]

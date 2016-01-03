@@ -1,12 +1,10 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sdz\BlogBundle\Entity\Sport;
 use Sdz\BlogBundle\Form\SportType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sdz\BlogBundle\Constants\Constants;
-use Doctrine\Common\Collections\Criteria;
 
 class SportController extends AbsSiteController
 { 

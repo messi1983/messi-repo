@@ -4,7 +4,6 @@ namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
-use Sdz\BlogBundle\Constants\Constants;
 
 /**
  * Abstract base class for most Getin entities.

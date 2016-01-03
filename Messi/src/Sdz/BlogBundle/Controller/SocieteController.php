@@ -1,17 +1,10 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Sdz\BlogBundle\Entity\Societe;
-use Sdz\BlogBundle\Entity\Image;
 use Sdz\BlogBundle\Form\SocieteType;
-use Sdz\BlogBundle\Form\ImageType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sdz\BlogBundle\Constants\Constants;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Societe Controller.

@@ -2,7 +2,6 @@
 namespace Sdz\BlogBundle\Services;
 
 use Sdz\BlogBundle\Entity\Visitor;
-use Sdz\BlogBundle\Entity\VisitorPage;
 use Sdz\BlogBundle\Entity\Page;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\SecurityContextInterface;

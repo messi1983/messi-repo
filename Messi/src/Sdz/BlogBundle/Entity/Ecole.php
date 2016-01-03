@@ -3,7 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sdz\BlogBundle\Constants\Constants;
 
 /**
@@ -15,6 +14,13 @@ use Sdz\BlogBundle\Constants\Constants;
  */
 class Ecole extends AbsRefPageWithLogo
 {	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nom", type="string", length=255)
+	 */
+	private $nom;
+	
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
      */
@@ -49,17 +55,35 @@ class Ecole extends AbsRefPageWithLogo
      */
     private $periode;
     
-    /**
-     * @var string
-     */
-    private $locale;
-
 	/**
      * Constructor
      */
     public function __construct()
     {
 		$this->publication = false;
+    }
+    
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Danse
+     */
+    public function setNom($nom)
+    {
+    	$this->nom = $nom;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+    	return $this->nom;
     }
 	
     /**
@@ -210,10 +234,7 @@ class Ecole extends AbsRefPageWithLogo
      */
     public function getShortDescriptionTexte()
     {
-    	if($this->shortDescription !== null) {
-    		return $this->shortDescription->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->shortDescription);
     }
 
     /**
@@ -225,9 +246,7 @@ class Ecole extends AbsRefPageWithLogo
     public function setDetailedDescription(\Sdz\BlogBundle\Entity\Texte $detailedDescription = null)
     {
         $this->detailedDescription = $detailedDescription;
-        if($this->detailedDescription !== null) {
-        	$this->detailedDescription->setLocale($this->locale);
-        }
+       
         return $this;
     }
 
@@ -248,9 +267,16 @@ class Ecole extends AbsRefPageWithLogo
      */
     public function getDetailedDescriptionTexte()
     {
-    	if($this->detailedDescription !== null) {
-    		return $this->detailedDescription->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->detailedDescription);
+    }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->nom;
     }
 }

@@ -1,7 +1,6 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sdz\BlogBundle\Entity\Theatre;
 use Sdz\BlogBundle\Form\TheatreType;
 use JMS\SecurityExtraBundle\Annotation\Secure;

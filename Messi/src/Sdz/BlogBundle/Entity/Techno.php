@@ -3,9 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Sdz\BlogBundle\Constants\Constants;
-
 
 /**
  * Techno
@@ -15,6 +12,13 @@ use Sdz\BlogBundle\Constants\Constants;
  */
 class Techno extends AbsRefPageWithLogo
 {
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nom", type="string", length=255)
+	 */
+	private $nom;
+	
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
      */
@@ -65,6 +69,29 @@ class Techno extends AbsRefPageWithLogo
 	 	$this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
 	 
 	 	$this->level = 0;
+	 }
+	 
+	 /**
+	  * Set nom
+	  *
+	  * @param string $nom
+	  * @return Danse
+	  */
+	 public function setNom($nom)
+	 {
+	 	$this->nom = $nom;
+	 
+	 	return $this;
+	 }
+	 
+	 /**
+	  * Get nom
+	  *
+	  * @return string
+	  */
+	 public function getNom()
+	 {
+	 	return $this->nom;
 	 }
 	 
     /**
@@ -303,4 +330,13 @@ class Techno extends AbsRefPageWithLogo
     	return $this->formations;
     }
     
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->getNom();
+    }
 }

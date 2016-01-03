@@ -5,7 +5,6 @@ namespace Sdz\BlogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Sdz\BlogBundle\Constants\Constants;
 
 class SocieteType extends AbstractType
 {

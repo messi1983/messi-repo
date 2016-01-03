@@ -3,7 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sdz\BlogBundle\Constants\Constants;
 
 /**
  * Formation
@@ -11,7 +10,7 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\FormationRepository")
  */
-class Formation extends BasicRefPageEntity
+class Formation extends AbsRefPageEntity
 {
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Periode", cascade={"persist", "remove"})

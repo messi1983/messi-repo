@@ -2,8 +2,6 @@
 
 namespace Sdz\BlogBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
-
 /**
  * DanseRepository
  *

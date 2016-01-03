@@ -3,7 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sdz\BlogBundle\Constants\Constants;
 
 /**
  * Societe
@@ -188,4 +187,13 @@ class Societe extends AbsRefPageWithLogo
     	return $this->commentaire;
     }
     
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->nom;
+    }
 }

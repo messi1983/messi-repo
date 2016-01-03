@@ -76,11 +76,6 @@ class Visitor
      */
     private $pages;
     
-    /**
-     * @var string
-     */
-    private $locale;
-
 	/**
 	 * Constructor.
 	 */
@@ -273,17 +268,6 @@ class Visitor
         return $this;
     }
     
-    /**
-     *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
-     */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    
-    	return $this;
-    }
-
     /**
      * Remove page
      *

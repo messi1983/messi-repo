@@ -3,7 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sdz\BlogBundle\Constants\Constants;
 
 /**
  * Sport

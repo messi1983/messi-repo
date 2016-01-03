@@ -1,7 +1,6 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sdz\BlogBundle\Entity\Tache;
 use Sdz\BlogBundle\Form\TacheDetailType;
 use JMS\SecurityExtraBundle\Annotation\Secure;

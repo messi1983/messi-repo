@@ -1,6 +1,4 @@
 <?php
-// src/Sdz/BlogBundle/Form/ArticleEditType.php
- 
 namespace Sdz\BlogBundle\Form;
  
 use Symfony\Component\Form\FormBuilderInterface;

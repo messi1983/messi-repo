@@ -1,15 +1,18 @@
 <?php
 namespace Sdz\BlogBundle\Controller;
  
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Httpfoundation\Response;
 use Sdz\BlogBundle\Entity\SiteComment;
 use Sdz\BlogBundle\Form\SiteCommentType;
 use Sdz\BlogBundle\Form\SiteCommentAdminType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sdz\BlogBundle\Constants\Constants;
 
-
+/**
+ * SiteCommentController : SiteComment Controller
+ *
+ * @author Messi
+ *
+ */
 class SiteCommentController extends AbsSiteController
 {
 	/**
