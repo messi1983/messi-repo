@@ -1,0 +1,70 @@
+{% set listing = listing|default(false) %}
+{% set danse = bean|default(null) %}
+{% set detail = detail|default(false) %}
+
+{% if danse %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if danse.logo %}
+			<img src="{{ asset(danse.logo.webPath | imagine_filter('thumb_50x50')) }}" alt="{{ danse.logo.alt }}" />
+			{% else %}
+			<img src="{{ asset('bundles/sdzblog/images/danse_logo.png' | imagine_filter('thumb_50x50')) }}" alt="danse.png" />
+			{% endif %}
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_danse', {'id': danse.id} ) }}">{{ danse.nom }}</a>
+			</p>
+			<p class="listing-texte-size">{{ danse.shortDescriptionTexte }}</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ danse.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ danse.nom }}</h2><br />
+		<div class="indent">
+			{% if is_granted('ROLE_ADMIN') %}
+				<p class="well">
+					{{ danse.shortDescriptionTexte }}
+				</p>
+			{% endif %}
+			
+			<p class="notice">{{ 'ecole.description.label'|trans }}</p>
+			<p class="well">{{ danse.commentaireTexte}}</p>
+			
+			<p class="notice">{{ 'danse.date.beginning.practice'|trans }} <span>{{ danse.dateDebut|date('M/Y') }}</span></p>
+			
+			{% if danse.logo %} 
+				<p class="notice">{{ 'danse.logo.label'|trans }}
+					<img src="{{ asset(danse.logo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ danse.logo.alt }}" />
+				</p>
+			{% endif %}
+			
+			<!-- listing des organismes -->
+			{% include "SdzBlogBundle:Blog:organismes_panel.html.twig" with {'bean': danse} %}
+			
+			<!-- Rajout des images -->
+			{% include "SdzBlogBundle:Blog:images_panel.html.twig" with {'bean': danse} %}
+			
+			<!-- Rajout des videos -->
+			{% include "SdzBlogBundle:Blog:videos_panel.html.twig" with {'bean': danse} %}
+		</div>
+	{% else %}
+		{% if loop.first %}
+		<div class="danses">
+			<div class="indent">
+				<p class="cv-header-font">{{ 'cv.subsection.danses.title'|trans }}</p>
+				<p class="indent signale">
+		{% endif %} 
+		<a href="{{ path('sdzblog_voir_danse', {'id': danse.id} ) }}">{{ danse.nom }}{% if not loop.last %},{% endif %}</a>
+		{% if loop.last %}
+				</p>
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

@@ -1,0 +1,10 @@
+{% if bean.organismes is not null and bean.organismes is not empty %}
+	<div class="organismes">
+		<p class="notice">{{ 'activity.organisme.label'|trans }}</p>
+		<ul>
+		{% for organisme in bean.organismes %}
+			<li>{{ organisme.nom }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+{% endif %}

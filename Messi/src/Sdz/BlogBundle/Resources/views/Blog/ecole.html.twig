@@ -1,0 +1,65 @@
+{% set listing = listing|default(false) %}
+{% set detail = detail|default(false) %}
+{% set ecole = bean|default(null) %}
+{% set locale = bean|default('fr') %}
+
+{% if ecole %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if ecole.logo %}
+			<img src="{{ asset(ecole.logo.webPath | imagine_filter('thumb_50x50')) }}" alt="{{ ecole.logo.alt }}" />
+			{% else %}
+			<img src="{{ asset('bundles/sdzblog/images/logo_ecole.jpg' | imagine_filter('thumb_50x50')) }}" alt="ecole.png" />
+			{% endif %}
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_ecole', {'id': ecole.id}) }}">{{ ecole.nom }}</a>
+			</p>
+			{% if ecole.adresse is not null %}
+				<p class="listing-texte-size">
+					{{ ecole.shortDescriptionTexte }} - {{ ecole.adresse.codePostal }} {{ ecole.adresse.ville }}
+				</p>
+			{% endif %}
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ ecole.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ ecole.nom }}</h2><br />
+		<div class="indent">
+			{% if is_granted('ROLE_ADMIN') %}
+				<p class="notice">{{ 'ecole.description.short.label'|trans }}</p>
+				<p class="well">
+					{{ ecole.shortDescriptionTexte }}
+				</p>
+			{% endif %}
+			
+			<p class="notice">{{ 'ecole.description.label'|trans }}</p>
+			<p class="well">
+				{{ ecole.detailedDescriptionTexte }}
+			</p>
+			
+			<p class="notice">{{ 'ecole.address.label'|trans }}</p>
+			<p class="well">
+				{{ ecole.adresse.inStringFormat }}
+			</p>
+			{% if ecole.link %}<p class="notice">{{ 'ecole.link.label'|trans }} <a class="value" href="{{ ecole.link }}">{{ 'link.wiki' | trans }}</a></p>{% endif %}
+			{% if ecole.tel %}<p class="notice">{{ 'ecole.phone.label'|trans }} <span class="value">{{ ecole.tel }}</span></p>{% endif %}
+			{% if ecole.logo %}
+				<p class="notice">{{ 'ecole.logo.label'|trans }}
+					<img src="{{ asset(ecole.logo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ ecole.logo.alt }}" />
+				</p>
+			{% endif %}
+		</div>
+	{% else %}
+		<a href="{{ path('sdzblog_voir_ecole', {'id': ecole.id}) }}">{{ ecole.nom }}</a>
+		{% if ecole.adresse is not null %}
+			<span class="important">- {{ ecole.adresse.ville }} {{ ecole.adresse.codePostal }}</span>
+		{% endif %}
+	{% endif %}
+{% endif %}

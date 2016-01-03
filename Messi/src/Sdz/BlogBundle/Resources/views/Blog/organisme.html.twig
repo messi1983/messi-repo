@@ -1,0 +1,60 @@
+{% set listing = listing|default(false) %}
+{% set organisme = bean|default(null) %}
+
+{% if organisme %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if organisme.logo %}
+			<img src="{{ asset(organisme.logo.webPath | imagine_filter('thumb_50x50')) }}" alt="{{ organisme.logo.alt }}" />
+			{% else %}
+			<img src="{{ asset('bundles/sdzblog/images/logo_asso.png' | imagine_filter('thumb_50x50')) }}" alt="organisme.png" />
+			{% endif %}
+		</div>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_organisme', {'id': organisme.id} ) }}">{{ organisme.nom }}</a>
+			</p>
+			<p class="listing-texte-size">{{ organisme.descriptifTexte }}</span></p>
+		</div>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ organisme.id }}"/></div>
+		{% endif %}
+	{% else %}
+		<h2 class="header">{{ organisme.nom }}</h2><br />
+		<div class="indent">
+			<div class="descriptif">
+				<div class="bloc">
+					{{ organisme.descriptifTexte }}
+				</div>
+			</div>
+			<p class="notice">
+				{% if organisme.dateEntree is not null and organisme.dateSortie %}
+					{{ 'organisme.period.frequentation'|trans }} <span>{{ organisme.dateEntree|date('M/Y') }}</span> - <span>{{ organisme.dateSortie|date('M/Y') }}</span>
+				{% elseif organisme.dateEntree %}
+					{{ 'societe.period.from'|trans }} <span>{{ organisme.dateEntree|date('M/Y') }}
+				{%endif%}
+				</span>
+			</p>
+			{% if organisme.adresse is not null %}
+				<p class="notice">{{ 'detail.address'|trans }} : <span>{{ organisme.adresse.inStringFormat }}</span></p>
+			{% endif %}
+			{% if organisme.link %}
+				<p class="notice">{{ 'organisme.link.label'|trans }} : <a href="{{ organisme.link }}">{{ organisme.link }}</a></p>
+			{% endif %}
+			{% if organisme.tel %}
+				<p class="notice">{{ 'organisme.phone.label'|trans }} : <span class="value">{{ organisme.tel }}</span></p>
+			{% endif %}
+			{% if organisme.logo is not null %}
+				<p class="notice">{{ 'organisme.logo.label'|trans }}
+					<img src="{{ asset(organisme.logo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ organisme.logo.alt }}" />
+				</p>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endif %}

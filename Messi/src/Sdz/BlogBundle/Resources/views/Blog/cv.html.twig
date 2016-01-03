@@ -1,0 +1,97 @@
+{% extends "::layout.html.twig" %}
+ 
+{% block title %}
+  {{ 'title.cv'|trans }} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{% block subtitle %}
+		<h1>{{ 'title.cv'|trans }}</h1>
+	{% endblock %}
+	
+	<div id="cv">
+		<div class="well">
+			<div id="cv-coordonnees">
+				<p class="notice"></p>
+				<div class="row">
+					<p class="cv-cellT1 notice">Louis MESSI</p>
+				</div>
+				<div class="row">
+					<p class="cv-cellT0 important">{{ 'cv.info.phone'|trans }}</p>
+					<p class="cv-cellT1">06 46 09 xx xx</p>
+				</div>
+				<div class="row">
+					<p class="cv-cellT0 important">{{ 'cv.info.mail'|trans }}</p>
+					<p class="cv-cellT1">messi_louis@yahoo.fr</p>
+				</div>
+				<div class="row">
+					<p class="cv-cellT0 important">{{ 'cv.info.address'|trans }}</p>
+					<p class="cv-cellT1">1 rue Bonnat <br />31400 Toulouse</p>
+				</div>
+			</div>
+			<p id="cv-titre">{{ 'cv.info.job'|trans }}</p>
+			<p id="cv-technos-list">
+				{% for techno in technos %}
+					{% if not loop.last %}
+						{{ techno.nom }},
+					{% else %}
+						{{ techno.nom }}
+					{% endif %}
+				{% endfor %}
+			</p>
+			<div class="cv-section">
+				<p class="cv-titre-section">{{ 'cv.section.formations.title'|trans }}</p>
+				<div>
+					{% for bean in formations %}
+						{% include "SdzBlogBundle:Blog:formation.html.twig" with {'cv': true, 'listing' : false} %}
+					{% else %}
+						<p class="indent">{{ 'cv.formation.empty'|trans }}</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div id="cv_experiences" class="cv-section">
+				<p class="cv-titre-section">{{ 'cv.section.experiences.title'|trans }}</p>
+				<div>
+					{% for bean in experiences %}
+						{% include "SdzBlogBundle:Blog:experience.html.twig" with {'cv': true, 'listing' : false} %}
+					{% else %}
+						<p class="indent">{{ 'cv.experience.empty'|trans }}</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div id="cv_comptences_techniques" class="cv-section">
+				<p class="cv-titre-section">{{ 'cv.section.competences.title'|trans }}</p>
+				<div>
+					{% for bean in categories %}
+						{% include "SdzBlogBundle:Blog:categorie.html.twig" with {'cv': true, 'detail': false, 'listing' : false} %}
+					{% else %}
+						<p class="indent">{{ 'cv.competence.empty'|trans }}</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div id="divers" class="cv-section">
+				<p class="cv-titre-section">{{ 'cv.section.divers.title'|trans }}</p>
+				{% if sports is not null and sports is not empty %}
+					{% for sport in sports %}
+						{% include "SdzBlogBundle:Blog:sport.html.twig" with {'bean' : sport, 'cv': true, 'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+				{% if danses is not null and danses is not empty %}
+					{% for danse in danses %}
+						{% include "SdzBlogBundle:Blog:danse.html.twig" with {'bean' : danse, 'cv': true, 'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+				{% if chants is not null and chants is not empty %}
+					{% for chant in chants %}
+						{% include "SdzBlogBundle:Blog:chant.html.twig" with {'bean' : chant, 'cv': true, 'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+				{% if theatres is not null and theatres is not empty %}
+					{% for theatre in theatres %}
+						{% include "SdzBlogBundle:Blog:theatre.html.twig" with {'bean' : theatre, 'cv': true, 'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

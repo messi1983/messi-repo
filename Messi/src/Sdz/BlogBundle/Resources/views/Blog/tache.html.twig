@@ -1,0 +1,35 @@
+{% set tache = bean|default(null) %}
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+ 
+{% if tache %}
+	{% if listing or cv %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<li class="indent"><a href="{{ path('sdzblog_voir_tache', {'id': tache.id} ) }}">{{ tache.descriptionTexte }}</a></li>
+		{% else %}
+			<li class="indent">{{ tache.descriptionTexte }}</li>
+		{% endif %}
+		{% if tache.soustaches.count > 0 %}
+			<ul class="sous-taches">
+			{% for soustache in tache.soustaches %}
+				<li class="indent">{{ soustache.descriptionTexte }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	{% else %}
+		<h2 class="header">{{ tache.experience.projet }} : {{ 'experience.task.label'|trans }} "{{ tache.descriptionTexte }}"</h2><br />
+		<div class="indent">
+			<p class="notice">{{ 'task.order.label'|trans }} : <span>{{ tache.ordre }}</span></p>
+			{% if tache.soustaches.count > 0 %}
+				<div class="soustaches">
+					<span class="notice">{{ 'task.under.tasks.label'|trans }} :</span> 
+					<ul>
+					{% for soustache in tache.soustaches %}
+						<li class="indent">{{ soustache.descriptionTexte }}</li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endif %}

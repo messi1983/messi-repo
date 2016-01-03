@@ -1,0 +1,35 @@
+{% extends "SdzBlogBundle::layout.html.twig" %}
+
+{% block sdzblog_body %}
+	<div id="popup">
+		 <span class="button b-close"><span>X</span></span>
+		 <div class="content"></div>
+	</div>
+	
+	{% include detailView %}
+	
+	<div class="clean"></div>
+	
+	<p class="buttons indent">
+		{% if listingUrl == 'sdzblog_voir_experience' %}
+		<a href="{{ path(listingUrl, {'id': bean.experience.id}) }}" class="btn">
+		{% else %}
+		<a href="{{ path(listingUrl) }}" class="btn">
+		{% endif %}
+			<i class="icon-chevron-left"></i>
+			{{ 'button.goback.label'|trans }}
+		</a>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path(modificationUrl, {'id': bean.id}) }}" class="btn">
+			  <i class="icon-edit"></i>
+			  {{ 'button.modify.label'|trans }}
+			</a>
+			<a href="{{ path(suppressionUrl, {'id': bean.id}) }}" class="btn">
+			  <i class="icon-trash"></i>
+			  {{ 'button.delete.label'|trans }}
+			</a>
+		{% endif %}
+	</p>
+{% endblock %}
+

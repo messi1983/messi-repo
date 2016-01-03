@@ -1,0 +1,131 @@
+{% set detail = detail|default(false) %}
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+{% set experience = bean|default(null) %}
+ 
+{% if experience %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if experience.societe %}
+				{% if experience.societe.logo %}
+					<img src="{{ experience.societe.logo.webPath | imagine_filter('thumb_50x50') }}" alt="{{ experience.societe.logo.alt }}" />
+				{% else %}
+					<img src="{{ asset('bundles/sdzblog/images/logo_societe.png' | imagine_filter('thumb_50x50')) }}" alt="experience.png" />
+				{% endif %}
+			{% else %}
+				<img src="{{ asset('bundles/sdzblog/images/logo_societe.png' | imagine_filter('thumb_50x50')) }}" alt="esperience.png" />
+			{% endif %}
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_experience', {'id': experience.id} ) }}">{{ experience.projet }}</a>
+			</p>
+			<p class="sub-title">
+				{% if experience.societe is not null %}
+					<a class="important" href="{{ path('sdzblog_voir_societe', {'id': experience.societe.id}) }}">{{ experience.societe.nom }},</a> {{ experience.lieu }}
+				{% endif %}
+				{% if experience.duration == "En cours" %}
+					({{ experience.periode.dateDebut|date('M Y') }} - {{ experience.duration }})
+				{% else %}
+					({{ experience.duration }})
+				{% endif %}
+			</p>
+			<p class="competences">
+				{% if experience.technos.count > 0 %}
+					{% for techno in experience.technos %}
+						<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+					{% endfor %}
+				{% endif %}
+			</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ experience.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ experience.projet }}</h2><br />
+		<div class="indent">
+			<p class="description well">
+				{{ experience.descriptionTexte }}
+			</p>
+			<p>
+				{% if experience.societe is not null %}
+					<span class="notice">{{ 'experience.societe.label'|trans }}: </span>
+					<a class="important" href="{{ path('sdzblog_voir_societe', {'id': experience.societe.id}) }}">{{ experience.societe.nom }}</a>
+				{% endif %}
+				<span class="value">({{ experience.lieu }})</span>
+			</p>
+			{% if experience.periode is not null %}
+				<p class="notice">
+					{{ 'experience.period.label'|trans }}: <span>{{ experience.periode.dateDebut|date('M Y') }} - 
+					{% if experience.duration == "En cours" %}
+						{{ experience.duration }}
+					{% else %}
+						{{ experience.periode.dateFin|date('M Y') }} ({{ experience.duration }})
+					{%endif%}
+					</span>
+				</p>
+			{% endif %}
+			{% if experience.taches.count > 0 %}
+				<div class="taches">
+					<p class="notice">{{ 'experience.tasks.label'|trans }}:</p>
+					<ul>
+					{% for tache in experience.taches %}
+						{% include "SdzBlogBundle:Blog:tache.html.twig" with {'listing' : true, 'bean' : tache} %}
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			{% if experience.technos.count > 0 %}
+				<div class="technos">
+					<p><span class="notice">{{ 'experience.technical.skills.label'|trans }}:</span>
+					
+						{% for techno in experience.technos %}
+							<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+						{% endfor %}
+					</p>
+				</div>
+			{% endif %}
+		</div>
+	{% else %}
+		<div class="indent">
+			<p class="cv-exp-header">
+				<span class="cv_normal_font">{{ experience.periode.dateDebut|date('m/Y') }} - 
+					{% if experience.duration == "En cours" %}
+						{{ experience.duration }}
+					{% else %}
+						{{ experience.periode.dateFin|date('m/Y') }}
+					{%endif%}
+				</span> : 
+				{% if experience.societe is not null %}
+					<a class="title-link" href="{{ path('sdzblog_voir_societe', {'id': experience.societe.id} ) }}"> {{ experience.societe.nom }}</a>, <span class="cv_normal_font">{{ experience.lieu }}</span>
+				{% endif %}
+			</p>
+			<div class="indent">
+				<p class="cv-exp-project">
+					<u><span class="cv_normal_font">{{ 'experience.project'|trans }} <a class="important" href="{{ path('sdzblog_voir_experience', {'id': experience.id} ) }}">{{ experience.projet }}</a></span></u> : <span class="value">{{ experience.descriptionTexte }}</span>
+				</p>
+				{% if experience.taches.count > 0 %}
+					<div class="taches">
+						<p class="cv_normal_font signale">{{ 'experience.tasks.label'|trans }}</p>
+						<ul>
+						{% for tache in experience.taches %}
+							{% include "SdzBlogBundle:Blog:tache.html.twig" with {'listing' : true, 'bean' : tache} %}
+						{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				{% if experience.technos.count > 0 %}
+					<p><span class="cv_normal_font signale">{{ 'experience.technical.skills.label'|trans }}</span>
+						{% for techno in experience.technos %}
+							<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+						{% endfor %}
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+{% endif %}

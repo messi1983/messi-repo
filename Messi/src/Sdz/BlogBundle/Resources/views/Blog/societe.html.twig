@@ -1,0 +1,46 @@
+{% set listing = listing|default(false) %}
+{% set societe = bean|default(null) %}
+
+{% if societe %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if societe.logo %}
+			<img src="{{ asset(societe.logo.webPath | imagine_filter('thumb_50x50')) }}" alt="{{ societe.logo.alt }}" />
+			{% else %}
+			<img src="{{  asset('bundles/sdzblog/images/logo_societe.png' | imagine_filter('thumb_50x50')) }}" alt="societe.png" />
+			{% endif %}
+		</div>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_societe', {'id': societe.id} ) }}">{{ societe.nom }}</a>
+			</p>
+			<p class="listing-texte-size">{{ societe.descriptifTexte | truncate(80) }}</p>
+		</div>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ societe.id }}"/></div>
+		{% endif %}
+	{% else %}
+		<h2 class="header">{{ societe.nom }}</h2><br />
+		<div class="indent">
+			<div class="societe">
+				<p class="notice">{{ 'societe.descriptif.label'|trans }}:</p>
+				<p class="well">
+					{{ societe.descriptifTexte }}
+				</p>
+			</div>
+			{% if societe.link %}<p class="notice">{{ 'societe.link.label'|trans }} <a class="value" href="{{ societe.link }}">{{ societe.link }}</a></p> {% endif %}
+			{% if societe.logo %} 
+				<p class="notice">
+					{{ 'societe.logo.label'|trans }}
+					<img src="{{ asset(societe.logo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ societe.logo.alt }}" />
+				</p>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,509 @@
+#General
+activity.vodeos: Vidéos
+activity.photos.label: Photos
+activity.organisme.label: Organisme
+conjunction.till: au
+conjunction.and: et
+preposition.of.minus: de
+parameter.page.invalid: L'argument $page ne peut être inférieur à 1
+publication.option.label: Publier
+date.time.format0: Le %date% à %time%
+date.time.format1: le %date% à %time%
+date.time.format2: %date% à %time%
+selection.list.empty.error: Vous devez sélectionner au moins une ligne
+me.firstname: MESSI
+me.lastname: Louis
+me.my.job: Ingenieur conception logiciel.
+me.my.comedian: Comedien amateur.
+me.my.musician: Musicien amateur.
+hello.world: HELLO WORLD
+question.who.i.am: Accueil
+link.wiki: wiki
+texte.locale: Langue
+texte.locale.fr: Français
+site.home: Accueil
+date.last.update: "Mise à jour le : "
+detail.address: Adresse
+
+#presentation
+presentation.phrase.first: Bonjour à toutes et à tous et bienvienue sur mon site web personnel.
+presentation.phrase.second: Ce site est pour moi l'occasion de partager mes passions, mes ambitions, mes rêves ainsi que ma profession ...
+presentation.phrase.third: J'ai tenté à travers ce site de décrire ma personne dans le fond et dans la forme en vous présentant tout ce qui aujourd'hui fait que je sois ce que je suis.
+presentation.phrase.fourth: Ce site est donc le début d'un long pélérinage vers mon accomplissement personnel.
+presentation.phrase.fifth: Pour celles et ceux qui ont pris la peine de lire ces quelques lignes, je vous dit "Merci" de tout coeur et vous invite à me laisser un message ou des remarques à la fin de votre visite.
+
+#titles
+title.realizations: Mes réalisations
+title.presentation: Présentation
+title.activities: Activités
+title.authentification: Authentification
+title.comments: Commentaires
+title.cv: Curriculum Vitae
+title.messages: Messages
+title.visitors: Visiteurs
+
+#Buttons
+button.delete.label: Supprimer
+button.modify.label: Modifier
+button.publish.label: Publier
+button.unpublish.label: Dépublier
+button.goback.label: Retour à la liste
+button.cancel: annuler
+button.validate: valider
+button.OK: OK
+button.goback.detail: retour au detail
+button.goback.index: retour a l'accueil
+button.message.add: Laisser un message
+button.comment.add: Laisser un avis
+
+#Links
+link.login: Connexion
+link.logout: Déconnexion
+
+#Auteur
+author.biography.label: Biographie
+author.born: Né le
+author.on.minus: de
+author.photo.label: Photo
+author.wiki.link.label: wiki
+author.add: Ajout d'une nouvel auteur
+author.detail: Détail d'un auteur
+author.deletion: Suppression d'un auteur
+author.modification: Modification d'un auteur
+author.liste.label: Liste des auteurs
+author.liste.published.label: Liste des auteurs publiés
+author.liste.not.published.label: Liste des auteurs non encore publiés
+author.goback: Retour à la auteur
+author.empty: Pas (encore !) de auteurs
+author.delete.confirmation.message: Etes-vous certain de vouloir supprimer cet auteur ?
+author.update.flash.message: L'auteur a bien été modifié
+
+#Category
+category.add: Ajout d'une nouvelle catégorie
+category.associated.technologies.label: Technos associées
+category.description.label: Description
+category.detail: Détail d'une catégorie
+category.deletion: Suppression d'une catégorie
+category.modification: Modification d'une catégorie
+category.liste.label: Liste des catégories
+category.liste.published.label: Liste des catégories publiées
+category.liste.not.published.label: Liste des catégories non encore publiées
+category.goback: Retour à la catégorie
+category.empty: Pas (encore !) de catégories
+category.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette catégorie ?
+category.technos.label: Competences
+category.update.flash.message: La catégorie a bien été modifiée
+
+#Comment
+comment.add.title: Ajout d'un nouveau commentaire
+comment.description.label: Description
+comment.detail: Détail d'un commentaire
+comment.deletion: Suppression d'un commentaire
+comment.modification: Modification d'un commentaire
+comment.liste.label: Commentaires
+comment.liste.published.label: Liste des commentaires publiés
+comment.liste.not.published.label: Liste des commentaires non encore publiés
+comment.goback: Retour à la catégorie
+comment.empty: Pas (encore !) de commentaires
+comment.delete.confirmation.message: Etes-vous certain de vouloir supprimer ce commentaire ?
+comment.author.label: Auteur
+comment.update.flash.message: Le commentaire a bien été modifié
+comment.sent.ok: Votre commentaire a bien été pris en compte
+comment.info: Vous le retrouverez dans les pages des commentaires très prochainement
+comment.summary.label: Texte
+comment.author.pseudo: Enregistré sous le nom ou pseudonyme
+comment.author: Commentaire de "%pseudo%"
+comment.anonymous: Commentaire de M./Mme "Annonyme"
+
+cv.experience.empty: Pas (encore !) d'expériences
+cv.formation.empty: Aucune formation
+cv.competence.empty: Aucune Compétence technique
+cv.section.experiences.title: Expériences professionnelles
+cv.section.competences.title: Compétences techniques
+cv.section.formations.title: Formations
+cv.section.divers.title: Divers
+cv.subsection.sports.title: Sports
+cv.subsection.danses.title: Danses
+cv.subsection.chants.title: Chansons
+cv.subsection.theatres.title: Théâtres
+cv.info.mail: Mél
+cv.info.address: Adresse
+cv.info.phone: Tél
+cv.info.job: Ingénieur d'études et développement informatique
+
+#Chant
+chant.detail: Détail d'une chanson
+chant.add: Ajout d'une nouvelle chanson
+chant.deletion: Suppression d'une chanson
+chant.modification: Modification d'une chanson
+chant.liste.label: Liste des chansons
+chant.liste.published.label: Liste des chansons publiées
+chant.liste.not.published.label: Liste des chansons non encore publiées
+chant.goback: Retour à la chanson
+chant.empty: Pas (encore !) de chansons
+chant.date.redaction: "Date de rédaction : "
+chant.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette chanson ?
+chant.delete.flash.message: La chanson a bien été supprimée
+chant.update.flash.message: La chanson a bien été modifiée
+chant.title.label: Chanson
+chant.text.read.link: Cliquer ici pour Lire le texte
+chant.date.paroles: Paroles
+
+#Danse
+danse.date.beginning.practice: Date de début de pratique
+danse.detail: Détail d'une danse
+danse.add: Ajout d'une nouvelle danse
+danse.deletion: Suppression d'une danse
+danse.modification: Modification d'une danse
+danse.liste.label: Liste des danses
+danse.liste.published.label: Liste des danses publiées
+danse.liste.not.published.label: Liste des danses non encore publiées
+danse.logo.label: Logo
+danse.goback: Retour à la danse
+danse.empty: Pas (encore !) de danses
+danse.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette danse ?
+danse.delete.flash.message: La danse a bien été supprimée
+danse.update.flash.message: La danse a bien été modifiée
+
+#Ecole
+ecole.address.label: Adresse
+ecole.description.label: Description
+ecole.description.short.label: Courte description
+ecole.detail: Détail d'une école
+ecole.add: Ajout d'une nouvelle école
+ecole.deletion: Suppression d'une école
+ecole.modification: Modification d'une école
+ecole.link.label: Lien
+ecole.liste.label: Liste des écoles
+ecole.liste.published.label: Liste des écoles publiées
+ecole.liste.not.published.label: Liste des écoles non encore publiées
+ecole.logo.label: Logo
+ecole.phone.label: Tél
+ecole.goback: Retour à l'école
+ecole.empty: Pas (encore !) d'écoles
+ecole.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette école ?
+ecole.delete.flash.message: L'école a bien été supprimée
+ecole.update.flash.message: L'école a bien été modifiée
+
+#Experience
+experience.detail: Détail d'une expérience
+experience.add: Ajout d'une nouvelle expérience
+experience.deletion: Suppression d'une expérience
+experience.modification: Modification d'une expérience
+experience.liste.label: Liste des expériences
+experience.liste.published.label: Liste des expériences publiées
+experience.liste.not.published.label: Liste des expériences non encore publiées
+experience.goback: Retour à l'expérience
+experience.empty: Pas (encore !) d'expériences
+experience.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette expérience ?
+experience.delete.flash.message: L'expérience a bien été supprimée
+experience.period.label: Période
+experience.project: Projet
+experience.societe.label: Société
+experience.task.label: Tâche
+experience.tasks.label: Tâches
+experience.technical.skills.label: Compétences techniques
+experience.technos.label: Competences
+experience.update.flash.message: L'expérience a bien été modifiée
+
+#Formation
+formation.detail: Détail d'une formation
+formation.add: Ajout d'une nouvelle formation
+formation.deletion: Suppression d'une formation
+formation.modification: Modification d'une formation
+formation.liste.label: Liste des formations
+formation.liste.published.label: Liste des formations publiées
+formation.liste.not.published.label: Liste des formations non encore publiées
+formation.goback: Retour à la formation
+formation.ecole.label: Ecole
+formation.empty: Pas (encore !) de formations
+formation.delete.confirmation.message: Etes-vous certain de vouloir supprimer cette formation ?
+formation.delete.flash.message: La formation a bien été supprimée
+formation.period.label: Période
+formation.technical.skills.label: Compétences techniques
+formation.update.flash.message: La formation a bien été modifiée
+
+#Formulaire
+form.field.deletion: Supprimer
+form.field.language: Langue
+form.field.activity: Activité
+form.field.author: Auteur
+form.field.name: Nom
+form.field.supervisor: Supervieur
+form.field.email: Mél
+form.field.subject: Object
+form.field.message: Message
+form.field.firstname: Prénom
+form.field.pseudo: Pseudo
+form.field.logo: Logo
+form.field.date.birth: Date naissance
+form.field.date.death: Date décès
+form.field.date.start: Date début
+form.field.date.end: Date fin
+form.field.date.entry: Date d'entrée
+form.field.date.exit: Date de sortie
+form.field.date.redaction: Date rédaction
+form.field.graduate: Diplôme
+form.field.image.titile: Titre
+form.field.technologies: Technologies
+form.field.schools: Ecoles
+form.field.comment: Commentaire
+form.field.description: Description
+form.field.biography: Biographie
+form.field.description.short: Courte Description
+form.field.description.detailed: Description appronfondie
+form.field.pictures: Images
+form.field.publication: Publier
+form.field.type: Type
+form.field.title: Titre
+form.field.summary: Résumé
+form.field.photo: Photo
+form.field.organism: Organisme
+form.field.date.organism: Organisme
+form.field.theater.play: Pièce
+form.field.theater.type: Type 
+form.field.sport: Sport
+form.field.street.number: Numéro
+form.field.address: Adresse
+form.field.zip.code: Code postal
+form.field.town: Ville
+form.field.phone.number: Tél
+form.field.link: Lien
+form.field.project: Projet
+form.field.company: Société
+form.field.tasks: Tâches
+form.field.under.tasks: Sous tâches
+form.field.order: Ordre
+form.field.category: Catégorie
+form.field.experiences: Expériences
+form.field.keywords: Mots clés
+form.field.phone: Tél
+form.field.chorus: Refrain
+
+#menu
+menu.activities: Activités
+menu.article.add.link: Article
+menu.article.liste.link: Articles
+menu.auteur.add.link: Auteur
+menu.auteur.liste.link: Auteurs
+menu.category.add.link: Catégorie
+menu.category.liste.link: Catégories
+menu.chant.add.link: Chanson
+menu.chant.liste.link: Chansons
+menu.comments: Commentaires
+menu.comment.add.link: Commentaire
+menu.cv: Curriculum Vitae
+menu.cv.see: Voir le CV
+menu.cv.see.pdf: CV (Pdf)
+menu.cv.see.doc: CV (Word)
+menu.danse.add.link: Danse
+menu.danse.liste.link: Danses
+menu.experience.add.link: Expérience
+menu.experience.liste.link: Expériences
+menu.ecole.add.link: Ecole
+menu.ecole.liste.link: Ecoles
+menu.messages: Messages
+menu.message.add.link: Message
+menu.organisme.add.link: Organisme
+menu.organisme.liste.link: Organismes
+menu.pages: Pages
+menu.presentation: Présentation
+menu.sport.add.link: Sport
+menu.sport.liste.link: Sports
+menu.societe.add.link: Société
+menu.societe.liste.link: Sociétés
+menu.theatre.add.link: Pièce
+menu.theatre.liste.link: Pièces théâtre
+menu.techno.add.link: Techno
+menu.techno.liste.link: Technos
+menu.realizations: Mes réalisations
+menu.realization.liste.link: Mes réalisations
+menu.stats: Stats
+
+#Message
+message.detail: Détail d'un message
+message.add.title: Message
+message.deletion: Suppression d'un message
+message.modification: Modification d'un message
+message.liste.label: Liste des messages
+message.liste.published.label: Liste des messages publiés
+message.liste.not.published.label: Liste des messages non encore publiés
+message.goback: Retour au message
+message.empty: Pas (encore !) de messages
+message.delete.confirmation.message: Etes-vous certain de vouloir supprimer ce message ?
+message.delete.flash.message: La message a bien été supprimé
+message.update.flash.message: La message a bien été modifié
+message.sent.ok: Votre message a bien été transmis
+message.info: Vous recevrez une copie de ce message dans votre boite mél.
+message.author: Message de [rb]%author%[rb]
+message.author.name: Nom
+message.author.firstname: Prénom
+message.author.email: Adresse mél
+message.author.phone: Votre numéro de téléphone
+message.summary.label: Message envoyé
+message.anonymous: Message de [rb]M./Mme X[rb]
+message.field.subject: Object
+message.field.subject.none: SANS
+message.table.column.author: Auteur
+message.table.column.object: Objet
+message.edition.date.time.format: %date% %time%
+
+#Organisme
+organisme.activity.label: Activité
+organisme.detail: Détail d'un organisme
+organisme.add: Ajout d'un nouvel organisme
+organisme.deletion: Suppression d'un organisme
+organisme.modification: Modification d'un organisme
+organisme.link.label: Lien
+organisme.liste.label: Liste des organismes
+organisme.liste.published.label: Liste des organismes publiés
+organisme.liste.not.published.label: Liste des organismes non encore publiés
+organisme.logo.label: Logo
+organisme.phone.label: Tél
+organisme.goback: Retour à l'organisme
+organisme.empty: Pas (encore !) d'organismes
+organisme.delete.confirmation.message: Etes-vous certain de vouloir supprimer cet organisme ?
+organisme.delete.flash.message: L'organisme a bien été supprimé
+organisme.update.flash.message: L'organisme a bien été modifié
+organisme.period.frequentation: Periode de frequentation
+
+#Realisation
+realisation.empty: En cours de rédaction !
+realisation.detail: Détail d'un réalisation
+realisation.add: Laisser un realisation
+realisation.deletion: Suppression d'une réalisation
+realisation.modification: Modification d'une réalisation
+realisation.liste.label: Liste des realisations
+realisation.liste.published.label: Liste des réalisations publiés
+realisation.liste.not.published.label: Liste des réalisations non encore publiés
+realisation.update.warning.realisation: Vous éditez un realisation déjà existant, ne le changez pas trop pour éviter aux membres de ne pas comprendre ce qui se passe.
+realisation.goback: Retour à la realisation
+realisation.delete.confirmation.realisation: Etes-vous certain de vouloir supprimer cette réalisation ?
+realisation.delete.flash.realisation: La réalisation a bien été supprimé
+realisation.update.flash.realisation: La réalisation a bien été modifié
+realisation.sent.ok: Votre réalisation a bien été transmis
+realisation.info: Vous recevrez une copie de cette réalisation dans votre boite mél.
+realisation.author: realisation de [rb]%author%[rb]
+realisation.author.name: Nom
+realisation.author.firstname: Prénom
+realisation.author.email: Adresse mél
+realisation.author.phone: Votre numéro de téléphone
+realisation.summary.label: realisation envoyé
+realisation.anonymous: realisation de [rb]M./Mme X[rb]
+realisation.field.subject: Object
+realisation.field.subject.none: SANS
+realisation.read: Lire
+realisation.table.column.author: Auteur
+realisation.table.column.date.time: Date/Heure
+realisation.table.column.object: Objet
+
+#Societe
+societe.descriptif.label: Descriptif
+societe.detail: Détail d'une société
+societe.add: Ajout d'une nouvelle société
+societe.deletion: Suppression d'une société
+societe.modification: Modification d'une société
+societe.link.label: Lien
+societe.liste.label: Liste des sociétés
+societe.liste.published.label: Liste des sociétés publiées
+societe.liste.not.published.label: Liste des sociétés non encore publiées
+societe.logo.label: Logo
+societe.goback: Retour à la société
+societe.empty: Pas (encore !) de sociétés
+societe.delete.confirmation.message: Etes-vous certain de vouloir supprimer la société ?
+societe.delete.flash.message: La société a bien été supprimée
+societe.update.flash.message: La société a bien été modifiée
+societe.period.from: Société fréquenté depuis
+
+#Sport
+sport.date.beginning.practice: Date de début de pratique
+sport.detail: Détail d'un sport
+sport.add: Ajout d'un nouveau sport
+sport.deletion: Suppression d'un sport
+sport.modification: Modification d'un sport
+sport.liste.label: Liste des sports
+sport.liste.published.label: Liste des sports publiés
+sport.liste.not.published.label: Liste des sports non encore publiés
+sport.logo.label: Logo
+sport.goback: Retour au sport
+sport.empty: Pas (encore !) de sports
+sport.delete.confirmation.message: Etes-vous certain de vouloir supprimer la sport ?
+sport.delete.flash.message: Le sport a bien été supprimé
+sport.organismes.label: Organismes
+sport.translation: Sport
+sport.update.flash.message: Le sport a bien été modifié
+
+#Tab
+tab.school.liste.link: Ecoles
+tab.formation.liste.link: Formations
+tab.experience.liste.link: Expériences
+tab.techno.liste.link: Technos
+tab.company.liste.link: Sociétés
+tab.category.liste.link: Catégories
+tab.sport.liste.link: Sports
+tab.theater.liste.link: Théâtre
+tab.danse.liste.link: Danses
+tab.song.liste.link: Chants
+tab.organism.liste.link: Organismes
+tab.author.liste.link: Auteurs
+tab.message.liste.link: Messages
+tab.comment.liste.link: Commentaires
+
+#Tache
+task.order.label: Ordre
+task.under.tasks.label: Sous tâches
+task.update: Mise à jour de tâche
+task.goback: Retour à la tâche
+task.detail: Détail d'une tâche
+
+#Techno
+techno.add: Ajout d'une nouvelle technologie
+techno.detail: Détail d'une technologie
+techno.deletion: Suppression d'une technologie
+techno.modification: Modification d'une technologie
+techno.liste.label: Liste des technologies
+techno.liste.published.label: Liste des technologies publiées
+techno.liste.not.published.label: Liste des technologies non encore publiées
+techno.logo.label: Logo
+techno.goback: Retour àla technologie
+techno.empty: Pas (encore !) de technologies
+techno.delete.confirmation.message: Etes-vous certain de vouloir supprimer la technologie ?
+techno.delete.flash.message: La technologie a bien été supprimée
+techno.update.flash.message: La technologie a bien été modifiée
+techno.associated.experiences.label: Expériences associées
+techno.associated.formations.label: Formations associées
+techno.keywords.label: Mots clés
+techno.practice.level: Niveau de pratique
+techno.practice.level.high: Expérimenté
+techno.practice.level.high: Scolaire
+techno.practice.level.technology.watch: Veille Techno
+
+#Theatre
+theatre.detail: Détail d'une pièce de théâtre
+theatre.add: Ajout d'un nouvelle pièce de théâtre
+theatre.deletion: Suppression d'une pièce de théâtre
+theatre.modification: Modification d'une pièce de théâtre
+theatre.liste.label: Liste des théâtres
+theatre.liste.published.label: Liste des pièces de théâtres publiées
+theatre.liste.not.published.label: Liste des pièces de théâtres non encore publiées
+theatre.goback: Retour à la pièce de théâtre
+theatre.empty: Pas (encore !) de pièces de théâtre
+theatre.delete.confirmation.message: Etes-vous certain de vouloir supprimer la pièce de théâtre ?
+theatre.delete.flash.message: La pièce de théâtre a bien été supprimée
+theatre.update.flash.message: La pièece de théâtre a bien été modifiée
+theater.company.members.label: Membres de la troupe
+theater.organisme.label: Organisme
+theater.play: Pièce
+theater.play.studied.from: Pièce revisée de
+theater.play.studied.till: au
+theater.play.summury.label: Résumé de la pièce
+theater.supervized.by: Supervisée par
+theater.text.read.link: Cliquer ici pour Lire le texte
+
+#Visitor
+visitor.detail: Fiche recapitulative
+visitor.under.visitors.label: Sous tâches
+visitor.update: Mise à jour de tâche
+visitor.goback: Retour à la tâche
+task.detail: Détail d'une tâche
+visitor.liste.published.label: Liste des visiteurs

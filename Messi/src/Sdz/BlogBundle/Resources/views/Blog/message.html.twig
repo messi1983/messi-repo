@@ -1,0 +1,72 @@
+{% set listing = listing|default(false) %}
+{% set message = bean|default(null) %}
+{% set detail = detail|default(false) %}
+{% set isNewEntity = isNewEntity|default(false) %}
+
+{% if message %}
+	{% if listing %}
+		<div class="row separe-row">
+			<div class="col-auteur-msg">
+				<span>
+					<i class="icon-user"></i>
+					{{ message.auteur.prenom }} {{ message.auteur.nom }}
+				</span>
+			</div>
+			<div class="col-sujet-msg">
+				<a href="{{ path('sdzblog_voir_message', {'id': message.id} ) }}">
+					<i class="icon-envelope"></i>
+					{% if message.subject %}
+						{{ message.subject }}
+					{% else %}
+						{{ 'message.field.subject.none'|trans }}
+					{% endif %}
+				</a>
+			</div>
+			<div class="col-date-msg">
+				{{ 'message.edition.date.time.format'|trans({'%date%': message.date|date('d-m-Y'), '%time%': message.date|date('H:i:s')}) }}
+			</div>
+			<div class="col-check-all">
+				<input type="checkbox" name="myIds[]" value="{{ message.id }}"/>
+			</div>
+		</div>		
+	{% else %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<h2 class="header">
+				{% if message.auteur.prenom is not null and message.auteur.prenom is not empty %}
+					{{ 'message.author'|trans({'%author%': message.auteur.nom}) }}
+				{% else %}
+					{{ 'message.anonymous'|trans }}
+				{% endif %}
+			</h2><br />
+		{% else %}
+			{% if isNewEntity %}
+				<div class="sent-message-ok">
+					<p class="success">{{ 'message.sent.ok'|trans }}</p>
+					<p class="value">{{ 'message.info'|trans }}</p>
+				</div>
+			{% endif %}
+		{% endif %}
+		
+		{% if message.auteur is not null %}
+			<div class="indent">
+				<p>{{ 'message.author.name'|trans }}: <span class="signale">{{ message.auteur.nom }}</span></p>
+				{% if message.auteur.prenom is not null and message.auteur.prenom is not empty %}
+					<p>{{ 'message.author.firstname'|trans }}: <span class="signale">{{ message.auteur.prenom }}</span></p>
+				{% endif %}
+				<p>{{ 'message.author.email'|trans }}: <span class="signale">{{ message.auteur.email }}</span></p>
+				{% if message.auteur.tel is not null and message.auteur.tel is not empty %}
+					<p>{{ 'message.author.phone'|trans }}: <span class="signale">{{ message.auteur.tel }}</span></p>
+				{% endif %}
+				<br />
+				{% if message.subject is not null and message.subject is not empty %}
+					<p>{{ 'message.field.subject'|trans }}: <span class="signale">{{ message.subject }}</span></p>
+				{% endif %}
+				<br />
+				<p><b class="important">{{ 'message.summary.label'|trans }}</b></p>
+				<p class="well">
+					{{ message.message }}
+				</p>
+			</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

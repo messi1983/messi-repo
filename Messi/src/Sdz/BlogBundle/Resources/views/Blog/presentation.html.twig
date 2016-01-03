@@ -1,0 +1,18 @@
+<h2>{{ 'question.who.i.am' | trans }}</h2>
+ 
+<div class="well">
+	<p>{{ 'validate'|trans }}<p>
+	<p>{% trans from 'fr' %}cancel{% endtrans %}</p>
+   
+	{% for i in 0..2 %}
+		<p>{{ ('charte.donnee.' ~ i )|trans }}</p>
+	{% endfor %}
+   
+	<p>{{ 'hello'|trans({'%name%': 'moi même'}, 'domaine', 'fr') }}</p>
+	<p>{% trans with {'%name%': name} %}hello{% endtrans %}</p>
+   
+	<p>{{ 'article.nombre'|transchoice(count) }}</p>
+	<p>{% transchoice count %}article.nombre{% endtranschoice %}</p>
+   
+	<p>Aujourd'hui nous sommes le {#{ 'now'|localizeddate('full', 'none') }#}</p>
+</div>

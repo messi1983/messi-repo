@@ -1,0 +1,23 @@
+sdz_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SdzUserBundle:Default:index }
+
+fos_user_security:
+    resource: "@SdzUserBundle/Resources/config/routing/security.xml"
+    prefix:   /{_locale}
+ 
+fos_user_profile:
+    resource: "@SdzUserBundle/Resources/config/routing/profile.xml"
+    prefix:   /{_locale}
+
+fos_user_register:
+    resource: "@SdzUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@SdzUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@SdzUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /{_locale}/profile

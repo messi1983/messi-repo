@@ -1,0 +1,25 @@
+{% set redirectUrl = redirectUrl|default(null) %}
+
+<div class="well">
+	<form method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+		<br /><br />
+		{% if index_btn_to_activate == 4 %}
+			<input type="submit" id="btn-submit" class="btn btn-primary btn-message" />
+		{% elseif index_btn_to_activate == 5 %}
+			<input type="submit" id="btn-submit" class="btn btn-primary btn-comment" />
+		{% else %}
+			<input type="submit" id="btn-submit" class="btn btn-primary" />
+		{% endif %}
+		<input type="reset" value="{{ 'button.cancel'|trans }}" id="btn-reset" class="btn btn-default" />
+		
+		<a href="{{ path(redirectUrl, {'id': bean.id}) }}" class="btn btn-retrun">
+			<i class="icon-chevron-left"></i>
+			{% if redirectUrl == 'sdzblog_accueil' %}
+				{{ 'button.goback.index'|trans }}
+			{% else %}
+				{{ 'button.goback.detail'|trans }}
+			{% endif %}
+		</a>
+	</form>
+</div>

@@ -1,0 +1,107 @@
+{% set listing = listing|default(false) %}
+{% set theatre = bean|default(null) %}
+{% set detail = detail|default(false) %}
+
+{% if theatre %}
+	{% if listing %}
+		<div class="cell-logo"><img src="{{ asset('bundles/sdzblog/images/theatre_logo.jpg' | imagine_filter('thumb_50x50')) }}" alt="espérience.png" /></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_theatre', {'id': theatre.id} ) }}">{{ theatre.piece }}</a>
+			</p>
+			<p>
+				{{ 'theater.play'|trans }} <span class="signale">{{ theatre.type }}</span>
+				{% if theatre.auteur %}
+					{{ 'author.on.minus'|trans }} <a class="important" href="{{ path('sdzblog_voir_auteur', {'id': theatre.auteur.id} ) }}">{{ theatre.auteur.prenom }} {{ theatre.auteur.nom }}
+					{% if theatre.auteur.dateDeces %}
+						({{ theatre.auteur.dateNaissance|date('Y') }} - {{ theatre.auteur.dateDeces|date('Y') }})
+					{% endif %} 
+					</a>
+				{% endif %} 
+			</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ theatre.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ theatre.piece }}</h2><br />
+		<div class="indent">
+			<div class="bloc">
+				<p>{{ 'theater.play'|trans }} <span class="signale">{{ theatre.type }}</span>
+					{% if theatre.auteur %}
+						{{ 'preposition.of.minus'|trans }} <a class="important" href="{{ path('sdzblog_voir_auteur', {'id': theatre.auteur.id} ) }}">{{ theatre.auteur.prenom }} {{ theatre.auteur.nom }}
+						{% if theatre.auteur.dateDeces %}
+							({{ theatre.auteur.dateNaissance|date('Y') }} - {{ theatre.auteur.dateDeces|date('Y') }})
+						{% endif %} 
+						</a>
+					{% endif %}
+				</p>
+				{%  if theatre.superviseur %}
+					<p>{{ 'theater.supervized.by'|trans }} <span class="important">{{ theatre.superviseur.nom }} {{ theatre.superviseur.prenom }}</span></p>
+				{% endif %} 
+				{% if theatre.dateDebut and theatre.dateFin %}
+					<p>
+						{{ 'theater.play.studied.from'|trans }} <span class="signale">{{ theatre.dateDebut|date('M/Y') }}</span> {{ 'theater.play.studied.till'|trans }} <span class="signale">{{ theatre.dateDebut|date('M/Y') }}</span>
+					</p>
+				{% endif %} 
+			</div>
+			
+			<div class="emptyLine"></div>
+			
+			{% if theatre.organisme %}
+				<p  class="notice">
+					{{ 'theater.organisme.label'|trans }} : <span>{{ theatre.organisme.nom }}</span>
+					{% if theatre.organisme.adresse is not null %}
+						<span> - {{ theatre.organisme.adresse.ville }}</span>
+					{% endif %}
+				</p>
+				<div class="emptyLine"></div>
+			{% endif %}
+			{% if theatre.membres is not null and theatre.membres is not empty %}
+				<p class="membres">
+					<span class="notice">{{ 'theater.company.members.label'|trans }}</span>
+					<ul>
+					{% for membre in theatre.membres %}
+						<li class="souligne">{{ membre.nom }} {{ membre.prenom }}</li>
+					{% endfor %}
+					</ul>
+				</p>
+			{% endif %}
+			
+			{% if theatre.resume is not null and theatre.resume is not empty %}
+				<div class="resume">
+					<p class="notice">{{ 'theater.play.summury.label'|trans }}</p>
+					<p class="bloc">
+						{{ theatre.resumeTexte}}
+					</p>
+{# 					{% if theatre.link %}#}
+{# 						<p><a class="text-link" href="{{ theatre.link }}">{{ 'theater.text.read.link'|trans }}</a></p><br /><br />#}
+{# 					{% endif %}#}
+				</div>
+			{% endif %}
+			
+			<!-- Rajout des images -->
+			{% include "SdzBlogBundle:Blog:images_panel.html.twig" with {'bean': theatre} %}
+			
+			<!-- Rajout des videos -->
+			{#% include "SdzBlogBundle:Blog:videos_panel.html.twig" with {'bean': theatre} %#}
+		</div>
+	{% else %}
+		{% if loop.first %}
+		<div class="theatres">
+			<div class="indent">
+				<p class="cv-header-font">{{ 'cv.subsection.theatres.title'|trans }}</p>
+				<p class="indent signale">
+		{% endif %} 
+		<a href="{{ path('sdzblog_voir_theatre', {'id': theatre.id} ) }}">{{ theatre.piece }}{% if not loop.last %},{% endif %}</a> 
+		{% if loop.last %}
+				</p>
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

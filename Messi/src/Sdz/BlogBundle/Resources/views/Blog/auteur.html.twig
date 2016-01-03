@@ -1,0 +1,55 @@
+{% set listing = listing|default(false) %}
+{% set auteur = bean|default(null) %}
+
+{% if auteur %}
+	{% if listing %}
+		<div class="cell-logo">
+			{% if auteur.photo %}
+			<img src="{{ asset(auteur.photo.webPath | imagine_filter('thumb_50x50')) }}" alt="{{ auteur.photo.alt }}" />
+			{% else %}
+			<img src="{{ asset('bundles/sdzblog/images/logo_auteur.png' | imagine_filter('thumb_50x50')) }}" alt="auteur.png" />
+			{% endif %}
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_auteur', {'id': auteur.id} ) }}">{{ auteur.prenom }} {{ auteur.nom }}</a>
+			</p>
+			<p>
+				{% if auteur.dateNaissance  %}
+					{% if auteur.dateDeces %}
+						({{ auteur.dateNaissance|date('d-m-Y') }} - {{ auteur.dateDeces|date('d-m-Y') }}) 
+					{% else %}
+						{{ 'author.born'|trans }} <span class="signale">{{ auteur.dateNaissance|date('d M Y') }}</span>
+					{% endif %}
+				{% endif %}
+			</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ auteur.id }}"/></div>
+		{% endif %}
+	{% else %}
+		<h2 class="header">{{ auteur.prenom }} {{ auteur.nom }}</h2><br />
+		<div class="row indent">
+			<div class="photo-auteur">
+				{% if auteur.photo %}
+				<img src="{{ asset(auteur.photo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ auteur.photo.alt }}" />
+				{% else %}
+				<img src="{{ asset('bundles/sdzblog/images/auteur_logo.jpg' | imagine_filter('thumb_100x100')) }}" alt="auteur.png" />
+				{% endif %}
+			</div>
+			<div class="biographie">
+				<p class="notice">{{ 'author.biography.label'|trans }}</p>
+				<p class="well listing-texte-size">
+					{{ auteur.biographieTexte }}...
+					{% if auteur.link %}
+						<a href="{{ auteur.link }}">{{ 'author.wiki.link.label'|trans }}</a>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	{% endif %}
+{% endif %}

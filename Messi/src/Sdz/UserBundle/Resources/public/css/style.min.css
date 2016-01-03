@@ -1,0 +1,159 @@
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url(http://themes.googleusercontent.com/static/fonts/droidsans/v4/s-BiyweUPV0v-yRb-cjciBsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url(http://themes.googleusercontent.com/static/fonts/inconsolata/v7/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Petrona';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Petrona Regular'), local('Petrona-Regular'), url(http://themes.googleusercontent.com/static/fonts/petrona/v3/pDrKD-602Zi1pKQUQRmkaQ.woff) format('woff');
+}
+
+div,span,h2,h3,h4,h5,h6,p {
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:100%;
+  font:inherit;
+  vertical-align:baseline
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+  display:block
+}
+blockquote,q {
+  quotes:none
+}
+blockquote:before,blockquote:after,q:before,q:after {
+  content:'';
+  content:none
+}
+textarea {
+  width:95%;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0
+}
+form label {color:orange}
+.choice li{float:left;margin-top:0;margin-right:12px;margin-left:12px;padding:0;list-style-type:none}
+.work li{height:127px;float:left;margin-right:12px;margin-left:12px;padding:0;border:solid 1px #000;background:blue;list-style-type:none}
+.boxgrid{
+	background-image:none;background-repeat:repeat;background-attachment:scroll;
+	background-position:0 0;width:127px;height:127px;float:left;border:solid 3px #e2d9c0;
+	overflow:hidden;position:relative;margin-top:10px;margin-right:10px;margin-bottom:10px/*24px*/;margin-left:10px
+}
+.boxgrid img{position:absolute;top:0;left:0;border:0}
+.boxgrid:active{border-top-width:7px;border-bottom-width:5px}
+.work li a{height:127px;display:block}
+.work{width:100%;margin-bottom:0px;float:left;clear:both;overflow:hidden;border:solid #000 1px;margin-left: 0px;}
+.button{
+  background-color:#2b91af;
+  border-radius:10px;box-shadow:0 2px 3px rgba(0,0,0,0.3);
+  color:#fff;
+  cursor:pointer;
+  display:inline-block;
+  padding:10px 20px;
+  text-align:center;
+  text-decoration:none
+}
+
+.button.small{
+  border-radius:15px;
+  float:right;margin:22px 5px 0;
+  padding:6px 15px
+}
+
+.dialogOK{
+  border-radius:15px;
+  float:left;margin:22px 5px 0;
+  padding:6px 15px
+}
+
+.button:hover{
+  background-color:#1e1e1e
+}
+
+.button>span{
+  font-size:84%
+}
+
+.button.b-close,.button.bClose{
+  border-radius:7px 7px 7px 7px;box-shadow:none;
+  font:bold 131% sans-serif;
+  padding:0 6px 2px;
+  position:absolute;
+  right:-7px;
+  top:-7px
+}
+
+.button.b-confirm{
+  border-radius:7px 7px 7px 7px;box-shadow:none;
+  font:bold 131% sans-serif;
+  padding:0 6px 2px;
+  position:absolute;
+  right:-7px;
+  bottom: 1px
+}
+
+.example{
+  display:block;
+  line-height:1.25;
+  padding:30px 110px 15px 0
+}
+
+::-moz-selection{
+  background-color:#2b91af;
+  color:#fff;
+  text-shadow:none
+}
+
+::selection{
+  background-color:#2b91af;
+  color:#fff;
+  text-shadow:none
+}
+
+#popup,#popup2,.bMulti {
+   background-color:#fff;
+   border-radius:10px 10px 10px 10px;box-shadow:0 0 25px 5px #999;
+   color:#111;
+   display:none;
+   min-width:450px;
+   max-width:670px;
+   padding:25px
+}
+
+#dialog-message {
+   background-color:#fff;
+   border-radius:10px 10px 10px 10px;box-shadow:0 0 25px 5px #999;
+   color:#111;
+   display:none;
+   width:300px;
+   height:150px;
+   padding:25px
+}
+
+#popup .logo, #dialog-message .logo {
+  color:#2b91af;
+  font:bold 325% 'Petrona',sans
+}
+
+#popup,.bMulti {
+  min-height:250px
+}
+
+/*#popup2 iframe{
+  background:url('loader.gif') center center no-repeat;
+  min-height:240px;
+  min-width:450px
+}*/
+
+/*http://dinbror.dk/bpopup/*/

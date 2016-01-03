@@ -1,0 +1,452 @@
+{% set index_btn_to_activate = index_btn_to_activate|default(0) %}
+{% set lastUpdate = lastUpdate|default(null) %}
+ 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+    <title>{% block title %}{{ 'me.lastname' | trans }} {{ 'me.firstname' | trans }}{% endblock %}</title>
+ 
+    {% block stylesheets %}
+		{% stylesheets filter='cssrewrite, ?yui_css'
+			'//ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css'
+			'css/*' 
+			'@SdzBlogBundle/Resources/public/css/*' %}
+	    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+    {% endblock %}
+  </head>
+ 
+  <body>
+    <div class="container">
+      <div id="header" class="hero-unit">
+      	  <div class="col-header-img">
+	      	<img src="{{ asset('bundles/sdzblog/images/massai.jpg' ) }}" alt="massai.jpg" />
+	      </div>
+      	  <div class="col-header-txt">
+      		<h2 class="me">{{ 'me.lastname' | trans }} {{ 'me.firstname' | trans }}</h2>
+      		
+      		<div class="doubleIndent">
+      			<p class="job"><i class="icon-hand-right"></i> {{ 'me.my.job' | trans }}</p>
+      				
+      			<div class="doubleIndent">
+      				<p class="comedian"><i class="icon-hand-right"></i> {{ 'me.my.comedian' | trans }}</p>
+      					
+      				<div class="doubleIndent">
+      					<p class="musician"><i class="icon-hand-right"></i> {{ 'me.my.musician' | trans }}</p>
+      					
+      					<div class="doubleIndent">
+      						<p class="etc"><i class="icon-hand-right"></i> ...</p>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+	      </div>
+	      <div class="col-header-img">
+	      	<img src="{{ asset('bundles/sdzblog/images/massai.jpg' ) }}" alt="massai.jpg" />
+	      </div>
+      </div>
+      
+      <div class="row">
+      	<ul id="locales">
+      		<li class="locale">
+      			<a href="#">
+      				{{ 'texte.locale' | trans }} &nbsp;&nbsp;&nbsp;
+      				<img src="{{ asset('bundles/sdzblog/images/locale_fr.jpg' | imagine_filter('thumb_15x10')) }}" alt="locale_fr.jpg" class="image-locale"/>
+      			</a>
+      			<ul>
+	      			<li>
+	      				<a href="{{ path('sdzblog_locale',  { 'locale' : 'fr' }) }}">
+	      					{{ 'texte.locale.fr' | trans }} &nbsp;&nbsp;&nbsp;
+	      					<img src="{{ asset('bundles/sdzblog/images/locale_fr.jpg' | imagine_filter('thumb_15x10')) }}" alt="locale_fr.jpg" class="image-locale"/>
+	      				</a>
+	      			</li>
+	      		</ul>
+      		</li>
+      		<li class="accueil">
+      			<a href="{{ path('sdzblog_accueil') }}">
+      				<img src="{{ asset('bundles/sdzblog/images/home_icone.png' | imagine_filter('thumb_15x10')) }}" alt="locale_fr.jpg" class="image-locale"/>
+      				&nbsp;&nbsp;&nbsp;{{ 'site.home' | trans }}
+      			</a>
+      		</li>
+      		{% if lastUpdate is not null %}
+      			<div class="date-update">{{ 'date.last.update' | trans }} <span class="important">{{ lastUpdate }}</span></div>
+      		{% endif %}
+	     </ul>
+      </div>
+      
+      <div class="row">
+        <div id="menu" class="span3">
+			<div class="well">
+				<p id="accueil_btn" class="btn-menu-summary">
+					{% if 0 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_accueil') }}" class="accueil_btn btn btn-block btn-primary btn-large">{{ 'menu.presentation'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_accueil') }}" class="accueil_btn btn btn-block btn-default btn-large">{{ 'menu.presentation'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 0 == index_btn_to_activate %}
+					<ul id="accueil_panel">
+				{% else %}
+					<ul id="accueil_panel" style="display: none">
+				{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_voir_ecoles') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.ecole.liste.link'|trans }}
+						</a>
+					</p>
+					
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_ecole') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.ecole.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_experiences') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.experience.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_experience') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.experience.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					  
+					<p>
+						<a href="{{ path('sdzblog_voir_technos') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.techno.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_techno') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.techno.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_societes') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.societe.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_societe') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.societe.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					{% if is_granted('ROLE_ADMIN') %}
+						<p>
+							<a href="{{ path('sdzblog_voir_categories') }}">
+								<i class="icon-list"></i>
+								{{ 'menu.category.liste.link'|trans }}
+							</a>
+						</p>
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_categorie') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.category.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+				</ul>
+					
+				<p id="activite_btn" class="btn-menu-summary">
+					{% if 1 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_voir_sports') }}" class="activite_btn btn btn-block btn-primary btn-large">{{ 'menu.activities'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_voir_sports') }}" class="activite_btn btn btn-block btn-default btn-large">{{ 'menu.activities'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 1 == index_btn_to_activate %}
+					<ul id="activite_panel">
+				{% else %}
+					<ul id="activite_panel" style="display: none">
+				{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_voir_sports') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.sport.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_sport') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.sport.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					  
+					<p>
+						<a href="{{ path('sdzblog_voir_theatres') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.theatre.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_theatre') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.theatre.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_danses') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.danse.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_danse') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.danse.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_chants') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.chant.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_chant') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.chant.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_organismes') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.organisme.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_organisme') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.organisme.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					
+					<p>
+						<a href="{{ path('sdzblog_voir_auteurs') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.auteur.liste.link'|trans }}
+						</a>
+					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="indent">
+							<a href="{{ path('sdzblog_ajouter_auteur') }}">
+								<i class="icon-edit"></i>
+								{{ 'menu.auteur.add.link'|trans }}
+							</a>
+						</p>
+					{% endif %}
+				</ul>
+					
+				<p id="cv_btn" class="btn-menu-summary">
+					{% if 2 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_voir_cv') }}" class="cv_btn btn btn-block btn-primary btn-large">{{ 'menu.cv'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_voir_cv') }}" class="cv_btn btn btn-block btn-default btn-large">{{ 'menu.cv'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 2 == index_btn_to_activate %}
+					<ul id="cv_panel">
+				{% else %}
+					<ul id="cv_panel" style="display: none">
+				{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_voir_cv') }}">
+							<i class="icon-hand-right"></i>
+							{{ 'menu.cv.see'|trans }}
+						</a>
+					</p>
+					
+					{% if is_granted('ROLE_ADMIN') %}
+						<p>
+							<a href="{{ path('sdzblog_voir_cv') }}">
+								<i class="icon-hand-right"></i>
+								{{ 'menu.cv.see.pdf'|trans }}
+							</a>
+						</p>
+						<p>
+							<a href="{{ path('sdzblog_voir_cv') }}">
+								<i class="icon-hand-right"></i>
+								{{ 'menu.cv.see.doc'|trans }}
+							</a>
+						</p>
+					{% endif %}
+				</ul>
+				
+				<p id="realisation_btn" class="btn-menu-summary">
+					{% if 3 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_voir_realisations') }}" class="realisation_btn btn btn-block btn-primary btn-large">{{ 'menu.realizations'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_voir_realisations') }}" class="realisation_btn btn btn-block btn-default btn-large">{{ 'menu.realizations'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 3 == index_btn_to_activate %}
+					<ul id="realisation_panel">
+				{% else %}
+					<ul id="realisation_panel" style="display: none">
+				{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_voir_realisations') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.realization.liste.link'|trans }}
+						</a>
+					</p>
+				</ul>
+				
+				<p id="messages_btn" class="btn-menu-summary">
+					{% if 4 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_voir_messages') }}" class="messages_btn btn btn-block btn-primary btn-large">{{ 'menu.messages'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_voir_messages') }}" class="messages_btn btn btn-block btn-default btn-large">{{ 'menu.messages'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 4 == index_btn_to_activate %}
+					<ul id="messages_panel">
+				{% else %}
+					<ul id="messages_panel" style="display: none">
+				{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<p>
+							<a href="{{ path('sdzblog_voir_messages') }}">
+								<i class="icon-list"></i>
+								{{ 'menu.messages'|trans }}
+							</a>
+						</p>
+					{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_ajouter_message') }}">
+							<i class="icon-edit"></i>
+							{{ 'menu.message.add.link'|trans }}
+						</a>
+					</p>
+				</ul>
+				
+				<p id="comments_btn" class="btn-menu-summary">
+					{% if 5 == index_btn_to_activate %}
+						<a href="{{ path('sdzblog_voir_comments') }}" class="comments_btn btn btn-block btn-primary btn-large">{{ 'menu.comments'|trans }}</a>
+					{% else %}
+						<a href="{{ path('sdzblog_voir_comments') }}" class="comments_btn btn btn-block btn-default btn-large">{{ 'menu.comments'|trans }}</a>
+					{% endif %}
+				</p>
+				{% if 5 == index_btn_to_activate %}
+					<ul id="comments_panel">
+				{% else %}
+					<ul id="comments_panel" style="display: none">
+				{% endif %}
+					<p>
+						<a href="{{ path('sdzblog_voir_comments') }}">
+							<i class="icon-list"></i>
+							{{ 'menu.comments'|trans }}
+						</a>
+					</p>
+					<p>
+						<a href="{{ path('sdzblog_ajouter_comment') }}">
+							<i class="icon-edit"></i>
+							{{ 'menu.comment.add.link'|trans }}
+						</a>
+					</p>
+				</ul>
+				
+				{% if is_granted('ROLE_ADMIN') %}
+					<p id="stats_btn" class="btn-menu-summary">
+						{% if 6 == index_btn_to_activate %}
+							<a href="{{ path('sdzblog_voir_stats_pages') }}" class="stats_btn btn btn-block btn-primary btn-large">{{ 'menu.stats'|trans }}</a>
+						{% else %}
+							<a href="{{ path('sdzblog_voir_stats_pages') }}" class="stats_btn btn btn-block btn-default btn-large">{{ 'menu.stats'|trans }}</a>
+						{% endif %}
+					</p>
+					{% if 6 == index_btn_to_activate %}
+						<ul id="stats_panel">
+					{% else %}
+						<ul id="stats_panel" style="display: none">
+					{% endif %}
+						<p>
+							<a href="{{ path('sdzblog_voir_stats_pages') }}">
+								<i class="icon-list"></i>
+								{{ 'menu.pages'|trans }}
+							</a>
+						</p>
+					</ul>
+				{% endif %}
+				
+				<br />
+				<!-- Facebook Badge START -->
+				<div class="facebook">
+					<center>
+						<a href="https://www.facebook.com/messi.louis" target="_TOP" title="Phil Messi">
+							<img src="https://badge.facebook.com/badge/1747677916.2074.1301231168.png" style="border: 0px;" />
+						</a>
+					</center>
+				</div>
+				<br/>
+				<!-- Facebook Badge END -->
+				
+				{{ render(controller("SdzBlogBundle:Article:menu", {'nombre': 3})) }}
+		  </div>
+        </div>
+        <div id="content" class="span9">
+          {% block body %}
+          {% endblock %}
+        </div>
+      </div>
+ 
+      <hr>
+ 
+      <footer>
+        <p>The sky's the limit © 2012 and beyond.</p>
+		
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<p>Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">{{ 'link.logout'|trans }}</a></p>
+		{% else %}
+			<p><a href="{{ path('fos_user_security_login') }}">{{ 'link.login'|trans }}</a></p>
+		{% endif %}
+      </footer>
+    </div>
+ 
+    {% block javascripts %}
+		{% javascripts filter='?yui_js'
+		   '//code.jquery.com/jquery-1.8.2.min.js'
+		   '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js'
+		   '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'
+		   'js/*'
+		   'js/bpopup/jquery.bpopup.js'
+		   'js/bpopup/jquery.bpopup.min' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+   {% endblock %}
+ 
+  </body>
+</html>

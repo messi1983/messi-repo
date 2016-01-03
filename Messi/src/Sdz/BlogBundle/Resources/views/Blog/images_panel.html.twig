@@ -1,0 +1,20 @@
+{% if bean.images is not null and bean.images is not empty %}
+	<div class="photos">
+		<p class="notice">{{ 'activity.photos.label'|trans }}</p>
+		<ul class="work">
+			{% for image in bean.images %}
+				{% if image %}
+					<li class="boxgrid captionfull">
+					{% if loop.index % 2 == 0 %}
+						<span class="small pop2" data-bpopup='<img src="{{ asset(image.webPath) }}" />'>
+					{% else %}
+						<span class="small pop1" data-bpopup='<img src="{{ asset(image.webPath) }}" />'>
+					{% endif %}
+						<img src="{{ asset(image.webPath | imagine_filter('thumb_150x120')) }}" alt="{{ image.alt }}" />
+						<span class="image-title"><center>titre{#{ image.titre }#}</center></span></span>
+					</li>
+				{% endif %} 
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}

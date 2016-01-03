@@ -1,0 +1,78 @@
+{% extends "SdzBlogBundle::layout.html.twig" %}
+ 
+{% block sdzblog_body %}
+	<div id="dialog-message">
+		<span class="button b-close"><span>X</span></span>
+		<span class="logo">bPopup</span>
+		<div class="content">{{ 'selection.list.empty.error'|trans }}</div>
+		<div><span class="button dialogOK">{{ 'button.OK'|trans }}</span></div>
+	</div>
+	<div id="listing">
+		{% if is_granted('ROLE_ADMIN') %}
+			{% if nonPublishedEntities %}
+				<h2 class="titre header important">{{ notPublishedListTitle }}</h2><br />
+				<div class="indent">
+					<form method="post">
+						{% for bean in nonPublishedEntities %}
+							{% if targetView == 'SdzBlogBundle:Blog:message.html.twig' %}
+								{% include targetView %}
+							{% else %}
+								{% include "SdzBlogBundle:Blog:listing_row_panel.html.twig" %}
+							{% endif %}
+						{% endfor %}
+						<!-- admin buttons panel -->
+						{% include "SdzBlogBundle:Blog:admin_buttons_panel.html.twig" with {'secondButton': 'publish', 'targetView': targetView} %}
+					</form>
+				</div>
+				<br />
+			{% endif %}
+			
+			{% if publishedEntities %}
+				<h2 class="titre header important">{{ publishedListTitle }}</h2><br />
+				<div class="indent">
+					<form method="post">
+						{% for bean in publishedEntities %}
+							{% if targetView == 'SdzBlogBundle:Blog:message.html.twig' %}
+								{% include targetView %}
+							{% else %}
+								{% include "SdzBlogBundle:Blog:listing_row_panel.html.twig" %}
+							{% endif %}
+						{% endfor %}
+						<!-- admin buttons panel -->
+						{% include "SdzBlogBundle:Blog:admin_buttons_panel.html.twig" with {'secondButton': 'unpublish'} %}
+					</form>
+				</div>
+			{% endif %}
+			
+			{% if not publishedEntities and not nonPublishedEntities %}
+				<p>{{ emptyMessage }}</p>
+			{% endif %}
+		{% else %}
+			{% if publishedEntities %}
+				<h2 class="header">{{ title }}</h2>
+				<br />
+			{% endif %}
+			<div class="indent">
+				{% for bean in publishedEntities %}
+					{% if targetView == 'SdzBlogBundle:Blog:message.html.twig' %}
+						{% include targetView %}
+					{% else %}
+						{% include "SdzBlogBundle:Blog:listing_row_panel.html.twig" %}
+					{% endif %}
+				{% else %}
+					<p>{{ emptyMessage }}</p>
+				{% endfor %}
+			</div>
+		{% endif %}
+	  
+		<div class="pagination">
+			<ul>
+				{% for p in range(1, nombrePage) %}
+					<li{% if p == page %} class="active"{% endif %}>
+						<a href="{{ path(listingUrl, {'page': p}) }}">{{ p }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

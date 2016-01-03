@@ -1,0 +1,95 @@
+{% set detail = detail|default(false) %}
+{% set listing = listing|default(false) %}
+{% set techno = bean|default(false) %}
+{% set isForCatDesc = isForCatDesc|default(false) %}
+ 
+{% if techno %}
+	{% if listing %}
+		<div class="cell-logo"><img src="{{ asset('bundles/sdzblog/images/logo_techno.jpg' | imagine_filter('thumb_50x50')) }}" alt="techno.png" /></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}</a>
+			</p>
+			<p class="listing-texte-size">{{ techno.shortDescriptionTexte }}</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ techno.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ techno.nom }}</h2><br />
+		<div class="indent">
+			{% if is_granted('ROLE_ADMIN') %}
+				<p class="notice">{{ 'ecole.description.short.label'|trans }}</p>
+				<p class="well">
+					{{ techno.shortDescriptionTexte }}
+				</p>
+			{% endif %}
+			
+			<p class="notice">{{ 'ecole.description.label'|trans }}</p>
+			<p class="well">
+				{{ techno.descriptionTexte }}
+			</p>
+			{% if techno.logo %} 
+				<p class="notice">
+					{{ 'techno.logo.label'|trans }}
+					<img src="{{ asset(techno.logo.webPath | imagine_filter('thumb_100x100')) }}" alt="{{ techno.logo.alt }}" />
+				</p>
+			{% endif %}
+			<p span class="notice">{{ 'techno.practice.level'|trans }}: <span class="important">
+				{% if techno.level == 0 %}
+					{{ 'techno.practice.level.high'|trans }}
+				{% elseif techno.level == 1 %}
+					{{ 'techno.practice.level.school'|trans }}
+				{% else %}
+					{{ 'techno.practice.level.technology.watch'|trans }}
+				{% endif %}
+				</span>
+			</p>
+			{% if techno.motsCles.count > 0 %}
+				<div id="motsCles">
+					<p><span class="notice">{{ 'techno.keywords.label'|trans }}:</span>
+						<span class="value">
+						{% for motCle in techno.motsCles %}
+							{% if not loop.last %}
+								{{ motCle.motCle }}, 
+							{% else %}
+								{{ motCle.motCle }}
+							{% endif %}
+						{% endfor %}
+						</span>
+					</p>
+				</div>
+			{% endif %}
+			{% if techno.formations.count > 0 %}
+				<p id="experiences_linked"><span class="notice">{{ 'techno.associated.formations.label'|trans }}:
+					<span class="value">
+					{% for formation in techno.formations %}
+						{% if not loop.last %}
+							<a class="value" href="{{ path('sdzblog_voir_formation', {'id': formation.id} ) }}">{{ formation.diplome }}</a>,
+						{% else %}
+							<a class="value" href="{{ path('sdzblog_voir_formation', {'id': formation.id} ) }}">{{ formation.diplome }}</a>
+						{% endif %}
+					{% endfor %}
+					</span>
+				</p>
+			{% endif %}
+			{% if techno.experiences.count > 0 %}
+				<p id="experiences_linked"><span class="notice">{{ 'techno.associated.experiences.label'|trans }}:
+					<span class="value">
+					{% for experience in techno.experiences %}
+						{% if not loop.last %}
+							<a class="value" href="{{ path('sdzblog_voir_experience', {'id': experience.id} ) }}">{{ experience.projet }},</a>
+						{% else %}
+							<a class="value" href="{{ path('sdzblog_voir_experience', {'id': experience.id} ) }}">{{ experience.projet }}</a>
+						{% endif %}
+					{% endfor %}
+					</span>
+				</p>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endif %}

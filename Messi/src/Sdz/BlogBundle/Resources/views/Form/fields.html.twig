@@ -1,0 +1,50 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_row %}
+{% spaceless %}
+    <div>
+		{% if label != 'form.field.publication' %}
+			{{ form_label(form) }}
+		{% endif %}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block file_widget %}
+    {% spaceless %}
+
+	{% if image_url is not null %}
+		<div class="subContent"><img src="{{ asset(image_url | imagine_filter('thumb_100x100')) }}"/></div>
+	{% endif %}
+	
+	{{ block('form_widget') }}
+
+    {% endspaceless %}
+{% endblock %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+	{% if isPublishOption %}
+		<label for="publicationCbx" class="pulicationLabel">{{ label|trans }}</label>
+		<input type="checkbox" class="publicationCbx"{{ block('widget_attributes') }} {% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{% else %}
+		<input type="checkbox" class="cbx"{{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+		<label  for="{{ id }}" class="value cbxLabel">{{ label|trans }}</label>
+	{% endif %}
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+	<div {{ block('widget_container_attributes') }}>
+		<ul class="choice">
+			{% for child in form %}
+				<li>{{ form_widget(child) }}</li>
+			{% endfor %}
+		</ul>
+		<br /><br />
+	</div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}

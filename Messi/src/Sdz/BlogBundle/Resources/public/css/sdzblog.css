@@ -1,0 +1,498 @@
+@charset "UTF-8";
+/*
+ * jQuery File Upload Demo CSS 1.1.0
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.netbuttons
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+body {
+	padding: 1em;
+	/*font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;*/
+	font-size: 1em;
+	line-height: 1.4em;
+	background: #222;
+	/*color: #fff;*/
+	font-family:'Inconsolata',monospace,sans-serif;
+	color:#c0c0c0;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+h2 { 
+	color: red; 
+	text-decoration:none;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+h1{
+	display:inline-block;
+	font:400% 'Petrona',sans;
+	font-size:400%;
+	color: #fff;
+	margin:0 0 0;
+}
+
+blockquote {
+	padding: 0 0 0 15px;
+	margin: 0 0 20px;
+	border-left: 5px solid #eee;
+}
+
+table {
+	width: 100%;
+	margin: 10px 0 0 0;
+}
+
+td, th {
+	border: 1px dashed white;
+	text-align: center;
+}
+
+#header {
+	min-height: 65px;
+}
+
+#cv-coordonnees {
+	border: dashed #A39F58 1px;
+	padding-left: 20px;
+	width: 290px;
+}
+
+#cv-titre {
+	margin: 1.3em 0em 1em 0em;
+	font-variant: small-caps;
+	font-size: 2em;
+	font-weight: 3.5em;
+	text-align: center;
+	color: blue;
+}
+
+#cv-technos-list {
+	font-size: 1em;
+	font-weight: 3em;
+	padding: 0.2em;
+	text-align: center;
+	border: dashed #A39F58 1px;
+}
+
+#menu li a {
+	font-family: Papyrus,fantasy;
+}
+
+[class*="col"] {
+  float: left;
+  min-height: 1px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
+
+.image-title {
+	font-family: Papyrus,fantasy;
+	position:relative; 
+	top: 105px; 
+	left:2px;
+	font-size: 70%;
+}
+.col-check-all {
+  width: 15px;
+}
+.col-avatar-avis {
+  width: 55px;
+}
+.col-auteur-avis-1 {
+  width: 550px;
+}
+.col-auteur-msg {
+  width: 115px;
+}
+
+.col-sujet-msg, .col-sujet-msg, .col-date-msg {
+	padding-left : 7px;
+	margin: 0px;
+	border-left: solid #A39F58 1px;
+}
+
+.col-sujet-msg {
+	width: 307px;
+}
+.col-date-msg {
+	width: 160px;
+	border-right: solid #A39F58 1px;
+}
+
+.col-header-txt {
+	 width: 570px;
+	 padding-left: 10px;
+	 padding-top: 17px;
+}
+.col-header-img {
+  width: 75px;
+  border-left: 5px solid orange;
+}
+
+[class*="cell"] {
+  float: left;
+  min-height: 1px;
+  margin-left: 15px;
+  margin-bottom: 0px;
+}
+
+.cell-ckbx {
+  width: 15px;
+}
+
+.cell-logo {
+  width: 50px;
+}
+
+.cell-short-desc {
+  width: 550px;
+}
+
+.cell-long-desc {
+  width: 600px;
+}
+
+[class*="cv-cellT"] {
+  float: left;
+  min-height: 1px;
+  margin-left: 15px;
+  margin-bottom: 0px;
+}
+
+.cv-cellT0 {
+  width: 75px;
+}
+
+.cv-cellT1 {
+  width: 175px;
+}
+
+.photo-auteur{
+  float: left;
+  margin-left: 15px;
+  width: 90px;
+}
+
+.biographie{
+  float: left;
+  margin-left: 15px;
+  width: 553px;
+  padding: 0px;
+}
+
+.separe-row {
+	padding-bottom:7px;
+	margin-bottom : 0.5em;
+	border-bottom: solid #A39F58 1px;
+}
+
+.btn-menu-summary {
+	font-family: Copperplate,"Copperplate Gothic Light",fantasy;
+	margin-bottom:5px;
+}
+
+.btn-retrun {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.header,.bloc {
+	background-color:#000;
+	padding:12px 20px 10px;
+}
+
+.header {
+	border-radius:20px 0 0 0;
+	font-size: 1.5em;
+}
+
+.notice, .title-link {
+	color: orange;
+	text-decoration: none;
+	padding: 0.2em 0em;
+	font-family:'Inconsolata',monospace,sans-serif;
+}
+
+.notice span {
+	color: aqua;
+}
+
+.title-link {
+	padding-top: 7px;
+}
+
+.sous-titre {
+	font-size: 20px;
+	margin-bottom: 0px;
+	color: #fff;
+}
+
+.well {
+	background-color:#1e1e1e;
+	box-shadow:0 0 5px #000;
+	color:#c0c0c0;
+	font-family:'Inconsolata',monospace,sans-serif;
+}
+
+.value {
+	font-family:'Inconsolata',monospace,sans-serif;
+	color:#c0c0c0;
+	font-size:100%;
+}
+
+.warning {
+	font-family:'Inconsolata',monospace,sans-serif;
+	color: orange;
+	font-size:100%;
+}
+
+.object {
+	width:65%;
+}
+
+.listing-texte-size {
+	font-size:80%;
+}
+
+.error {
+	color: red;
+}
+
+@media (min-width: 481px) {
+  .navigation {
+    list-style: none;
+    padding: 0;
+  }
+  .navigation li {
+    display: inline-block;
+  }
+  .navigation li:not(:first-child):before {
+    content: "| ";
+  }
+}
+
+.facebook {
+	border: solid white 1px;
+	padding: 0.2em;
+}
+
+.sent-comment-ok, .sent-message-ok {
+	border: solid green 2px;
+	padding: 5px 2px;
+	text-align: center;
+	color: green;
+	margin-bottom: 25px;
+}
+
+.cv-exp-header {
+	padding-left: 0.2em;
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+	border: solid #A39F58 1px;
+}
+
+.cv-exp-project {
+	margin-bottom: 0.3em;
+}
+
+.cv-header-font {
+	font-size: 1.2em;
+}
+
+.cv-section {
+	margin: 2.2em 0em ;
+}
+
+.cv-titre-section {
+	border-bottom: dashed #A39F58 1px;
+	font-variant: small-caps;
+	font-size: 1.8em;
+	font-weight: 3em;
+	margin-bottom: 0.3em;
+	color: red;
+}
+
+.cv_categories, .cv_divers {
+	margin-left: 1.4em;
+}
+
+.comment-span {
+	margin-left:65px;
+}
+
+.clean {
+	clear:both;
+}
+
+.images {
+	margin: 0.5em;
+	text-align: center;
+}
+
+.cbxLabel {
+    height: 15px;
+    float: left;
+	padding-right: 10px;
+}
+
+.cbx {
+    float: left;
+    padding-left: 3px;
+}
+
+.important, form ul li {
+	color: red;
+}
+
+.signale {
+	color: blue;
+}
+
+.emptyLine {
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.sub-title {
+	font-size: 0.8em;
+}
+
+.publicationCbx {
+    width: 15px;
+    height: 15px;
+    float: left;
+}
+
+.competences a {
+	color: #c0c0c0;
+	font-size: 0.6em;
+}
+
+.text-link {
+	float: right;
+}
+.pulicationLabel {
+    float: left;
+    padding-right: 15px;
+}
+
+.indent {
+	margin-left: 1.5em;
+	margin-bottom : 0.5em;
+}
+
+.lien {
+  width:95%;
+}
+
+.doubleIndent {
+	margin-left: 3em;
+}
+
+.tabulation {
+	margin-left: 6em;
+	padding-bottom : 0px;
+}
+
+.categorie {
+	margin-bottom: 0.8em;
+}
+
+.buttons {
+	clear:both;
+	margin-top: 15px;
+	padding: 0px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.videos:after { 
+   content: "";
+   display: block; 
+   clear: both;
+}
+
+#sdz_blogbundle_tachedetailtype_soustaches,
+#sdz_blogbundle_experiencetype_taches {
+	margin-left: 12px;
+}
+
+[id*=sdz_blogbundle_tachedetailtype_soustaches_], 
+[id*="sdz_blogbundle_experiencetype_taches_"] {
+	border: 1px solid white;
+	padding-left: 2px;
+	margin-bottom: 12px;
+}
+
+.job {
+	font-size: 150%; 
+	font-style: italic;
+	color: red;
+}
+
+.me {
+	color: blue; 
+	font-size: 150%; 
+	font-family: Cursive;
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+.comedian {
+	color: black;
+	font-size: 130%;
+	font-style: italic;
+}
+
+. musician {
+	color:black;
+	font-size:110%;
+	font-style:italic;
+}
+
+. etc {
+	color:black;
+	font-style:italic;
+}
+
+.presentation {
+	margin-top: 20px;
+}
+
+.paragraph {
+	font-style:italic;
+	margin-bottom: 15px;
+}
+
+.subContent, .master label  {
+	margin-left: 1.2em;
+}
+
+.master label {
+	color: green;
+}
+
+.date-update {
+	float: left;
+	margin-left: 20px;
+}
+
+.part {
+	margin-bottom: 10px;
+}
+
+.chorus {
+	color: green;
+}
+
+.part-title {
+	color: orange;
+}

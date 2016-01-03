@@ -1,0 +1,59 @@
+{% set detail = detail|default(false) %}
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+{% set comment = bean|default(null) %}
+{% set isNewEntity = isNewEntity|default(false) %}
+
+{% if comment %}
+	{% if listing %}
+		<div class="col-avatar-avis">
+			<img src="{{ asset('bundles/sdzblog/images/avatar.jpg') }}" alt="avatar" />
+		</div>
+		
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="col-auteur-avis-1">
+		{% else %}
+		<div class="col-auteur-avis-2">
+		{% endif %}
+			<p><span class="important">
+				<b>
+				{% if comment.auteur is not null %}
+					{{ 'comment.author'|trans({'%pseudo%': comment.auteur.pseudo }) }}
+				{% else %}
+					{{ 'message.anonymous'|trans }}
+				{% endif %}
+				</b></span> - {{ 'date.time.format1'|trans({'%date%': comment.date|date('d M Y'), '%time%': comment.date|date('H:i:s')}) }}
+			</p>
+			<p>{{ comment.contenu }}</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="col-check-all"><input type="checkbox" name="myIds[]" value="{{ comment.id }}"/></div>
+		{% endif %}
+	{% else %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<h2 class="header important">
+				{% if comment.auteur is not null %}
+					{{ 'comment.of'|trans({'%pseudo%': comment.auteur.pseudo }) }}
+				{% else %}
+					{{ 'comment.anonymous'|trans }}
+				{% endif %}
+			</h2><br />
+			<p class="indent signale">{{ 'date.time.format0'|trans({'%date%': comment.date|date('d M Y'), '%time%': comment.date|date('H:i:s')}) }}</p>
+		{% else %}
+			{% if isNewEntity %}
+				<div class="sent-comment-ok">
+					<p class="success">{{ 'comment.sent.ok'|trans }}</p>
+					<p>{{ 'comment.info'|trans }}</p>
+				</div>
+			{% endif %}
+		{% endif %}
+		<div class="indent">
+			<p class="comment">
+				<b class="important"><u>{{ 'comment.summary.label'|trans }}</u></b>
+				{{ comment.contenu }}
+			</p><br />
+			<p>{{ 'comment.author.pseudo'|trans }} <span class="signale">{{ comment.auteur.pseudo }}</span></p>			
+		</div>
+		<br />
+	{% endif %}
+{% endif %}

@@ -1,0 +1,54 @@
+{% set detail = detail|default(false) %}
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+{% set categorie = bean|default(null) %}
+
+{% if categorie %}
+	{% if listing %}
+		<div class="cell-logo">
+			<img src="{{ 'bundles/sdzblog/images/logo_techno.jpg' |imagine_filter('thumb_50x50') }}" alt="category" />
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_categorie', {'id': categorie.id} ) }}">{{ categorie.nom }}</a>
+			</p>
+			<p class="listing-texte-size">{{ categorie.descriptionTexte }}</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ categorie.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ categorie.nom }}</h2><br />
+		<div class="indent">
+			<div class="description">
+				<p class="notice">{{ 'category.description.label'|trans }}</p>
+				<p class="well">
+					{{ categorie.descriptionTexte }}
+				</p>
+			</div>
+			{% if categorie.technos is not null and categorie.technos is not empty %}
+				<p class="value">
+					<span class="notice">{{ 'category.associated.technologies.label'|trans }} </span>
+					{% for techno in categorie.technos %}
+						<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+					{% endfor %}
+				</p>
+			{% endif %}
+		</div>
+	{% else %}
+		{% if categorie.technos is not null and categorie.technos is not empty %}
+		<div class="indent">
+			<p class="cv-header-font">{{ categorie.nom }}</p>
+			<div class="indent cv_list_divers_type">
+				{% for techno in categorie.technos %}
+					<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

@@ -1,0 +1,43 @@
+{% set visitor = bean|default(null) %}
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+
+{% if is_granted('ROLE_ADMIN') %}
+	{% if visitor %}
+		{% if listing %}
+			<div class="col-avatar-avis">
+				<img src="{{ asset('bundles/sdzblog/images/avatar.jpg') }}" alt="avatar" />
+			</div>
+			
+			{% if is_granted('ROLE_ADMIN') %}
+			<div class="col-auteur-avis-1">
+			{% else %}
+			<div class="col-auteur-avis-2">
+			{% endif %}
+				<p><span class="important">
+					<b>{{ visitor.prenom }} {{ visitor.nom }}</b>
+				</p>
+				<p></p>
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class="col-check-all"><input type="checkbox" name="myIds[]" value="{{ visitor.id }}"/></div>
+			{% endif %}
+			
+		{% else %}
+			<h2 class="header">{{ visitor.experience.projet }} : {{ 'experience.task.label'|trans }} "{{ visitor.descriptionTexte }}"</h2><br />
+			<div class="indent">
+				<p class="notice">{{ 'task.order.label'|trans }} : <span>{{ visitor.ordre }}</span></p>
+				{% if visitor.sousvisitors.count > 0 %}
+					<div class="sousvisitors">
+						<span class="notice">{{ 'task.under.tasks.label'|trans }} :</span> 
+						<ul>
+						{% for sousvisitor in visitor.sousvisitors %}
+							<li class="indent">{{ sousvisitor.descriptionTexte }}</li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

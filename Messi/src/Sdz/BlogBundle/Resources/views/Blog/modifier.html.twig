@@ -1,0 +1,13 @@
+{% extends "SdzBlogBundle::layout.html.twig" %}
+ 
+{% block title %}
+  {{ title }} - {{ parent() }}
+{% endblock %}
+ 
+{% block sdzblog_body %}
+ 
+	<h2>{{ title }}</h2>
+ 
+	{% include "SdzBlogBundle:Blog:formulaire.html.twig" %}
+	
+{% endblock %}

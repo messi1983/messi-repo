@@ -1,0 +1,18 @@
+sdz_user:
+    resource: "@SdzUserBundle/Resources/config/routing.yml"
+
+sdz_blog:
+    resource: "@SdzBlogBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/blog
+    requirements:
+        _locale: en|fr
+
+root:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sdzblog_accueil
+        permanent: true
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

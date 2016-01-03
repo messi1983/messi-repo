@@ -1,0 +1,77 @@
+{% set listing = listing|default(false) %}
+{% set chant = bean|default(null) %}
+{% set detail = detail|default(false) %}
+
+{% if chant %}
+	{% if listing %}
+		<div class="cell-logo"><img src="{{ asset('bundles/sdzblog/images/chant_logo.png' | imagine_filter('thumb_50x50')) }}" alt="chant.png" /></div>
+		{% if is_granted('ROLE_ADMIN') %}
+		<div class="cell-short-desc">
+		{% else %}
+		<div class="cell-long-desc">
+		{% endif %}
+			<p class="sous-titre">
+				<a class="title-link" href="{{ path('sdzblog_voir_chant', {'id': chant.id} ) }}">{{ chant.titre }}</a>
+			</p>
+			<p>{{ 'chant.title.label'|trans }} <span class="signale">{{ chant.type }}</span></p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ chant.id }}"/></div>
+		{% endif %}
+	{% elseif detail %}
+		<h2 class="header">{{ chant.titre }}</h2><br />
+		<div class="indent">
+			<p class="well">{{ chant.resumeTexte }}</p>
+			<p class="notice">{{ 'chant.date.redaction'|trans }} <span>{{ chant.dateRedaction|date('M/Y') }}</span></p>
+			
+			<div>
+				<p class="notice">{{ 'chant.date.paroles'|trans }} :</p>
+				<div class="well">
+					{% if chant.parts is not null %}
+						{% for part in chant.parts %}
+							{% if part.type == 'chorus' %}
+								<div class="song-part">
+									<p class="part-title">Refrain:</p>
+									<p class="subContent part chorus">
+										{% if is_granted('ROLE_ADMIN') %}
+											{{ part.texte | nl2br }}
+										{% else %}
+											{{ part.texte | truncate(20) }}
+										{% endif %}
+									 </p>
+								</div>
+							{% else %}
+								<div class="song-part">
+									<p class="part-title">Part {{ loop.index }}</p>
+									<p class="subContent part"> 
+										{% if is_granted('ROLE_ADMIN') %}
+											{{ part.texte | nl2br }}
+										{% else %}
+											{{ part.texte | truncate(20) }}
+										{% endif %}
+									</p>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+			
+			<!-- Rajout des videos -->
+			{% include "SdzBlogBundle:Blog:videos_panel.html.twig" with {'bean': chant} %}
+		</div>
+	{% else %}
+		{% if loop.first %}
+		<div class="chants">
+			<div class="indent">
+				<p class="cv-header-font">{{ 'cv.subsection.chants.title'|trans }}</p>
+				<p class="indent signale">
+		{% endif %} 
+		<a href="{{ path('sdzblog_voir_chant', {'id': chant.id} ) }}">{{ chant.titre }}{% if not loop.last %},{% endif %}</a> 
+		{% if loop.last %}
+				</p>
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+{% endif %}

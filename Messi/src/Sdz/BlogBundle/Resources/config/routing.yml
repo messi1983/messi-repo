@@ -1,0 +1,469 @@
+sdzblog_accueil:
+    path:      /{page}
+    defaults:  { _controller: SdzBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_locale:
+    path:      /locale
+    defaults:  { _controller: SdzBlogBundle:Blog:locale }
+
+sdzblog_admin_listing:
+    path:      /admin/listing/{page}
+    defaults:  { _controller: SdzBlogBundle:Blog:listing, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_envoiMail:
+    path:      /envoiMail
+    defaults:  { _controller: SdzBlogBundle:Blog:envoiMail }
+
+sdzblog_voir_cv:
+    path:      /voir/cv
+    defaults:  { _controller: SdzBlogBundle:Blog:voirCv }
+
+sdzblog_voir_slug:
+    path:     /{annee}/{slug}.{_format}
+    defaults: { _controller: SdzBlogBundle:Blog:voirSlug, _format: html }	
+    requirements:
+        annee:  \d{4}
+
+##########################---ARTICLE---##########################################################
+sdzblog_voir_article:
+    path:      /voir/article/{id}
+    defaults:  { _controller: SdzBlogBundle:Article:voir }
+
+sdzblog_voir_articles:
+    path:      /voir/articles/{page}
+    defaults:  { _controller: SdzBlogBundle:Article:voirListe, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_ajouter_article:
+    path:      /ajouter/article
+    defaults:  { _controller: SdzBlogBundle:Article:ajouter, bean : new Article}
+
+sdzblog_modifier_article:
+    path:      /modifier/article/{id}
+    defaults:  { _controller: SdzBlogBundle:Article:modifier }
+    requirements:
+        id:  \d+
+ 
+sdzblog_supprimer_article:
+    path:      /supprimer/article/{id}
+    defaults:  { _controller: SdzBlogBundle:Article:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---ECOLE---##########################################################
+sdzblog_voir_ecole:
+    path:      /voir/ecole/{id}
+    defaults:  { _controller: SdzBlogBundle:Ecole:voir }
+
+sdzblog_voir_ecoles:
+    path:      /voir/ecoles/{page}
+    defaults:  { _controller: SdzBlogBundle:Ecole:voirListe, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_ajouter_ecole:
+    path:      /ajouter/ecole
+    defaults:  { _controller: SdzBlogBundle:Ecole:ajouter, bean : new Ecole}
+
+sdzblog_modifier_ecole:
+    path:      /modifier/ecole/{id}
+    defaults:  { _controller: SdzBlogBundle:Ecole:modifier }
+    requirements:
+        id:  \d+
+ 
+sdzblog_supprimer_ecole:
+    path:      /supprimer/ecole/{id}
+    defaults:  { _controller: SdzBlogBundle:Ecole:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---CATEGORIE---##########################################################
+sdzblog_voir_categorie:
+    path:      /voir/categorie/{id}
+    defaults:  { _controller: SdzBlogBundle:Categorie:voir }
+
+sdzblog_voir_categories:
+    path:      /voir/categories/{page}
+    defaults:  { _controller: SdzBlogBundle:Categorie:voirListe, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_ajouter_categorie:
+    path:      /ajouter/categorie
+    defaults:  { _controller: SdzBlogBundle:Categorie:ajouter, bean : new Categorie}
+
+sdzblog_modifier_categorie:
+    path:      /modifier/categorie/{id}
+    defaults:  { _controller: SdzBlogBundle:Categorie:modifier }
+    requirements:
+        id:  \d+
+ 
+sdzblog_supprimer_categorie:
+    path:      /supprimer/categorie/{id}
+    defaults:  { _controller: SdzBlogBundle:Categorie:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---FORMATION---##########################################################
+sdzblog_voir_formation:
+    path:      /voir/formation/{id}
+    defaults:  { _controller: SdzBlogBundle:Formation:voir }
+
+sdzblog_voir_formations:
+    path:      /voir/formations/{page}
+    defaults:  { _controller: SdzBlogBundle:Formation:voirListe, page: 1 }
+    requirements:
+        page:  \d*
+
+sdzblog_ajouter_formation:
+    path:      /ajouter/formation
+    defaults:  { _controller: SdzBlogBundle:Formation:ajouter, bean : new Formation}
+
+sdzblog_modifier_formation:
+    path:      /modifier/formation/{id}
+    defaults:  { _controller: SdzBlogBundle:Formation:modifier }
+    requirements:
+        id:  \d+
+ 
+sdzblog_supprimer_formation:
+    path:      /supprimer/formation/{id}
+    defaults:  { _controller: SdzBlogBundle:Formation:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---EXPERIENCE---##########################################################
+sdzblog_ajouter_experience:
+    path:      /ajouter/experience
+    defaults:  { _controller: SdzBlogBundle:Experience:ajouter }
+
+sdzblog_voir_experiences:
+    path:      /voir/experiences/{page}
+    defaults:  { _controller: SdzBlogBundle:Experience:voirListe, page: 1 }
+
+sdzblog_voir_experience:
+    path:      /experience/voir/{id}
+    defaults:  { _controller: SdzBlogBundle:Experience:voir }
+
+sdzblog_modifier_experience:
+    path:      /modifier/experience/{id}
+    defaults:  { _controller: SdzBlogBundle:Experience:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_experience:
+    path:      /supprimer/experience/{id}
+    defaults:  { _controller: SdzBlogBundle:Experience:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---TACHE---##########################################################
+sdzblog_ajouter_tache:
+    path:      /ajouter/tache
+    defaults:  { _controller: SdzBlogBundle:Tache:ajouter }
+
+sdzblog_voir_tache:
+    path:      /tache/voir/{id}
+    defaults:  { _controller: SdzBlogBundle:Tache:voir }
+
+sdzblog_modifier_tache:
+    path:      /modifier/tache/{id}
+    defaults:  { _controller: SdzBlogBundle:Tache:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_tache:
+    path:      /supprimer/tache/{id}
+    defaults:  { _controller: SdzBlogBundle:Tache:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---TECHNO---##########################################################
+sdzblog_supprimer_techno:
+    path:      /supprimer/techno/{id}
+    defaults:  { _controller: SdzBlogBundle:Techno:supprimer }
+    requirements:
+        id:  \d+
+
+sdzblog_modifier_techno:
+    path:      /modifier/techno/{id}
+    defaults:  { _controller: SdzBlogBundle:Techno:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_ajouter_techno:
+    path:      /ajouter/techno
+    defaults:  { _controller: SdzBlogBundle:Techno:ajouter }
+
+sdzblog_voir_technos:
+    path:      /voir/technos/{page}
+    defaults:  { _controller: SdzBlogBundle:Techno:voirListe, page: 1 }
+
+sdzblog_voir_techno:
+    path:      /voir/techno/{id}
+    defaults:  { _controller: SdzBlogBundle:Techno:voir }
+
+##########################---SOCIETE---##########################################################
+sdzblog_hello:
+    path:      /hello
+    defaults:  { _controller: SdzBlogBundle:Societe:hello }
+    requirements:
+        _method:  GET
+
+sdzblog_voir_societes:
+    path:      /voir/societes/{page}
+    defaults:  { _controller: SdzBlogBundle:Societe:voirListe, page: 1 }
+
+sdzblog_voir_societe:
+    path:      /voir/societe/{id}
+    defaults:  { _controller: SdzBlogBundle:Societe:voir }
+
+sdzblog_ajouter_societe:
+    path:      /ajouter/societe
+    defaults:  { _controller: SdzBlogBundle:Societe:ajouter }
+
+sdzblog_modifier_societe:
+    path:      /modifier/societe/{id}
+    defaults:  { _controller: SdzBlogBundle:Societe:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_societe:
+    path:      /supprimer/societe/{id}
+    defaults:  { _controller: SdzBlogBundle:Societe:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---SPORT---##########################################################
+sdzblog_voir_sports:
+    path:      /voir/sports/{page}
+    defaults:  { _controller: SdzBlogBundle:Sport:voirListe, page: 1 }
+
+sdzblog_voir_sport:
+    path:      /voir/sport/{id}
+    defaults:  { _controller: SdzBlogBundle:Sport:voir }
+
+sdzblog_ajouter_sport:
+    path:      /ajouter/sport
+    defaults:  { _controller: SdzBlogBundle:Sport:ajouter }
+
+sdzblog_modifier_sport:
+    path:      /modifier/sport/{id}
+    defaults:  { _controller: SdzBlogBundle:Sport:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_sport:
+    path:      /supprimer/sport/{id}
+    defaults:  { _controller: SdzBlogBundle:Sport:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---THEATRE---##########################################################
+sdzblog_voir_theatres:
+    path:      /voir/theatres/{page}
+    defaults:  { _controller: SdzBlogBundle:Theatre:voirListe, page: 1 }
+
+sdzblog_voir_theatre:
+    path:      /voir/theatre/{id}
+    defaults:  { _controller: SdzBlogBundle:Theatre:voir }
+
+sdzblog_ajouter_theatre:
+    path:      /ajouter/theatre
+    defaults:  { _controller: SdzBlogBundle:Theatre:ajouter }
+
+sdzblog_modifier_theatre:
+    path:      /modifier/theatre/{id}
+    defaults:  { _controller: SdzBlogBundle:Theatre:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_theatre:
+    path:      /supprimer/theatre/{id}
+    defaults:  { _controller: SdzBlogBundle:Theatre:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---DANSE---##########################################################
+sdzblog_voir_danses:
+    path:      /voir/danses/{page}
+    defaults:  { _controller: SdzBlogBundle:Danse:voirListe, page: 1 }
+
+sdzblog_voir_danse:
+    path:      /voir/danse/{id}
+    defaults:  { _controller: SdzBlogBundle:Danse:voir }
+
+sdzblog_ajouter_danse:
+    path:      /ajouter/danse
+    defaults:  { _controller: SdzBlogBundle:Danse:ajouter }
+
+sdzblog_modifier_danse:
+    path:      /modifier/danse/{id}
+    defaults:  { _controller: SdzBlogBundle:Danse:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_danse:
+    path:      /supprimer/danse/{id}
+    defaults:  { _controller: SdzBlogBundle:Danse:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---CHANT---##########################################################
+sdzblog_voir_chants:
+    path:      /voir/chants/{page}
+    defaults:  { _controller: SdzBlogBundle:Chant:voirListe, page: 1 }
+
+sdzblog_voir_chant:
+    path:      /voir/chant/{id}
+    defaults:  { _controller: SdzBlogBundle:Chant:voir }
+
+sdzblog_ajouter_chant:
+    path:      /ajouter/chant
+    defaults:  { _controller: SdzBlogBundle:Chant:ajouter }
+
+sdzblog_modifier_chant:
+    path:      /modifier/chant/{id}
+    defaults:  { _controller: SdzBlogBundle:Chant:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_chant:
+    path:      /supprimer/chant/{id}
+    defaults:  { _controller: SdzBlogBundle:Chant:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---ORGANISME---##########################################################
+sdzblog_voir_organismes:
+    path:      /voir/organismes/{page}
+    defaults:  { _controller: SdzBlogBundle:Organisme:voirListe, page: 1 }
+
+sdzblog_voir_organisme:
+    path:      /voir/organisme/{id}
+    defaults:  { _controller: SdzBlogBundle:Organisme:voir }
+
+sdzblog_ajouter_organisme:
+    path:      /ajouter/organisme
+    defaults:  { _controller: SdzBlogBundle:Organisme:ajouter }
+
+sdzblog_modifier_organisme:
+    path:      /modifier/organisme/{id}
+    defaults:  { _controller: SdzBlogBundle:Organisme:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_organisme:
+    path:      /supprimer/organisme/{id}
+    defaults:  { _controller: SdzBlogBundle:Organisme:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---AUTEUR---##########################################################
+sdzblog_voir_auteurs:
+    path:      /voir/auteurs/{page}
+    defaults:  { _controller: SdzBlogBundle:Auteur:voirListe, page: 1 }
+
+sdzblog_voir_auteur:
+    path:      /voir/auteur/{id}
+    defaults:  { _controller: SdzBlogBundle:Auteur:voir }
+
+sdzblog_ajouter_auteur:
+    path:      /ajouter/auteur
+    defaults:  { _controller: SdzBlogBundle:Auteur:ajouter }
+
+sdzblog_modifier_auteur:
+    path:      /modifier/auteur/{id}
+    defaults:  { _controller: SdzBlogBundle:Auteur:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_auteur:
+    path:      /supprimer/auteur/{id}
+    defaults:  { _controller: SdzBlogBundle:Auteur:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---MESSAGE---##########################################################
+sdzblog_voir_messages:
+    path:      /voir/messages/{page}
+    defaults:  { _controller: SdzBlogBundle:Message:voirListe, page: 1 }
+
+sdzblog_voir_message:
+    path:      /voir/message/{id}
+    defaults:  { _controller: SdzBlogBundle:Message:voir }
+
+sdzblog_ajouter_message:
+    path:      /ajouter/message
+    defaults:  { _controller: SdzBlogBundle:Message:ajouter }
+
+sdzblog_modifier_message:
+    path:      /modifier/message/{id}
+    defaults:  { _controller: SdzBlogBundle:Message:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_message:
+    path:      /supprimer/message/{id}
+    defaults:  { _controller: SdzBlogBundle:Message:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---SITE COMMENTS---##########################################################
+sdzblog_voir_comments:
+    path:      /voir/comments/{page}
+    defaults:  { _controller: SdzBlogBundle:SiteComment:voirListe, page: 1 }
+
+sdzblog_voir_comment:
+    path:      /voir/comment/{id}
+    defaults:  { _controller: SdzBlogBundle:SiteComment:voir }
+
+sdzblog_ajouter_comment:
+    path:      /ajouter/comment
+    defaults:  { _controller: SdzBlogBundle:SiteComment:ajouter }
+
+sdzblog_modifier_comment:
+    path:      /modifier/comment/{id}
+    defaults:  { _controller: SdzBlogBundle:SiteComment:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_comment:
+    path:      /supprimer/comment/{id}
+    defaults:  { _controller: SdzBlogBundle:SiteComment:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---REALISATION---##########################################################
+sdzblog_voir_realisations:
+    path:      /voir/realisations/{page}
+    defaults:  { _controller: SdzBlogBundle:Realisation:voirListe, page: 1 }
+
+sdzblog_voir_realisation:
+    path:      /voir/realisation/{id}
+    defaults:  { _controller: SdzBlogBundle:Realisation:voir }
+
+sdzblog_ajouter_realisation:
+    path:      /ajouter/realisation
+    defaults:  { _controller: SdzBlogBundle:Realisation:ajouter }
+
+sdzblog_modifier_realisation:
+    path:      /modifier/realisation/{id}
+    defaults:  { _controller: SdzBlogBundle:Realisation:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer_realisation:
+    path:      /supprimer/realisation/{id}
+    defaults:  { _controller: SdzBlogBundle:Realisation:supprimer }
+    requirements:
+        id:  \d+
+
+##########################---STATS PAGES---##########################################################
+sdzblog_voir_stats_pages:
+    path:      /voir/stats/pages
+    defaults:  { _controller: SdzBlogBundle:Page:voirStats }

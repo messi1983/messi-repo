@@ -1,0 +1,83 @@
+{% set listing = listing|default(false) %}
+{% set cv = cv|default(false) %}
+{% set formation = bean|default(null) %}
+{% set btnSelectAll = btnSelection|default('all1') %}
+
+{% if formation %}
+	{% if listing %}
+		<div class="cell-long-desc">
+			<p class="sous-titre">
+				{{ formation.periode.dateDebut|date('m/Y') }} - {{ formation.periode.dateFin|date('m/Y') }} :
+				<a class="title-link" href="{{ path('sdzblog_voir_formation', {'id': formation.id} ) }}">{{ formation.diplome }}</a>
+			</p>
+			<p class="doubleIndent value">
+				{% if formation.ecoles %}
+					{% for bean in formation.ecoles %}
+						{% include "SdzBlogBundle:Blog:ecole.html.twig" with {'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+			</p>
+			<p class="doubleIndent competences">
+				{% if formation.technos %}
+					{% for techno in formation.technos %}
+						<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+					{% endfor %}
+				{% endif %}
+			</p>
+		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="cell-ckbx"><input type="checkbox" name="myIds[]" value="{{ formation.id }}"/></div>
+		{% endif %}
+	{% elseif cv %}
+		<div class="indent">
+			<p class="cv_normal_font">
+				{{ formation.periode.dateDebut|date('m/Y') }} - {{ formation.periode.dateFin|date('m/Y') }} :
+				<a class="title-link" href="{{ path('sdzblog_voir_formation', {'id': formation.id} ) }}">{{ formation.diplome }}</a>
+			</p>
+			<p class="doubleIndent value">
+				{% if formation.ecoles %}
+					{% for bean in formation.ecoles %}
+						{% include "SdzBlogBundle:Blog:ecole.html.twig" with {'detail': false, 'listing' : false} %}
+					{% endfor %}
+				{% endif %}
+			</p>
+		</div>
+	{% else %}
+		<h2 class="header">{{ formation.diplome }}</h2><br />
+		<div class="indent">
+			<p class="description well">
+				{{ formation.descriptionTexte }}
+			</p>
+			{% if formation.periode is not null %}
+				<p class="notice">
+					{{ 'formation.period.label'|trans }}: <span>{{ formation.periode.dateDebut|date('M Y') }} - 
+					{% if formation.periode.dateFin %} 
+						{{ formation.periode.dateFin|date('M Y') }}
+					{% else %}
+						{{ 'actual'|trans }}
+					{% endif %}
+					</span>
+				</p>
+			{% endif %}
+			{% if formation.ecoles is not null and formation.ecoles is not empty %}
+				<p>
+					<span class="notice">{{ 'formation.ecole.label'|trans }}: </span>
+					{% for ecole in formation.ecoles %}
+						<a class="important" href="{{ path('sdzblog_voir_formation', {'id': formation.id} ) }}">{{ ecole.nom }}</a>
+					{% endfor %}
+				</p>
+			{% endif %}
+			
+			{% if formation.technos is not null and formation.technos is not empty %}
+				<p>
+					<span class="notice">{{ 'formation.technical.skills.label'|trans }}: </span><span class="value">
+					{% for techno in formation.technos %}
+						<a href="{{ path('sdzblog_voir_techno', {'id': techno.id} ) }}">{{ techno.nom }}{% if not loop.last %},{% endif %}</a>
+					{% endfor %}
+					
+					</span>
+				</p>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endif %}

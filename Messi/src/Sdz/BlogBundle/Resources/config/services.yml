@@ -1,0 +1,86 @@
+parameters:
+#    sdz_blog.example.class: Sdz\BlogBundle\Example
+
+services:
+#    sdz_blog.example:
+#        class: %sdz_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+           - { name: twig.extension }
+    sdzblog.visitor.manager:
+        class: Sdz\BlogBundle\Services\VisitorManager
+        arguments: [@doctrine.orm.entity_manager, @security.context]
+
+    sdzblog.action.manager:
+        class: Sdz\BlogBundle\Services\ActionManager
+        arguments: [@doctrine.orm.entity_manager]
+
+    sdzblog.blog.service:
+        class: Sdz\BlogBundle\Services\BlogService
+        arguments: [@doctrine.orm.entity_manager]
+
+    sdzblog.actualisation.manager:
+        class: Sdz\BlogBundle\Services\ActualisationManager
+
+    sdzblog.image_type_extension:
+        class: Sdz\BlogBundle\Form\Extension\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, alias: file }
+
+    sdzblog.case_type_extension:
+        class: Sdz\BlogBundle\Form\Extension\CaseTypeExtension
+        tags:
+            - { name: form.type_extension, alias: checkbox }
+
+    sdzblog.paramconverter_test:
+        class: Sdz\BlogBundle\ParamConverter\TestParamConverter
+        arguments: ['Sdz\BlogBundle\Entity\Site', @doctrine.orm.entity_manager]
+        tags:
+            - { name: request.param_converter, priority: 20 }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+    
+    acme_locale.locale_listener:
+        class: Sdz\BlogBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+    
+    sdzblog.beta_listener:
+        class: Sdz\BlogBundle\Beta\BetaListener
+        arguments: ["2013-12-19"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse, priority: 2 }
+
+    sdzblog.censure_listener:
+        class: Sdz\BlogBundle\Bigbrother\CensureListener
+        arguments: [[1, 2], @mailer]
+        tags:
+            - { name: kernel.event_listener, event: sdzblog.bigbrother.post_message, method: onMessagePost }
+
+    sdz_blog.antispam:
+        class: Sdz\BlogBundle\Antispam\SdzAntispam
+        arguments: [@mailer, 3]
+        tags:
+            -  { name: twig.extension }
+        calls:
+            - [ setLocale, [ %locale% ] ]
+
+    sdzblog.validator.antiflood:                      
+        class: Sdz\BlogBundle\Validator\AntiFloodValidator
+        arguments: [@request, @doctrine.orm.entity_manager]
+        scope: request
+        tags:
+            - { name: validator.constraint_validator, alias: sdzblog_antiflood }
+
+    sdzblog.validator.societe:                      
+        class: Sdz\BlogBundle\Validator\SocieteValidator
+        arguments: [@request, @doctrine.orm.entity_manager]
+        scope: request
+        tags:
+            - { name: validator.societe_constraint_validator, alias: sdzblog_societe }

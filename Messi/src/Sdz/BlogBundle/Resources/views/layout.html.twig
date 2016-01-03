@@ -1,0 +1,49 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+	{{ parent() }} : {{ title }}
+{% endblock %}
+ 
+{% block body %}
+	{% block subtitle %}
+		{% if accueil < 6 %}
+			<h1>{{ 'title.presentation'|trans }}</h1>
+		{% elseif accueil < 13 %}
+			<h1>{{ 'title.activities'|trans }}</h1>
+		{% elseif accueil == 13 %}
+			<h1>{{ 'title.messages'|trans }}</h1>
+		{% elseif accueil == 14 %}
+			<h1>{{ 'title.comments'|trans }}</h1>
+		{% elseif accueil == 15 %}
+			<h1>{{ 'title.realizations'|trans }}</h1>
+		{% elseif  accueil == 16 %}
+			<h1>{{ 'title.visitors'|trans }}</h1>
+		{% else %}
+			<h1>{{ 'title.pages'|trans }}</h1>
+		{% endif %}
+	{% endblock %}
+ 
+	<ul class="nav nav-tabs nav-justified">
+		{% if accueil < 7 %}
+			<li {% if 0 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_accueil') }}">{{ 'question.who.i.am' | trans}}</a></li>
+			<li {% if 1 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_ecoles') }}">{{ 'tab.school.liste.link'|trans }}</a></li>
+			<li {% if 2 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_formations') }}">{{ 'tab.formation.liste.link'|trans }}</a></li>
+			<li {% if 3 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_experiences') }}">{{ 'tab.experience.liste.link'|trans }}</a></li>
+			<li {% if 4 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_technos') }}">{{ 'tab.techno.liste.link'|trans }}</a></li>
+			<li {% if 5 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_societes') }}">{{ 'tab.company.liste.link'|trans }}</a></li>
+			{% if is_granted('ROLE_ADMIN') %}
+				<li {% if 6 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_categories') }}">{{ 'tab.category.liste.link'|trans }}</a></li>
+			{% endif %}
+		{% elseif accueil < 13 %}
+			<li {% if 7 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_sports') }}">{{ 'tab.sport.liste.link'|trans }}</a></li>
+			<li {% if 8 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_theatres') }}">{{ 'tab.theater.liste.link'|trans }}</a></li>
+			<li {% if 9 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_danses') }}">{{ 'tab.danse.liste.link'|trans }}</a></li>
+			<li {% if 10 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_chants') }}">{{ 'tab.song.liste.link'|trans }}</a></li>
+			<li {% if 11 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_organismes') }}">{{ 'tab.organism.liste.link'|trans }}</a></li>
+			<li {% if 12 == accueil %} class="active" {% endif %}><a href="{{ path('sdzblog_voir_auteurs') }}">{{ 'tab.author.liste.link'|trans }}</a></li>
+		{% endif %}
+	</ul>
+	
+	{# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+	{% block sdzblog_body %}
+	{% endblock %}
+{% endblock %}

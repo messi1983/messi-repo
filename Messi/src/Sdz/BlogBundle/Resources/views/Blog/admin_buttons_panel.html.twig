@@ -1,0 +1,38 @@
+{% set secondButton = secondButton|default('publish') %}
+{% set targetView = targetView|default('') %}
+
+<div class="row">
+	{% if targetView == 'SdzBlogBundle:Blog:formation.html.twig' %}
+		<div class="cell-long-desc"></div>
+		<div class="cell-ckbx"><input type="checkbox" class="all"/></div>
+	{% elseif targetView == 'SdzBlogBundle:Blog:comment.html.twig' %}
+		<div class="col-avatar-avis"></div>
+		<div class="col-auteur-avis-1"></div>
+		<div class="col-check-all"><input type="checkbox" class="all"/></div>
+	{% elseif targetView == 'SdzBlogBundle:Blog:message.html.twig' %}
+		<div class="col-auteur-msg"></div>
+		<div class="col-sujet-msg"></div>
+		<div class="col-date-msg"></div>
+		<div class="col-check-all"><input type="checkbox" class="all"/></div>
+	{% else %}
+		<div class="cell-logo"></div>
+		<div class="cell-short-desc"></div>
+		<div class="cell-ckbx"><input type="checkbox" class="all"/></div>
+	{%endif %}
+</div>
+
+<div class="buttons">
+	<input type="hidden" id="action" name="action" value="SUPPRESS">
+	<button type="submit" id="suppress" class="btn btn-default suppress">
+		<i class="icon-trash"></i> {{ 'button.delete.label'|trans }}
+	</button>
+	{% if secondButton == 'publish' %}
+		<button type="submit" id="publish" class="btn btn-default">
+			<i class="icon-edit"></i> {{ 'button.publish.label'|trans }}
+		</button>
+	{% else %}
+		<button type="submit" id="unpublish" class="btn btn-default">
+			<i class="icon-edit"></i> {{ 'button.unpublish.label'|trans }}
+		</button>
+	{%endif %}
+</div>

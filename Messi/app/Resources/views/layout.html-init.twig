@@ -1,0 +1,85 @@
+{# app/Resources/views/layout.html.twig #}
+ 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+    <title>{% block title %}Sdz{% endblock %}</title>
+ 
+    {% block stylesheets %}
+      <!--<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />-->
+	  {% stylesheets filter='cssrewrite, ?yui_css' 'css/bootstrap.css' %}
+	    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+      {% endstylesheets %}
+    {% endblock %}
+  </head>
+ 
+  <body>
+    <div class="container">
+      <div id="header" class="hero-unit">
+        <h2 style="color: blue;">Louis MESSI - Ingénieur/Consultant en informatique</h2>
+        <p>Ce projet est propulsé par Symfony2, et construit grâce au tutoriel du siteduzero.</p>
+        <p>
+			<a class="btn btn-primary btn-large" href="http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2">
+			Lire le tutoriel »
+			</a>
+		</p>
+      </div>
+ 
+      <div class="row">
+        <div id="menu" class="span3">
+			<div class="well">
+				<h3>Le blog</h3>
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="{{ path('sdzblog_accueil') }}"><b>Accueil du blog</b></a></li>
+					<li><a href="{{ path('sdzblog_voir_cv') }}"><b>Curriculum Vitae</b></a></li>
+				
+					{# On n'affiche le lien « Ajouter un article » qu'aux auteurs(et admins, qui héritent du rôle auteur) #}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li><a href="{{ path('sdzblog_ajouter_article') }}">Ajouter un article</a></li>
+						<li><a href="{{ path('sdzblog_voir_articles') }}">voir l'ensemble des articles</a></li>
+					  
+						<li><a href="{{ path('sdzblog_ajouter_experience') }}">Ajouter une expérience</a></li>
+						<li><a href="{{ path('sdzblog_voir_experiences') }}">voir l'ensemble des expériences</a></li>
+					  
+						<li><a href="{{ path('sdzblog_ajouter_techno') }}">Ajouter une techno</a></li>
+						<li><a href="{{ path('sdzblog_voir_technos') }}">voir l'ensemble des technos</a></li>
+					  
+						<li><a href="{{ path('sdzblog_ajouter_societe') }}">Ajouter une société</a></li>
+						<li><a href="{{ path('sdzblog_voir_societes') }}">voir l'ensemble des sociétés</a></li>
+					  
+						<li><a href="{{ path('sdzblog_voir_messages') }}">voir l'ensemble des messages</a></li>
+					{% endif %}
+			  </ul>
+			  {{ render(controller("SdzBlogBundle:Article:menu", {'nombre': 3})) }}
+		  </div>
+        </div>
+        <div id="content" class="span9">
+          {% block body %}
+          {% endblock %}
+        </div>
+      </div>
+ 
+      <hr>
+ 
+      <footer>
+        <p>The sky's the limit © 2012 and beyond.</p>
+		
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<p>Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></p>
+		{% else %}
+			<p><a href="{{ path('fos_user_security_login') }}">Connexion</a></p>
+		{% endif %}
+      </footer>
+    </div>
+ 
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+  {% endblock %}
+ 
+  </body>
+</html>
