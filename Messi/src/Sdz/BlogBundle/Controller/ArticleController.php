@@ -2,12 +2,10 @@
 namespace Sdz\BlogBundle\Controller;
  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Httpfoundation\Response;
 use Sdz\BlogBundle\Entity\Article;
 use Sdz\BlogBundle\Entity\ArticleCompetence;
 use Sdz\BlogBundle\Form\ArticleType;
 use Sdz\BlogBundle\Form\ArticleEditType;
-//use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Sdz\BlogBundle\Bigbrother\BigbrotherEvents;
@@ -64,12 +62,6 @@ class ArticleController extends AbsSiteController
 						 		'message'                        => $message
 						 )
 			);
-		
-    //$title = 'Ajout d\'un nouvel article';
-	//$message = 'Cet article sera ajouté directement sur la page d\'accueil après validation du formulaire.';
-	//$redirectUrl = 'sdzblog_voir_article';
-	
-	//return $this->ajouter(new Article, new ArticleType, $redirectUrl, $title, $message);
   }
   
   public function menuAction($nombre)

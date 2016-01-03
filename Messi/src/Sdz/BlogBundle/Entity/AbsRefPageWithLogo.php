@@ -4,7 +4,6 @@ namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
-// use Gedmo\Mapping\Annotation as Gedmo;
 use Sdz\BlogBundle\Constants\Constants;
 
 /**

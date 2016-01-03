@@ -2,8 +2,6 @@
 namespace Sdz\BlogBundle\Controller;
  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-// use Symfony\Component\Httpfoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use Sdz\BlogBundle\Entity\SiteComment;
 use Sdz\BlogBundle\Entity\Message;
 use Sdz\BlogBundle\Constants\Constants;

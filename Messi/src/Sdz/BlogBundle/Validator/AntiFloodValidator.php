@@ -31,9 +31,6 @@ class AntiFloodValidator extends ConstraintValidator
 	
 	// On v�rifie si cette IP a d�j� post� un message il y a moins de 15 secondes
 	$isFlood = false;
-    /*$isFlood = $this->em->getRepository('SdzBlogBundle:SiteCommentaire')
-                        ->isFlood($ip, 15);*/
- 
 	
     // Pour l'instant, on consid�re comme flood tout message de moins de 3 caract�res
     if (strlen($value) < 3  && $isFlood) {

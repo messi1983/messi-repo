@@ -158,23 +158,5 @@ class SportController extends AbsSiteController
 		return Constants::INDEX_BTN_ACTIVITE;
 	}
 	
-// 	protected function persistBeanSubEnties($form, $sport) {
-// 		$em = $this->getDoctrine()->getManager();
-		
-// 		// images to save ids
-// 		$imagesToSaveIds = getIds($form->get('images')->getData());
-		
-// 		// Get all images to save
-// 		foreach($sport->getImages() as $imageSport)
-// 		{
-// 			if($imageSport->getId() != null && $imagesToSaveIds->contains($imageSport->getId())) {
-// 				$em->remove($imageSport);
-// 			}
-// 		}
-		
-// 		// delete all unchecked image
-// 		return $this;
-// 	}
-	
 }
 ?>

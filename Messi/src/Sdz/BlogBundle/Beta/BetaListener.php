@@ -19,7 +19,7 @@ class BetaListener
     $this->dateFin = new \Datetime($dateFin);
   }
  
-  // Methode pour ajouter le � b�ta � � une reponse
+  // Methode pour ajouter le "beta" à une reponse
   protected function displayBeta(Response $response, $joursRestant)
   {
     $content = $response->getContent();
@@ -33,7 +33,7 @@ class BetaListener
                             $content,
                             1);
    
-    // Modification du contenu dans la r�ponse
+    // Modification du contenu dans la réponse
     $response->setContent($content);
    
     return $response;
@@ -41,25 +41,22 @@ class BetaListener
   
   public function onKernelResponse(FilterResponseEvent $event)
   {
-    // On teste si la requ�te est bien la requ�te principale
+    // On teste si la requête est bien la requête principale
     if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
       return;
     }
  
-    // On r�cup�re la r�ponse depuis l'�v�nement
+    // On récupère la réponse depuis l'évènement
     $response = $event->getResponse();
  
     $joursRestant = $this->dateFin->diff(new \Datetime())->days;
  
     if ($joursRestant > 0) {
-      // On utilise notre méthode � reine �
       $response = $this->displayBeta($event->getResponse(), $joursRestant);
     }
  
-    // On n'oublie pas d'enregistrer les modifications dans l'�v�nement
+    // On n'oublie pas d'enregistrer les modifications dans l'évènement
     $event->setResponse($response);
-	
-	// On stoppe la propagation de l'�v�nement en cours (ici, kernel.response)
-	//$event->stopPropagation();
   }
+  
 }

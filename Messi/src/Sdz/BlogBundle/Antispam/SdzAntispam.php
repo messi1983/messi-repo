@@ -37,7 +37,7 @@ class SdzAntispam extends \Twig_Extension
   }
  
   /*
-   * La m�thode getName() identifie votre extension Twig, elle est obligatoire
+   * La methode getName() identifie votre extension Twig, elle est obligatoire
    */
   public function getName()
   {
@@ -45,8 +45,8 @@ class SdzAntispam extends \Twig_Extension
   }
   
   /**
-   * V�rifie si le texte est un spam ou non
-   * Un texte est consid�r� comme spam � partir de 3 liens
+   * Vérifie si le texte est un spam ou non
+   * Un texte est considéré comme spam  à partir de 3 liens
    * ou adresses e-mail dans son contenu
    *
    * @param string $text
@@ -63,12 +63,7 @@ class SdzAntispam extends \Twig_Extension
    */
   private function countLinks($text)
   {
-    /*preg_match_all(
-      '#(http|https|ftp)://([A-Z0-9][A-Z0-9_-]*(?:.[A-Z0-9][A-Z0-9_-]*)+):?(d+)?/?#i',
-      $text,
-      $matches);
- 
-    return count($matches[0]);*/ return 2;
+    return 2;
   }
  
   /**
@@ -78,12 +73,7 @@ class SdzAntispam extends \Twig_Extension
    */
   private function countMails($text)
   {
-    /*preg_match_all(
-      '#[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}#i',
-      $text,
-      $matches);
- 
-    return count($matches[0]);*/ return 2;
+    return 2;
   }
 }
 ?>

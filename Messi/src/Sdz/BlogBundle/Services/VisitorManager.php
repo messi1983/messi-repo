@@ -113,7 +113,7 @@ class VisitorManager //extends \Twig_Extension
 		
 		$this->createObject($page);
 		
-		return $page;//$this->findPageByName($pageName);
+		return $page;
 	}
 	
 	/**
@@ -125,7 +125,7 @@ class VisitorManager //extends \Twig_Extension
 		
 		$visitor = $this->createObject($visitor);
 		
-		return $visitor;//$this;
+		return $visitor;
 	}
 	
 	/**

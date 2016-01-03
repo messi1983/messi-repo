@@ -58,24 +58,6 @@ class SiteComment
 		$this->publication = true;
     }
 	
-	/**
-     * @ORM\prePersist
-     */
-    public function increase()
-    {
-		//$nbCommentaires = $this->getArticle()->getNbCommentaires();
-		//$this->getArticle()->setNbCommentaires($nbCommentaires+1);
-    }
-	
-	/**
-	  * @ORM\preRemove
-	  */
-	public function decrease()
-    {
-		//$nbCommentaires = $this->getArticle()->getNbCommentaires();
-		//$this->getArticle()->setNbCommentaires($nbCommentaires-1);
-	}
-
     /**
      * Get id
      *

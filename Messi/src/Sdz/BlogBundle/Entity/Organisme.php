@@ -13,6 +13,13 @@ use Sdz\BlogBundle\Constants\Constants;
  */
 class Organisme extends AbsRefPageWithLogo
 {
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nom", type="string", length=255)
+	 */
+	private $nom;
+	
     /**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
      */
@@ -57,6 +64,29 @@ class Organisme extends AbsRefPageWithLogo
     public function __construct()
     {
 		parent::__construct();
+    }
+    
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Danse
+     */
+    public function setNom($nom)
+    {
+    	$this->nom = $nom;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+    	return $this->nom;
     }
 
     /**
@@ -205,6 +235,16 @@ class Organisme extends AbsRefPageWithLogo
     public function getAdresse()
     {
     	return $this->adresse;
+    }
+    
+    /**
+     * Get refence page name.
+     *
+     * @return string
+     */
+    public function getReferencePageName()
+    {
+    	return $this->getNom();
     }
     
 }
