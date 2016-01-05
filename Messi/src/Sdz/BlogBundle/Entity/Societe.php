@@ -48,6 +48,8 @@ class Societe extends AbsRefPageWithLogo
     public function __construct()
     {
 		parent::__construct();
+		
+		$this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

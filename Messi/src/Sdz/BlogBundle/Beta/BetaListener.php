@@ -58,5 +58,4 @@ class BetaListener
     // On n'oublie pas d'enregistrer les modifications dans l'évènement
     $event->setResponse($response);
   }
-  
 }
