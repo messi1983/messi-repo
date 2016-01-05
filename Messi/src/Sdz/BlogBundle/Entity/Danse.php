@@ -84,7 +84,7 @@ class Danse extends AbsRefPageWithLogo
      */
     public function getDuration()
     {
-		if ($this->dateDebut != null)
+		if ($this->dateDebut !== null)
 		{
 			$today = new \DateTime();
 			$interval = $today->diff($this->dateDebut);
