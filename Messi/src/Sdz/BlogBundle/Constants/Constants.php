@@ -6,7 +6,7 @@ namespace Sdz\BlogBundle\Constants;
  * Contient les constantes de l'applications
  * @author Messi
  */
-interface Constants
+class Constants
 { 
 	/** total page name. */
 	const TOTAL_PAGE_NAME = 'total';
