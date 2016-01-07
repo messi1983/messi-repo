@@ -48,5 +48,4 @@ abstract class AbsRefPageWithLogo extends AbsRefPageEntity
 	{
 		return $this->logo;
 	}
-	
 }

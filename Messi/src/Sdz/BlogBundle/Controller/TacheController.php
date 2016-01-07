@@ -159,6 +159,5 @@ class TacheController extends AbsSiteController
 	{
 		return Constants::INDEX_BTN_ACCUEIL;
 	}
-	
 }
 ?>

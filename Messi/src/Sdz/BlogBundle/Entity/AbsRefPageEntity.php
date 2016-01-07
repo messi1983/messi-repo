@@ -136,5 +136,4 @@ abstract class AbsRefPageEntity
 		}
 		return Constants::EMPTY_STRING;
 	}
-	
 }
