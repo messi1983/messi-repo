@@ -253,5 +253,4 @@ class Sport extends AbsRefPageWithLogo
     {
     	return $this->getNom();
     }
-
 }

@@ -203,5 +203,4 @@ class Formation extends AbsRefPageEntity
     {
     	return $this->periode;
     }
-    
 }

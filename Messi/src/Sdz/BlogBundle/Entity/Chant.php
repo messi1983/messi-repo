@@ -200,5 +200,4 @@ class Chant extends AbsRefPageEntity
     {
     	return $this->titre;
     }
-
 }

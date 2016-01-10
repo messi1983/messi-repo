@@ -36,4 +36,3 @@ class SportType extends AbstractType
         return 'sdz_blogbundle_sporttype';
     }
 }
-

@@ -511,5 +511,4 @@ class Experience
     {
         return $this->periode;
     }
-    
 }

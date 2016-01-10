@@ -358,5 +358,4 @@ class Theatre extends AbsRefPageEntity
     {
     	return $this->getPiece();
     }
-    
 }
