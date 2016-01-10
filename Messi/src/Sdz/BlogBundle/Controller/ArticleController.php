@@ -39,7 +39,7 @@ class ArticleController extends AbsSiteController
 				$event = new MessagePostEvent($article->getContenu(), $article->getUser());
  
 				// On déclenche l'évènement
-				$this->get('event_dispatcher')->dispatch(BigbrotherEvents::onMessagePost, $event);
+				$this->get('event_dispatcher')->dispatch(BigbrotherEvents::ON_MESSAGE_POST, $event);
  
 				// On récupère ce qui a été modifié par le ou les listeners, ici le message
 				$article->setContenu($event->getMessage());

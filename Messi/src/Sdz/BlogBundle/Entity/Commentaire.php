@@ -3,7 +3,6 @@
 namespace Sdz\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sdz\BlogBundle\Validator\AntiFlood;
 
 /**
  * Commentaire
@@ -39,7 +38,6 @@ class Commentaire
      * @var string
      *
      * @ORM\Column(name="contenu", type="text")
-	 * @AntiFlood()
      */
     private $contenu;
 
