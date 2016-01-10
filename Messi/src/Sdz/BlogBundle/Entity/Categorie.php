@@ -11,17 +11,8 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\CategorieRepository")
  */
-class Categorie
+class Categorie extends AbsRefPageEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -40,35 +31,14 @@ class Categorie
 	private $technos;
 	
 	/**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
-    
-    /**
-     * @var string
-     */
-    private $locale;
-	
-	/**
 	 * Constructor.
 	 */
 	public function __construct()
 	{
+		parent::_construct();
+		
 		$this->technos = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->publication = false;
 	}
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nom
@@ -157,51 +127,9 @@ class Categorie
      */
     public function getDescriptionTexte()
     {
-    	$texte = '';
-    	if($this->description !== null) {
-    		if(Constants::LOCALE_FR == $this->locale) {
-    			$texte = $this->description->getTexteFr();
-    		} else {
-    			$texte = $this->description->getTexteEn();
-    		}
-    	}
-    
-    	return $texte;
+    	return $this->getTexteString($this->description);
     }
 
-    /**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Categorie
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
-	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-    
     /**
      * Get refence page name.
      *
@@ -210,16 +138,5 @@ class Categorie
     public function getReferencePageName()
     {
     	return $this->getNom();
-    }
-    
-    /**
-     *
-     * @param unknown $locale
-     * @return \Sdz\BlogBundle\Entity\Ecole
-     */
-    public function setLocale($locale) {
-    	$this->locale = $locale;
-    
-    	return $this;
     }
 }

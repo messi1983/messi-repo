@@ -12,28 +12,12 @@ use Sdz\BlogBundle\Constants\Constants;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Sdz\BlogBundle\Entity\ExperienceRepository")
  */
-class Experience
+class Experience extends AbsRefPageEntity
 {
-	/**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-	
 	/**
      * @ORM\OneToOne(targetEntity="Sdz\BlogBundle\Entity\Texte", cascade={"persist", "remove"})
      */
 	private $poste;
-	
-	/**
-     * @var boolean
-     *
-     * @ORM\Column(name="publication", type="boolean")
-     */
-    private $publication;
 	
 	/**
      * @Gedmo\Slug(fields={"projet"})
@@ -95,56 +79,18 @@ class Experience
      */
     private $dateModification;
     
-    /**
-     * @var string
-     */
-    private $locale;
-
-	
 	/**
      * Constructor
      */
     public function __construct()
 	{
-		$this->publication = false;
+		parent::__construct();
+		
 		$this->technos = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->taches = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->dateCreation = new \Datetime();
 	}
 	
-	/**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-	
-	/**
-     * Set publication
-     *
-     * @param boolean $publication
-     * @return Experience
-     */
-    public function setPublication($publication)
-    {
-        $this->publication = $publication;
-    
-        return $this;
-    }
-
-    /**
-     * Get publication
-     *
-     * @return boolean 
-     */
-    public function getPublication()
-    {
-        return $this->publication;
-    }
-
     /**
      * Set projet
      *
@@ -367,17 +313,6 @@ class Experience
         return 'En cours';
     }
 
-	
-	/**
-     * Get publish option value.
-     *
-     * @return string 
-     */
-	public function isYes()
-    {
-        return true;
-    }
-    
     /**
      * Get refence page name.
      *
@@ -394,7 +329,7 @@ class Experience
      * @return \Sdz\BlogBundle\Entity\Ecole
      */
     public function setLocale($locale) {
-    	$this->locale = $locale;
+    	parent::setLocale( $locale);
     	
     	if($this->taches !== null) {
     		foreach($this->taches as $tache) {
@@ -420,9 +355,6 @@ class Experience
     public function setDescription(\Sdz\BlogBundle\Entity\Texte $description = null)
     {
         $this->description = $description;
-        if($this->description !== null) {
-        	$this->description->setLocale($this->locale);
-        }
     
         return $this;
     }
@@ -444,10 +376,7 @@ class Experience
      */
     public function getDescriptionTexte()
     {
-    	if($this->description !== null) {
-    		return $this->description->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->description);
     }
 
     /**
@@ -459,9 +388,6 @@ class Experience
     public function setPoste(\Sdz\BlogBundle\Entity\Texte $poste = null)
     {
         $this->poste = $poste;
-        if($this->poste !== null) {
-        	$this->poste->setLocale($this->locale);
-        }
     
         return $this;
     }
@@ -483,10 +409,7 @@ class Experience
      */
     public function getPosteTexte()
     {
-    	if($this->poste !== null) {
-    		return $this->poste->getTexte();
-    	}
-    	return Constants::EMPTY_STRING;
+    	return $this->getTexteString($this->poste);
     }
 
     /**
